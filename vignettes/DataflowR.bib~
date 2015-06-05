@@ -1,0 +1,8 @@
+@article{csardi2006,
+  title={The \pkg{igraph} Software Package for Complex Network Research},
+  author={Csardi, Gabor and Nepusz, Tamas},
+  journal={InterJournal, Complex Systems},
+  volume={1695},
+  number={5},
+  year={2006}
+}

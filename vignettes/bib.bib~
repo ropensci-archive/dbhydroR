@@ -1,0 +1,15 @@
+@Manual{rcurl,
+    title = {RCurl: General network (HTTP/FTP/...) client interface for R},
+    author = {Duncan Temple Lang},
+    year = {2015},
+    note = {R package version 1.95-4.6},
+    url = {http://CRAN.R-project.org/package=RCurl},
+  }
+
+@Manual{,
+    title = {httr: Tools for Working with URLs and HTTP},
+    author = {Hadley Wickham},
+    year = {2015},
+    note = {R package version 0.6.1},
+    url = {http://CRAN.R-project.org/package=httr},
+  }

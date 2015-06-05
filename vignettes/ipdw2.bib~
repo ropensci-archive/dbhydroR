@@ -1,0 +1,19 @@
+
+@article{suominen2010,
+  title={Surface Layer Salinity Gradients and Flow Patterns in the Archipelago Coast of SW Finland, Northern Baltic Sea},
+  author={Suominen, Tapio and Tolvanen, Harri and Kalliola, Risto},
+  journal={Marine environmental research},
+  volume={69},
+  number={4},
+  pages={216--226},
+  year={2010},
+  publisher={Elsevier}
+}
+@Manual{etten2014,
+  title={gdistance: distances and routes on geographical grids},
+  author={Jacob van Etten},
+  year={2014},
+  note={R package version 1.1-5},
+  url={http://CRAN.R-project.org/package=gdistance},
+}
+\

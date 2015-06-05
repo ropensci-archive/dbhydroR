@@ -1,0 +1,15 @@
+Package: dbhydroR
+Title: Retrieval, Cleaning and Plotting of DBHydro Data
+Description: Functions are provided to query the DBHydro database, clean the output, and produce plots.
+Version: 0.1-1
+Date: 2015-06-04
+Author: Joseph Stachelek <jstachel@sfwmd.gov>
+Maintainer: Joseph Stachelek <jstachel@sfwmd.gov>
+VignetteBuilder: knitr
+Depends: R (>= 3.0.2)
+Imports: httr,reshape2,RCurl
+Suggests: knitr
+License: GPL (>= 2)
+LazyData: true
+NeedsCompilation: no
+Packaged: 2015-06-05 13:04:15 UTC; Jose

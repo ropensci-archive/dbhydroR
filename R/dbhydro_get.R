@@ -1,0 +1,81 @@
+#'@name dbhydro_get
+#'@title Retrieve data from the DBHYDRO Environmental Database
+#'@description South Florida Water Management District
+#'@param station_id character string of station id(s)
+#'@param date_min character must be in POSIXct YYYY-MM-DD format
+#'@param date_max character must be in POSIXct YYYY-MM-DD format
+#'@param test_name character string of test name(s)
+#'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included. 
+#'@param qc_strip logical set TRUE to avoid returning QAQC flagged data entries
+#'@param qc_field logical set TRUE to avoid returning field QC results
+#'@param test_number numeric test name alternative (not implemented)
+#'@param v_target_code string print to file? (not implemented)
+#'@param sample_id numeric (not implemented)
+#'@param project_code numeric (not implemented)
+#'@details TODO: Querying with wildcards
+#'@export
+#'@import httr
+#'@import RCurl
+#'@examples
+#'#one variable and one station
+#'dbhydro_get(station_id="FLAB08", date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+#'
+#'#one variable at multiple stations
+#'dbhydro_get(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+#'
+#'#One variable at a wildcard station
+#'dbhydro_get(station_id=c("FLAB0%"), date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+#'
+#'#multiple variables at multiple stations
+#'dbhydro_get(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",date_max="2012-05-01",test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
+
+dbhydro_get<-function(station_id=NA,date_min=NA,date_max=NA,test_name=NA,raw=FALSE,qc_strip="N",qc_field="N",test_number=NA,v_target_code="file_csv",sample_id=NA,project_code=NA){
+  
+  servfull <- "http://my.sfwmd.gov/dbhydroplsql/water_quality_data.report_full"
+  
+  #try(ping<-RCurl::getURL("http://www.sfwmd.gov/portal/page/portal/sfwmdmain/home%20page"),silent=TRUE)
+  #if(!exists("ping")){stop("no internet connection")}
+  
+  station_like<-station_id[grepl("%",station_id)]
+  if(length(station_like)>0){
+    station_id<-station_id[!grepl("%",station_id)]
+    station_like<-paste("(",paste("'",station_like,"'",sep="",collapse=","),")",sep="")
+  }else{
+    station_like<-NA
+  }
+  
+  station_list<-paste("(",paste("'",station_id,"'",sep="",collapse=","),")",sep="")
+  
+  if(!is.na(date_min)){
+  date_min<-strftime(date_min,format="%d-%b-%Y")
+  date_min<-paste("> ","'",date_min,"'",sep="")
+  }
+  if(!is.na(date_max)){
+  date_max<-strftime(date_max,format="%d-%b-%Y")
+  date_max<-paste("< ","'",date_max,"'",sep="")
+  }
+  
+  test_list<-paste("(",paste("'",test_name,"'",sep="",collapse=","),")",sep="")
+  
+  if(qc_strip==TRUE){
+    qc_strip<-"Y"
+  }
+  if(qc_field==TRUE){
+    qc_field<-"Y"
+  }
+  
+  if(length(station_like)>0&any(!is.na(station_like))){
+    qy<-list(v_where_clause=paste("where","date_collected",date_min,"and","date_collected",date_max,"and","station_id","like",station_like,"and","test_name","in",test_list,sep=" "),v_target_code=v_target_code,v_exc_flagged=qc_strip,v_exc_qc=qc_field)
+  }else{
+  qy<-list(v_where_clause=paste("where","date_collected",date_min,"and","date_collected",date_max,"and","station_id","in",station_list,"and","test_name","in",test_list,sep=" "),v_target_code=v_target_code,v_exc_flagged=qc_strip,v_exc_qc=qc_field)
+  }
+  
+  res<-httr::GET(servfull,query=qy)
+  
+  if(raw==TRUE){
+  read.csv(text=content(res,"text"))
+  }else{
+    dbhydro_clean(read.csv(text=content(res,"text")))
+  }
+}
+
