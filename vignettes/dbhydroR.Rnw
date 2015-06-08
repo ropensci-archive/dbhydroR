@@ -6,6 +6,7 @@
 \usepackage{float}
 
 \usepackage{natbib}
+\usepackage[obeyspaces,spaces]{url}
 \bibliographystyle{plainnat}
 \bibpunct[; ]{(}{)}{,}{a}{}{;}
 
@@ -49,12 +50,11 @@ The \texttt{R} package \texttt{dbhydroR} is distributed via a \texttt{.tar.gz} (
 <<echo = FALSE>>=
 options(continue = "+", width = 50, useFancyQuotes = FALSE)
 @
-
-<<eval=FALSE>>=
-install.packages("B:\\restoration_sciences\\projects\\joe_stachelek
-                 \\R\\dbhydro_0.1-1.zip",type="win.binary",
-                 repos=NULL,dependencies=TRUE)
-@
+\vspace{10pt}
+\noindent\texttt{install.packages(}\\
+\path{"B:\\restoration_sciences\\projects\\joe_stachelek\\R\\dbhydroR_0.1-1.zip"}
+\texttt{,type="win.binary",repos=NULL,dependencies=TRUE)}
+\vspace{8pt}
 
 Once installed, the package can be loaded using the following command:
 
@@ -187,7 +187,7 @@ TURBIDITY\\
 %\end{tabular}
 
 \subsection{Further reading}
-See section on URL-based data access in the \href{http://www.sfwmd.gov/portal/page/portal/xrepository/sfwmd_repository_pdf/dbhydrobrowsweruserdocumentation.pdf}{DBHYDRO Browser User's Guide}
+See section on URL-based data access in the \href{http://www.sfwmd.gov/portal/page/portal/xrepository/sfwmd_repository_pdf/dbhydrobrowseruserdocumentation.pdf}{DBHYDRO Browser User's Guide}
 
 \medskip
  

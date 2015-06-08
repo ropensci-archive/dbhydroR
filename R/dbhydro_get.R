@@ -78,4 +78,3 @@ dbhydro_get<-function(station_id=NA,date_min=NA,date_max=NA,test_name=NA,raw=FAL
     dbhydro_clean(read.csv(text=content(res,"text")))
   }
 }
-

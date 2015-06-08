@@ -1,6 +1,6 @@
 #'@name dbydro_plot
 #'@title Plot DBHYDRO data retrievals
-#'@param dt output of dbhydro_get
+#'@param dt data.frame output of dbhydro_get
 #'@param type string plot type
 #'@param label string placement of site label choice of "topleft", "topright", "bottomleft", or "bottomright"
 #'@param abb integer number of characters to abbreviate y-axis label
