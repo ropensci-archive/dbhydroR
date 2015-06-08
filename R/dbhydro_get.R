@@ -1,5 +1,5 @@
-#'@name dbhydro_get
-#'@title Retrieve data from the DBHYDRO Environmental Database
+#'@name getwq
+#'@title Retrieve water quality data from the DBHYDRO Environmental Database
 #'@description South Florida Water Management District
 #'@param station_id character string of station id(s)
 #'@param date_min character must be in POSIXct YYYY-MM-DD format
@@ -12,24 +12,23 @@
 #'@param v_target_code string print to file? (not implemented)
 #'@param sample_id numeric (not implemented)
 #'@param project_code numeric (not implemented)
-#'@details TODO: Querying with wildcards
 #'@export
 #'@import httr
 #'@import RCurl
 #'@examples
 #'#one variable and one station
-#'dbhydro_get(station_id="FLAB08", date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+#'getwq(station_id="FLAB08", date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
 #'
 #'#one variable at multiple stations
-#'dbhydro_get(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+#'getwq(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
 #'
 #'#One variable at a wildcard station
-#'dbhydro_get(station_id=c("FLAB0%"), date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+#'getwq(station_id=c("FLAB0%"), date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
 #'
 #'#multiple variables at multiple stations
-#'dbhydro_get(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",date_max="2012-05-01",test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
+#'getwq(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",date_max="2012-05-01",test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
 
-dbhydro_get<-function(station_id=NA,date_min=NA,date_max=NA,test_name=NA,raw=FALSE,qc_strip="N",qc_field="N",test_number=NA,v_target_code="file_csv",sample_id=NA,project_code=NA){
+getwq<-function(station_id=NA,date_min=NA,date_max=NA,test_name=NA,raw=FALSE,qc_strip="N",qc_field="N",test_number=NA,v_target_code="file_csv",sample_id=NA,project_code=NA){
   
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/water_quality_data.report_full"
   
@@ -75,6 +74,47 @@ dbhydro_get<-function(station_id=NA,date_min=NA,date_max=NA,test_name=NA,raw=FAL
   if(raw==TRUE){
   read.csv(text=content(res,"text"))
   }else{
-    dbhydro_clean(read.csv(text=content(res,"text")))
+    cleanwq(read.csv(text=content(res,"text")))
   }
+}
+
+
+#'@name gethydro
+#'@title Retrieve hydrologic data from the DBHYDRO Environmental Database
+#'@description South Florida Water Management District
+#'@param dbkey character string of time series identifiers (e.g. Joe Bay mean daily wind speed is "15081"). These are listed alongside each time series in DBHYDRO.
+#'@param date_min character must be in POSIXct YYYY-MM-DD format
+#'@param date_max character must be in POSIXct YYYY-MM-DD format
+#'@param period string optional return data from the last X days (not implemented)
+#'@param v_target_code string print to file? (not implemented)
+#'@export
+#'@import httr
+#'@import RCurl
+#'@examples
+#'#One variable/station time series
+#'gethydro(dbkey="15081",date_min="2013-01-01",date_max="2013-02-02")
+#'
+#'#Multiple variable/station time series
+#'gethydro(dbkey=c("15081","15069"),date_min="2013-01-01",date_max="2013-02-02")
+
+gethydro<-function(dbkey,date_min=NA,date_max=NA,period="uspec",v_target_code="file_csv"){
+
+  if(length(dbkey)>1){
+    dbkey<-paste(dbkey,"/",collapse="",sep="")
+    dbkey<-substring(dbkey,1,(nchar(dbkey)-1))
+  }
+  
+  servfull <- "http://my.sfwmd.gov/dbhydroplsql/web_io.report_process"
+  
+  if(!is.na(date_min)){
+    date_min<-strftime(date_min,format="%Y%m%d")
+    }
+  if(!is.na(date_max)){
+    date_max<-strftime(date_max,format="%Y%m%d")
+    }
+  
+  qy<-list(v_period=period,v_start_date=date_min,v_end_date=date_max,v_report_type="format6",v_target_code=v_target_code,v_run_mode="onLine",v_js_flag="Y",v_dbkey=dbkey)
+  
+  res<-httr::GET(servfull,query=qy)
+  cleanhydro(res)
 }

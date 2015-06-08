@@ -8,7 +8,7 @@
 dbhydro_plot(dt, label = "topleft", type = "b", abb = Inf)
 }
 \arguments{
-\item{dt}{output of dbhydro_get}
+\item{dt}{data.frame output of dbhydro_get}
 
 \item{label}{string placement of site label choice of "topleft", "topright", "bottomleft", or "bottomright"}
 

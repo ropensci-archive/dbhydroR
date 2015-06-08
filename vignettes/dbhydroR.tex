@@ -67,12 +67,13 @@ Once installed, the package can be loaded using the following command:
 
 
 \section{Composing database queries}
+\subsection{Water quality data}
 
 The workhorse \texttt{dbhydroR} function is \verb|dbydro_get|. This function takes four required arguments. The user must specify a station ID, a test name, and a date range. Station IDs can be located on the \href{http://my.sfwmd.gov/KMLEXT/CUSTOMKMLS/DBHydro/DBHydroKML/DBHYDRO_KML.kmz}{SFWMD Google Earth portal}. A list of available test names can be found in the \nameref{sec:appendix} to this document. Dates must be specified in YYYY-MM-DD format (e.g. 2015-02-26).   The following set of examples retrieve measurements between March 2011 and May 2012. They can be run from the R console by issuing the command:
 
 \begin{Schunk}
 \begin{Sinput}
-> example(dbhydro_get)
+> example(getwq)
 \end{Sinput}
 \end{Schunk}
 
@@ -81,7 +82,7 @@ The workhorse \texttt{dbhydroR} function is \verb|dbydro_get|. This function tak
 
 \begin{Schunk}
 \begin{Sinput}
-> dbhydro_get(station_id="FLAB08", date_min="2011-03-01",
+> getwq(station_id="FLAB08", date_min="2011-03-01",
 +            date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
 \end{Sinput}
 \end{Schunk}
@@ -90,7 +91,7 @@ The workhorse \texttt{dbhydroR} function is \verb|dbydro_get|. This function tak
 
 \begin{Schunk}
 \begin{Sinput}
-> dbhydro_get(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",
+> getwq(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",
 +            date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
 \end{Sinput}
 \end{Schunk}
@@ -99,7 +100,7 @@ The workhorse \texttt{dbhydroR} function is \verb|dbydro_get|. This function tak
 
 \begin{Schunk}
 \begin{Sinput}
-> dbhydro_get(station_id=c("FLAB0%"), date_min="2011-03-01",
+> getwq(station_id=c("FLAB0%"), date_min="2011-03-01",
 +            date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
 \end{Sinput}
 \end{Schunk}
@@ -108,7 +109,7 @@ The workhorse \texttt{dbhydroR} function is \verb|dbydro_get|. This function tak
 
 \begin{Schunk}
 \begin{Sinput}
-> dbhydro_get(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",
+> getwq(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",
 +            date_max="2012-05-01",test_name=c("CHLOROPHYLLA-SALINE",
 +                                              "SALINITY"))
 \end{Sinput}
@@ -116,19 +117,48 @@ The workhorse \texttt{dbhydroR} function is \verb|dbydro_get|. This function tak
 
 \end{itemize}
 
-By default, \verb|dbhydro_get| returns a "cleaned output". First, the cleaning function \verb|dbhydro_clean| converts the raw output from native DBHYDRO "long" format (each piece of data on its own row) to "wide" format (each site x variable combination in its own column) using the reshape2 package \citep{reshape2}. Next, the QA blanks/flags and DBHydro database identifiers are stripped. Setting the \texttt{raw} flag to \texttt{TRUE} will force \verb|dbhydro_get| to retain this information. An example query that retains this information is shown below.
+\noindent By default, \verb|getwq| returns a "cleaned output". First, the cleaning function \verb|cleanwq| converts the raw output from native DBHYDRO "long" format (each piece of data on its own row) to "wide" format (each site x variable combination in its own column) using the reshape2 package \citep{reshape2}. Next, the QA blanks/flags and DBHydro database identifiers are stripped. Setting the \texttt{raw} flag to \texttt{TRUE} will force \verb|getwq| to retain this information. An example query that retains this information is shown below.
 
 \begin{Schunk}
 \begin{Sinput}
-> dbhydro_get(station_id="FLAB08", date_min="2011-03-01",
+> getwq(station_id="FLAB08", date_min="2011-03-01",
 +            date_max="2011-05-01",test_name="CHLOROPHYLLA-SALINE",
 +            raw=TRUE)
 \end{Sinput}
 \end{Schunk}
 
+\subsection{Hydrologic data}
+
+Hydrologic time series data can be retrieved using the \texttt{gethydro} function. \texttt{gethydro} is a little more involved than \texttt{getwq} because there is no ability to perform wildcard matching and stations are identified not by name but by their "dbkey". The user must find the dbkey manually by navigating through the \href{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}{DBHYDRO Browser}. In addition to a dbkey, users must specify a date range. Dates must be entered in YYYY-MM-DD format (e.g. 2015-02-26).   The following set of examples retrieve wind speed measurements between January and February 2013. They can be run from the R console by issuing the command:
+
+\begin{Schunk}
+\begin{Sinput}
+> example(gethydro)
+\end{Sinput}
+\end{Schunk}
+
+\begin{itemize}
+\item One variable/station time series
+\begin{Schunk}
+\begin{Sinput}
+> gethydro(dbkey="15081",
++         date_min="2013-01-01",date_max="2013-02-02")
+\end{Sinput}
+\end{Schunk}
+
+\item Multiple variable/station time series
+\begin{Schunk}
+\begin{Sinput}
+> gethydro(dbkey=c("15081","15069"),
++         date_min="2013-01-01",date_max="2013-02-02")
+\end{Sinput}
+\end{Schunk}
+
+\end{itemize}
+
 \section{Plotting}
 
-Once data has been retrieved with \verb|dbhydro_get| in non-raw form (or cleaned with \verb|dbhydro_clean|), and assigned to an R object, plots can be produced using the \verb|dbhydro_plot| function. This function will create a dedicated panel of figures for each of the available variables. The following example retrieves and plots measurements between March 2011 and May 2014. It can be run from the R console by issuing the command:
+Once data has been retrieved with \verb|getwq| or \texttt{gethydro} in non-raw form (or raw water quality data that has been cleaned with \verb|cleanwq|), and assigned to an R object, plots can be produced using the \verb|dbhydro_plot| function. This function will create a dedicated panel of figures for each of the available variables. The following set of examples can be run from the R console by issuing the command:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -136,16 +166,29 @@ Once data has been retrieved with \verb|dbhydro_get| in non-raw form (or cleaned
 \end{Sinput}
 \end{Schunk}
 
-or
+\begin{itemize}
 
+\item{Water quality}
 \begin{Schunk}
 \begin{Sinput}
-> dt<-dbhydro_get(station_id=c("FLAB08","FLAB09"),
+> dt<-getwq(station_id=c("FLAB08","FLAB09"),
 +                date_min="2011-03-01",date_max="2014-05-01",
 +                test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
 > dbhydro_plot(dt,label="bottomleft",abb=3)
 \end{Sinput}
 \end{Schunk}
+
+
+\item{Hydrologic}
+\begin{Schunk}
+\begin{Sinput}
+> dt<-gethydro(dbkey=c("15081","15069"),
++             date_min="2013-01-01",date_max="2013-02-02")
+> dbhydro_plot(dt)
+\end{Sinput}
+\end{Schunk}
+\end{itemize}
+
 \vspace{2pt}
 \begin{figure}[H]
 \begin{center}
@@ -202,7 +245,7 @@ TURBIDITY\\
 %\end{tabular}
 
 \subsection{Further reading}
-See section on URL-based data access in the \href{http://www.sfwmd.gov/portal/page/portal/xrepository/sfwmd_repository_pdf/dbhydrobrowsweruserdocumentation.pdf}{DBHYDRO Browser User's Guide}
+See section on URL-based data access in the \href{http://www.sfwmd.gov/portal/page/portal/xrepository/sfwmd_repository_pdf/dbhydrobrowseruserdocumentation.pdf}{DBHYDRO Browser User's Guide}
 
 \medskip
  
