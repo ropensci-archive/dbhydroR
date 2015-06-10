@@ -7,7 +7,7 @@
 cleanhydro(res)
 }
 \arguments{
-\item{dt}{data.frame output of gethydro}
+\item{res}{output of gethydro of class "response"}
 }
 \description{
 Cleans to by consistent with water quality formatting. Connects metadata header to actual measurements.

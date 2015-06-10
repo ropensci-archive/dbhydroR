@@ -5,7 +5,7 @@
 \title{Retrieve hydrologic data from the DBHYDRO Environmental Database}
 \usage{
 gethydro(dbkey, date_min = NA, date_max = NA, period = "uspec",
-  raw = FALSE, v_target_code = "file_csv")
+  v_target_code = "file_csv")
 }
 \arguments{
 \item{dbkey}{character string of time series identifiers (e.g. Joe Bay mean daily wind speed is "15081"). These are listed alongside each time series in DBHYDRO.}
@@ -13,6 +13,10 @@ gethydro(dbkey, date_min = NA, date_max = NA, period = "uspec",
 \item{date_min}{character must be in POSIXct YYYY-MM-DD format}
 
 \item{date_max}{character must be in POSIXct YYYY-MM-DD format}
+
+\item{period}{string optional return data from the last X days (not implemented)}
+
+\item{v_target_code}{string print to file? (not implemented)}
 }
 \description{
 South Florida Water Management District

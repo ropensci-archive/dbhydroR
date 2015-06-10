@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.7)  8 JUN 2015 15:45
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.7)  10 JUN 2015 14:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1206,12 +1206,12 @@ Underfull \vbox (badness 10000) detected at line 231
  []
 
 [4 <./Rplot.png>] (./dbhydroR.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 256.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 243.
  [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 256.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 243.
  (./dbhydroR.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 256.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 256.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 243.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 243.
 Package rerunfilecheck Info: File `dbhydroR.out' has not changed.
 (rerunfilecheck)             Checksum: 616E7535A168F1194D0D42D6CC7D94D3;503.
  ) 
@@ -1230,7 +1230,7 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmsltt10.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmtt12.pfb>
-Output written on dbhydroR.pdf (5 pages, 118232 bytes).
+Output written on dbhydroR.pdf (5 pages, 117689 bytes).
 PDF statistics:
  124 PDF objects out of 1000 (max. 8388607)
  104 compressed objects within 2 object streams
