@@ -12,6 +12,7 @@
 #'@param v_target_code string print to file? (not implemented)
 #'@param sample_id numeric (not implemented)
 #'@param project_code numeric (not implemented)
+#'@details TODO: return warning when no data rather than error
 #'@export
 #'@import httr
 #'@import RCurl
@@ -72,9 +73,13 @@ getwq<-function(station_id=NA,date_min=NA,date_max=NA,test_name=NA,raw=FALSE,qc_
   res<-httr::GET(servfull,query=qy)
   
   if(raw==TRUE){
-  read.csv(text=content(res,"text"))
+    read.csv(text=httr::content(res,"text"))
   }else{
-    cleanwq(read.csv(text=content(res,"text")))
+    if(!any(!is.na(read.csv(text=httr::content(res,"text"))))){
+      message("No data found")
+    }else{
+    cleanwq(read.csv(text=httr::content(res,"text")))
+    }
   }
 }
 
