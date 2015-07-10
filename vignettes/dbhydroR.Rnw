@@ -52,7 +52,7 @@ options(continue = "+", width = 50, useFancyQuotes = FALSE)
 @
 \vspace{10pt}
 \noindent\texttt{install.packages(}\\
-\path{"B:\\restoration_sciences\\projects\\joe_stachelek\\R\\dbhydroR_0.1-1.zip"}
+\path{"\\\\ad.sfwmd.gov\\DFSRoot\\data\\restoration_sciences\\projects\\joe_stachelek\\R\\dbhydroR_0.1-2.zip"}
 \texttt{,type="win.binary",repos=NULL,dependencies=TRUE)}
 \vspace{8pt}
 
@@ -69,7 +69,7 @@ library(dbhydroR)
 \section{Composing database queries}
 \subsection{Water quality data}
 
-The workhorse \texttt{dbhydroR} function is \verb|getwq| and \texttt{gethydro}. This function takes four required arguments. The user must specify a station ID, a test name, and a date range. Station IDs can be located on the \href{http://my.sfwmd.gov/KMLEXT/CUSTOMKMLS/DBHydro/DBHydroKML/DBHYDRO_KML.kmz}{SFWMD Google Earth portal}. A list of available test names can be found in the \nameref{sec:appendix} to this document. Dates must be specified in YYYY-MM-DD format (e.g. 2015-02-26).   The following set of examples retrieve measurements between March 2011 and May 2012. They can be run from the R console by issuing the command:
+The workhorse \texttt{dbhydroR} functions are \verb|getwq| and \texttt{gethydro}. This function takes four required arguments. The user must specify a station ID, a test name, and a date range. Station IDs can be located on the \href{http://my.sfwmd.gov/KMLEXT/CUSTOMKMLS/DBHydro/DBHydroKML/DBHYDRO_KML.kmz}{SFWMD Google Earth portal}. A list of available test names can be found in the \nameref{sec:appendix} to this document. Dates must be specified in YYYY-MM-DD format (e.g. 2015-02-26).   The following set of examples retrieve measurements between March 2011 and May 2012. They can be run from the R console by issuing the command:
 
 <<eval=FALSE>>=
 example(getwq)
