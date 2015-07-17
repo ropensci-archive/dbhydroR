@@ -101,9 +101,21 @@ getwq<-function(station_id=NA,date_min=NA,date_max=NA,test_name=NA,raw=FALSE,qc_
 #'
 #'#Multiple variable/station time series
 #'gethydro(dbkey=c("15081","15069"),date_min="2013-01-01",date_max="2013-02-02")
+#'
+#'#Looking up unknown dbkeys
+#'gethydro(stationid="JBTS",category="WEATHER",param="WNDS",date_min="2013-01-01",date_max="2013-02-02")
+#'
 
-gethydro<-function(dbkey,date_min=NA,date_max=NA,period="uspec",v_target_code="file_csv"){
+gethydro<-function(dbkey=NA,stationid=NA,category=NA,param=NA,date_min=NA,date_max=NA,period="uspec",v_target_code="file_csv"){
 
+  if((is.na(stationid)|is.na(category))& all(is.na(dbkey))){
+    stop("Must specify either a dbkey or stationid/category/param.")
+  }
+  
+  if(!is.na(stationid)){
+    dbkey<-getdbkey(stationid = stationid,category = category,param = param,blind = TRUE)
+  }
+  
   if(length(dbkey)>1){
     dbkey<-paste(dbkey,"/",collapse="",sep="")
     dbkey<-substring(dbkey,1,(nchar(dbkey)-1))
@@ -122,4 +134,44 @@ gethydro<-function(dbkey,date_min=NA,date_max=NA,period="uspec",v_target_code="f
   
   res<-httr::GET(servfull,query=qy)
   cleanhydro(res)
+}
+
+#'@name getdbkey
+#'@title Retrive a list of dbkeys from a DBHYDRO station ID
+#'@export
+#'@param stationid character string
+#'@param category character string, choice of "WEATHER","SW","GW", or "WQ"
+#'@param blind logical output dbkey results as object (TRUE) or simply print query results (FALSE)?
+#'@param string desired parameter name
+#'@examples
+#'getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
+#'getdbkey(stationid="C111%",category="SW")
+#'getdbkey(stationid="C111%",category="GW")
+#'getdbkey(stationid="C111%",category="WQ")
+#'getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
+
+getdbkey<-function(stationid,category,param=NA,freq="DA",blind=FALSE){
+
+  servfull <- "http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
+  
+  qy<-list(v_js_flag="Y",v_category=category,v_station=stationid,v_dbkey_list_flag="Y",v_order_by="STATION")
+  res<-httr::GET(servfull,query=qy)
+  res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1', httr::content(res,"text"))
+  
+  res<-XML::readHTMLTable(res)[[3]][,c(2,4,5,6,10,11)]
+  
+  if(!is.na(param)){
+    res<-res[as.character(res[,"Data Type"])==param,]
+  }
+  if(!is.na(freq)){
+    res<-res[as.character(res[,"Freq"])==freq,]
+  }
+  res[,1]<-as.character(res[,1])
+  
+  if(blind==FALSE){
+    message(paste("Search results for"," '",stationid," ",category,"'",sep=""))
+  print(res)
+  }else{
+   res[,1] 
+  }
 }

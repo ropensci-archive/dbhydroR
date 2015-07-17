@@ -4,7 +4,8 @@
 \alias{gethydro}
 \title{Retrieve hydrologic data from the DBHYDRO Environmental Database}
 \usage{
-gethydro(dbkey, date_min = NA, date_max = NA, period = "uspec",
+gethydro(dbkey = NA, stationid = NA, category = NA, param = NA,
+  date_min = NA, date_max = NA, period = "uspec",
   v_target_code = "file_csv")
 }
 \arguments{
@@ -27,5 +28,8 @@ gethydro(dbkey="15081",date_min="2013-01-01",date_max="2013-02-02")
 
 #Multiple variable/station time series
 gethydro(dbkey=c("15081","15069"),date_min="2013-01-01",date_max="2013-02-02")
+
+#Looking up unknown dbkeys
+gethydro(stationid="JBTS",category="WEATHER",param="WNDS",date_min="2013-01-01",date_max="2013-02-02")
 }
 

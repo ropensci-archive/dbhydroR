@@ -3,6 +3,7 @@
 export(cleanhydro)
 export(cleanwq)
 export(dbhydro_plot)
+export(getdbkey)
 export(gethydro)
 export(getwq)
 import(RCurl)

@@ -48,12 +48,13 @@ This document introduces the \texttt{dbhydroR} package and its associated functi
 The \texttt{R} package \texttt{dbhydroR} is distributed via a \texttt{.tar.gz} (analagous to \texttt{.zip}) package archive file. This package contains the source code for package functions. In RStudio, it can be installed by navigating to \texttt{Tools} \verb|->| \texttt{Install Packages...} \verb|->| \texttt{Install from:} \verb|->| \texttt{Package Archive File}. Computers running the Windows operating system can only install binary \texttt{.zip} package archive files unless they have additional compiler software installed. The \texttt{dbhydroR} binary package can be installed by running the following command from the \texttt{R} console:
 
 <<echo = FALSE>>=
-options(continue = "+", width = 50, useFancyQuotes = FALSE)
+options(width = 50, useFancyQuotes = FALSE)
 @
 \vspace{10pt}
-\noindent\texttt{install.packages(}\\
-\path{"\\\\ad.sfwmd.gov\\DFSRoot\\data\\restoration_sciences\\projects\\joe_stachelek\\R\\dbhydroR_0.1-2.zip"}
+\noindent\texttt{install.packages(paste(}\verb|"\\\\ad.sfwmd.gov\\DFSRoot\\data\\restoration_sciences",|\\
+\verb|"\\projects\\joe_stachelek\\R\\dbhydroR_0.1-2.zip",sep="")|\\
 \texttt{,type="win.binary",repos=NULL,dependencies=TRUE)}
+
 \vspace{8pt}
 
 Once installed, the package can be loaded using the following command:
@@ -117,7 +118,39 @@ getwq(station_id="FLAB08", date_min="2011-03-01",
 
 \subsection{Hydrologic data}
 
-Hydrologic time series data can be retrieved using the \texttt{gethydro} function. \texttt{gethydro} is a little more involved than \texttt{getwq} because there is no ability to perform wildcard matching and stations are identified not by name but by their "dbkey". The user must find the dbkey manually by navigating through the \href{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}{DBHYDRO Browser}. In addition to a dbkey, users must specify a date range. Dates must be entered in YYYY-MM-DD format (e.g. 2015-02-26).   The following set of examples retrieve wind speed measurements between January and February 2013. They can be run from the R console by issuing the command:
+Hydrologic time series data can be retrieved using the \texttt{gethydro} function either by specifying a set of known \texttt{dbkeys} or by retrieving \texttt{dbkeys} on-the-fly with entries in the Station ID (stationid), data category (category), and parameter (param) fields.\\
+
+Complex stationid/category/parameter combinations can easily cause errors or return unexpected results. If dbkeys are not known ahead of time (or manually retrieved from the \href{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}{DBHYDRO Browser}, it is good practice to plug in your stationid/category/parameter combination to the \texttt{getdbkey} function to ensure that the listing looks reasonable. The following set of examples can be run from the R console by issuing the command:
+
+<<eval=FALSE>>=
+example(getdbkey)
+@
+
+\begin{itemize}
+\item Complete specification of the Station ID, Category, and Parameter flags
+
+<<eval=FALSE>>=
+getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
+@
+
+\item Wildcard Station ID with no parameter specification
+
+<<eval=FALSE>>=
+getdbkey(stationid="C111%",category="SW")
+getdbkey(stationid="C111%",category="GW")
+getdbkey(stationid="C111%",category="WQ")
+@
+
+\item Returning only dbkeys with the blind flag
+
+<<eval=FALSE>>=
+getdbkey(stationid="JBTS",category="WEATHER",param="WNDS", blind=TRUE)
+@
+
+\end{itemize}
+
+
+ In addition to a dbkey, users must specify a date range. Dates must be entered in YYYY-MM-DD format (e.g. 2015-02-26).   The following set of examples retrieve wind speed measurements between January and February 2013. They can be run from the R console by issuing the command:
 
 <<eval=FALSE>>=
 example(gethydro)
@@ -134,6 +167,13 @@ gethydro(dbkey="15081",
 <<eval=FALSE>>=
 gethydro(dbkey=c("15081","15069"),
          date_min="2013-01-01",date_max="2013-02-02")
+@
+
+\item Retreiving unknown \texttt{dbkeys} on-the-fly
+
+<<eval=FALSE>>=
+gethydro(stationid="JBTS",category="WEATHER",
+         param="WNDS",date_min="2013-01-01",date_max="2013-02-02")
 @
 
 \end{itemize}

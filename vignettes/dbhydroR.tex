@@ -49,9 +49,10 @@ This document introduces the \texttt{dbhydroR} package and its associated functi
 The \texttt{R} package \texttt{dbhydroR} is distributed via a \texttt{.tar.gz} (analagous to \texttt{.zip}) package archive file. This package contains the source code for package functions. In RStudio, it can be installed by navigating to \texttt{Tools} \verb|->| \texttt{Install Packages...} \verb|->| \texttt{Install from:} \verb|->| \texttt{Package Archive File}. Computers running the Windows operating system can only install binary \texttt{.zip} package archive files unless they have additional compiler software installed. The \texttt{dbhydroR} binary package can be installed by running the following command from the \texttt{R} console:
 
 \vspace{10pt}
-\noindent\texttt{install.packages(}\\
-\path{"\\\\ad.sfwmd.gov\\DFSRoot\\data\\restoration_sciences\\projects\\joe_stachelek\\R\\dbhydroR_0.1-2.zip"}
+\noindent\texttt{install.packages(paste(}\verb|"\\\\ad.sfwmd.gov\\DFSRoot\\data\\restoration_sciences",|\\
+\verb|"\\projects\\joe_stachelek\\R\\dbhydroR_0.1-2.zip",sep="")|\\
 \texttt{,type="win.binary",repos=NULL,dependencies=TRUE)}
+
 \vspace{8pt}
 
 Once installed, the package can be loaded using the following command:
@@ -83,7 +84,7 @@ The workhorse \texttt{dbhydroR} functions are \verb|getwq| and \texttt{gethydro}
 \begin{Schunk}
 \begin{Sinput}
 > getwq(station_id="FLAB08", date_min="2011-03-01",
-+            date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
++             date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
 \end{Sinput}
 \end{Schunk}
 
@@ -92,7 +93,7 @@ The workhorse \texttt{dbhydroR} functions are \verb|getwq| and \texttt{gethydro}
 \begin{Schunk}
 \begin{Sinput}
 > getwq(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",
-+            date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
++             date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
 \end{Sinput}
 \end{Schunk}
 
@@ -101,7 +102,7 @@ The workhorse \texttt{dbhydroR} functions are \verb|getwq| and \texttt{gethydro}
 \begin{Schunk}
 \begin{Sinput}
 > getwq(station_id=c("FLAB0%"), date_min="2011-03-01",
-+            date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
++             date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
 \end{Sinput}
 \end{Schunk}
 
@@ -110,8 +111,8 @@ The workhorse \texttt{dbhydroR} functions are \verb|getwq| and \texttt{gethydro}
 \begin{Schunk}
 \begin{Sinput}
 > getwq(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",
-+            date_max="2012-05-01",test_name=c("CHLOROPHYLLA-SALINE",
-+                                              "SALINITY"))
++             date_max="2012-05-01",test_name=c("CHLOROPHYLLA-SALINE",
++                                               "SALINITY"))
 \end{Sinput}
 \end{Schunk}
 
@@ -122,14 +123,54 @@ The workhorse \texttt{dbhydroR} functions are \verb|getwq| and \texttt{gethydro}
 \begin{Schunk}
 \begin{Sinput}
 > getwq(station_id="FLAB08", date_min="2011-03-01",
-+            date_max="2011-05-01",test_name="CHLOROPHYLLA-SALINE",
-+            raw=TRUE)
++             date_max="2011-05-01",test_name="CHLOROPHYLLA-SALINE",
++             raw=TRUE)
 \end{Sinput}
 \end{Schunk}
 
 \subsection{Hydrologic data}
 
-Hydrologic time series data can be retrieved using the \texttt{gethydro} function. \texttt{gethydro} is a little more involved than \texttt{getwq} because there is no ability to perform wildcard matching and stations are identified not by name but by their "dbkey". The user must find the dbkey manually by navigating through the \href{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}{DBHYDRO Browser}. In addition to a dbkey, users must specify a date range. Dates must be entered in YYYY-MM-DD format (e.g. 2015-02-26).   The following set of examples retrieve wind speed measurements between January and February 2013. They can be run from the R console by issuing the command:
+Hydrologic time series data can be retrieved using the \texttt{gethydro} function either by specifying a set of known \texttt{dbkeys} or by retrieving \texttt{dbkeys} on-the-fly with entries in the Station ID (stationid), data category (category), and parameter (param) fields.\\
+
+Complex stationid/category/parameter combinations can easily cause errors or return unexpected results. If dbkeys are not known ahead of time (or manually retrieved from the \href{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}{DBHYDRO Browser}, it is good practice to plug in your stationid/category/parameter combination to the \texttt{getdbkey} function to ensure that the listing looks reasonable. The following set of examples can be run from the R console by issuing the command:
+
+\begin{Schunk}
+\begin{Sinput}
+> example(getdbkey)
+\end{Sinput}
+\end{Schunk}
+
+\begin{itemize}
+\item Complete specification of the Station ID, Category, and Parameter flags
+
+\begin{Schunk}
+\begin{Sinput}
+> getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
+\end{Sinput}
+\end{Schunk}
+
+\item Wildcard Station ID with no parameter specification
+
+\begin{Schunk}
+\begin{Sinput}
+> getdbkey(stationid="C111%",category="SW")
+> getdbkey(stationid="C111%",category="GW")
+> getdbkey(stationid="C111%",category="WQ")
+\end{Sinput}
+\end{Schunk}
+
+\item Returning only dbkeys with the blind flag
+
+\begin{Schunk}
+\begin{Sinput}
+> getdbkey(stationid="JBTS",category="WEATHER",param="WNDS", blind=TRUE)
+\end{Sinput}
+\end{Schunk}
+
+\end{itemize}
+
+
+ In addition to a dbkey, users must specify a date range. Dates must be entered in YYYY-MM-DD format (e.g. 2015-02-26).   The following set of examples retrieve wind speed measurements between January and February 2013. They can be run from the R console by issuing the command:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -142,7 +183,7 @@ Hydrologic time series data can be retrieved using the \texttt{gethydro} functio
 \begin{Schunk}
 \begin{Sinput}
 > gethydro(dbkey="15081",
-+         date_min="2013-01-01",date_max="2013-02-02")
++          date_min="2013-01-01",date_max="2013-02-02")
 \end{Sinput}
 \end{Schunk}
 
@@ -150,7 +191,16 @@ Hydrologic time series data can be retrieved using the \texttt{gethydro} functio
 \begin{Schunk}
 \begin{Sinput}
 > gethydro(dbkey=c("15081","15069"),
-+         date_min="2013-01-01",date_max="2013-02-02")
++          date_min="2013-01-01",date_max="2013-02-02")
+\end{Sinput}
+\end{Schunk}
+
+\item Retreiving unknown \texttt{dbkeys} on-the-fly
+
+\begin{Schunk}
+\begin{Sinput}
+> gethydro(stationid="JBTS",category="WEATHER",
++          param="WNDS",date_min="2013-01-01",date_max="2013-02-02")
 \end{Sinput}
 \end{Schunk}
 
@@ -172,8 +222,8 @@ Once data has been retrieved with \verb|getwq| or \texttt{gethydro} in non-raw f
 \begin{Schunk}
 \begin{Sinput}
 > dt<-getwq(station_id=c("FLAB08","FLAB09"),
-+                date_min="2011-03-01",date_max="2014-05-01",
-+                test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
++                 date_min="2011-03-01",date_max="2014-05-01",
++                 test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
 > dbhydro_plot(dt,label="bottomleft",abb=3)
 \end{Sinput}
 \end{Schunk}
@@ -183,7 +233,7 @@ Once data has been retrieved with \verb|getwq| or \texttt{gethydro} in non-raw f
 \begin{Schunk}
 \begin{Sinput}
 > dt<-gethydro(dbkey=c("15081","15069"),
-+             date_min="2013-01-01",date_max="2013-02-02")
++              date_min="2013-01-01",date_max="2013-02-02")
 > dbhydro_plot(dt)
 \end{Sinput}
 \end{Schunk}

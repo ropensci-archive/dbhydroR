@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Debian) (preloaded format=pdflatex 2015.6.19)  10 JUL 2015 13:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Debian) (preloaded format=pdflatex 2015.6.19)  13 JUL 2015 17:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1123,69 +1123,67 @@ LaTeX Font Info:    Try loading font information for T1+aett on input line 45.
 (/usr/share/texlive/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 53.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 53.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 53.
-
-Overfull \hbox (59.81627pt too wide) in paragraph at lines 52--56
-\T1/aett/m/n/12 " \ \ \ \ad . sfwmd . gov \ \DFSRoot \ \data \ \restoration _ s
-ciences \ \projects \ \joe _ stachelek \
- []
-
-
-Overfull \hbox (7.42078pt too wide) in paragraph at lines 52--56
-\T1/aett/m/n/12 \R \ \dbhydroR _ 0 . 1-[]2 . zip"$ ,type="win.binary",repos=NUL
-L,dependencies=TRUE)
+Overfull \hbox (53.64832pt too wide) in paragraph at lines 52--55
+\T1/aett/m/n/12 install.packages(paste([]"\\\\ad.sfwmd.gov\\DFSRoot\\data\\rest
+oration_sciences", 
  []
 
 <sfwmd_bar8half_wordorexcel.png, id=47, 614.295pt x 23.1264pt>
 File: sfwmd_bar8half_wordorexcel.png Graphic file (type png)
 
 <use sfwmd_bar8half_wordorexcel.png>
-Package pdftex.def Info: sfwmd_bar8half_wordorexcel.png used on input line 73.
+Package pdftex.def Info: sfwmd_bar8half_wordorexcel.png used on input line 74.
 (pdftex.def)             Requested size: 433.62pt x 16.32457pt.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./sfwmd_bar8half_wordorexc
 el.png (PNG copy)>]
-LaTeX Font Info:    Try loading font information for TS1+aer on input line 81.
+LaTeX Font Info:    Try loading font information for TS1+aer on input line 82.
 
 (/usr/share/R/share/texmf/tex/latex/ts1aer.fd
 File: ts1aer.fd 
 )
 LaTeX Font Info:    Font shape `TS1/aer/m/n' in size <12> not available
-(Font)              Font shape `TS1/cmr/m/n' tried instead on input line 81.
- [2]
-<Rplot.png, id=69, 480.79625pt x 433.62pt>
+(Font)              Font shape `TS1/cmr/m/n' tried instead on input line 82.
+
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
+
+ []
+
+[2] [3] <Rplot.png, id=73, 480.79625pt x 433.62pt>
 File: Rplot.png Graphic file (type png)
  <use Rplot.png>
-Package pdftex.def Info: Rplot.png used on input line 196.
+Package pdftex.def Info: Rplot.png used on input line 246.
 (pdftex.def)             Requested size: 343.5026pt x 310.8167pt.
- [3]
-Underfull \hbox (badness 10000) in paragraph at lines 206--207
+ [4]
+Underfull \hbox (badness 10000) in paragraph at lines 256--257
 
  []
 
 
-Underfull \vbox (badness 10000) detected at line 231
+Underfull \vbox (badness 10000) detected at line 281
  []
 
-[4 <./Rplot.png>] (./dbhydroR.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 243.
- [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 243.
+[5 <./Rplot.png>] (./dbhydroR.bbl
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 12.
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 293.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 293.
  (./dbhydroR.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 243.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 243.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 293.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 293.
 Package rerunfilecheck Info: File `dbhydroR.out' has not changed.
 (rerunfilecheck)             Checksum: 616E7535A168F1194D0D42D6CC7D94D3;503.
  ) 
 Here is how much of TeX's memory you used:
- 15579 strings out of 495021
- 265584 string characters out of 6181344
+ 15582 strings out of 495021
+ 265602 string characters out of 6181344
  359460 words of memory out of 5000000
  18533 multiletter control sequences out of 15000+600000
  28716 words of font info for 65 fonts, out of 8000000 for 9000
@@ -1198,10 +1196,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmsltt10.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmtt12.pfb>
-Output written on dbhydroR.pdf (5 pages, 117876 bytes).
+Output written on dbhydroR.pdf (6 pages, 120162 bytes).
 PDF statistics:
- 124 PDF objects out of 1000 (max. 8388607)
- 104 compressed objects within 2 object streams
- 21 named destinations out of 1000 (max. 500000)
+ 128 PDF objects out of 1000 (max. 8388607)
+ 107 compressed objects within 2 object streams
+ 22 named destinations out of 1000 (max. 500000)
  87 words of extra memory for PDF output out of 10000 (max. 10000000)
 
