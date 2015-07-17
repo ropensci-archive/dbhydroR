@@ -1,8 +1,8 @@
 Package: dbhydroR
 Title: Retrieval, Cleaning and Plotting of DBHydro Data
 Description: Functions are provided to query the DBHydro database, clean the output, and produce plots.
-Version: 0.1-2
-Date: 2015-06-08
+Version: 0.1-3
+Date: 2015-07-17
 Author: Joseph Stachelek <jstachel@sfwmd.gov>
 Maintainer: Joseph Stachelek <jstachel@sfwmd.gov>
 Depends: R (>= 3.0.2)
