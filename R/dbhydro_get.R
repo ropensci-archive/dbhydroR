@@ -17,17 +17,29 @@
 #'@import httr
 #'@import RCurl
 #'@examples
+#'\dontrun{
 #'#one variable and one station
-#'getwq(station_id="FLAB08", date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+#'getwq(station_id="FLAB08",
+#'date_min="2011-03-01",date_max="2012-05-01",
+#'test_name="CHLOROPHYLLA-SALINE")
 #'
 #'#one variable at multiple stations
-#'getwq(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+#'getwq(station_id=c("FLAB08","FLAB09"),
+#'date_min="2011-03-01",date_max="2012-05-01",
+#'test_name="CHLOROPHYLLA-SALINE")
 #'
 #'#One variable at a wildcard station
-#'getwq(station_id=c("FLAB0%"), date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+#'getwq(station_id=c("FLAB0%"),
+#'date_min="2011-03-01",
+#'date_max="2012-05-01",
+#'test_name="CHLOROPHYLLA-SALINE")
 #'
 #'#multiple variables at multiple stations
-#'getwq(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",date_max="2012-05-01",test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
+#'getwq(station_id=c("FLAB08","FLAB09"),
+#'date_min="2011-03-01",date_max="2012-05-01",
+#'test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
+#'}
+
 
 getwq<-function(station_id=NA,date_min=NA,date_max=NA,test_name=NA,raw=FALSE,qc_strip="N",qc_field="N",test_number=NA,v_target_code="file_csv",sample_id=NA,project_code=NA){
   
@@ -88,6 +100,9 @@ getwq<-function(station_id=NA,date_min=NA,date_max=NA,test_name=NA,raw=FALSE,qc_
 #'@title Retrieve hydrologic data from the DBHYDRO Environmental Database
 #'@description South Florida Water Management District
 #'@param dbkey character string of time series identifiers (e.g. Joe Bay mean daily wind speed is "15081"). These are listed alongside each time series in DBHYDRO.
+#'@param stationid character string Station ID
+#'@param category character string, choice of "WEATHER","SW","GW", or "WQ"
+#'@param param character string parameter query
 #'@param date_min character must be in POSIXct YYYY-MM-DD format
 #'@param date_max character must be in POSIXct YYYY-MM-DD format
 #'@param period string optional return data from the last X days (not implemented)
@@ -96,15 +111,19 @@ getwq<-function(station_id=NA,date_min=NA,date_max=NA,test_name=NA,raw=FALSE,qc_
 #'@import httr
 #'@import RCurl
 #'@examples
+#'\dontrun{
 #'#One variable/station time series
 #'gethydro(dbkey="15081",date_min="2013-01-01",date_max="2013-02-02")
 #'
 #'#Multiple variable/station time series
-#'gethydro(dbkey=c("15081","15069"),date_min="2013-01-01",date_max="2013-02-02")
+#'gethydro(dbkey=c("15081","15069"),
+#'date_min="2013-01-01",date_max="2013-02-02")
 #'
 #'#Looking up unknown dbkeys
-#'gethydro(stationid="JBTS",category="WEATHER",param="WNDS",date_min="2013-01-01",date_max="2013-02-02")
-#'
+#'gethydro(stationid="JBTS",category="WEATHER",
+#'param="WNDS",date_min="2013-01-01",
+#'date_max="2013-02-02")
+#'}
 
 gethydro<-function(dbkey=NA,stationid=NA,category=NA,param=NA,date_min=NA,date_max=NA,period="uspec",v_target_code="file_csv"){
 
@@ -137,12 +156,14 @@ gethydro<-function(dbkey=NA,stationid=NA,category=NA,param=NA,date_min=NA,date_m
 }
 
 #'@name getdbkey
-#'@title Retrive a list of dbkeys from a DBHYDRO station ID
+#'@title Retrieve a list of dbkeys from a DBHYDRO station ID
 #'@export
 #'@param stationid character string
 #'@param category character string, choice of "WEATHER","SW","GW", or "WQ"
+#'@param param string optional desired parameter name
 #'@param blind logical output dbkey results as object (TRUE) or simply print query results (FALSE)?
-#'@param string desired parameter name
+#'@param freq character string frequency choice of daily ("DA")
+#'@import XML
 #'@examples
 #'getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
 #'getdbkey(stationid="C111%",category="SW")

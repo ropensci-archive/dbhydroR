@@ -1,0 +1,12 @@
+A dbkey is specified by the following combination of parameters:
+STATION, DATA_TYPE, FREQUENCY, STATISTIC_TYPE, RECORDER, AGENCY, STRATA, OP_NUM
+*ignore GROUP_NAME
+
+Take a closer look at how qualifiers are treated in the cleanwq function:
+  Document how results below the MDL are treated
+	Steve replaces these with the MDL itself
+
+Create option to return uM results
+			
+
+add check to make sure that dates have been entered as character strings; convert if neccesary

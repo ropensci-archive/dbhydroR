@@ -2,7 +2,7 @@
 % Please edit documentation in R/dbhydro_get.R
 \name{getdbkey}
 \alias{getdbkey}
-\title{Retrive a list of dbkeys from a DBHYDRO station ID}
+\title{Retrieve a list of dbkeys from a DBHYDRO station ID}
 \usage{
 getdbkey(stationid, category, param = NA, freq = "DA", blind = FALSE)
 }
@@ -11,18 +11,20 @@ getdbkey(stationid, category, param = NA, freq = "DA", blind = FALSE)
 
 \item{category}{character string, choice of "WEATHER","SW","GW", or "WQ"}
 
-\item{blind}{logical output dbkey results as object (TRUE) or simply print query results (FALSE)?}
+\item{param}{string optional desired parameter name}
 
-\item{string}{desired parameter name}
+\item{freq}{character string frequency choice of daily ("DA")}
+
+\item{blind}{logical output dbkey results as object (TRUE) or simply print query results (FALSE)?}
 }
 \description{
-Retrive a list of dbkeys from a DBHYDRO station ID
+Retrieve a list of dbkeys from a DBHYDRO station ID
 }
 \examples{
 getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
-getdbkey(stationid="JBTS",category="WEATHER",param="WNDS",blind=TRUE)
 getdbkey(stationid="C111\%",category="SW")
 getdbkey(stationid="C111\%",category="GW")
 getdbkey(stationid="C111\%",category="WQ")
+getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
 }
 

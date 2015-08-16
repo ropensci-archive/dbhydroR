@@ -1,4 +1,4 @@
-#'@name dbydro_plot
+#'@name plotdbydro
 #'@title Plot DBHYDRO data retrievals
 #'@param dt data.frame output of dbhydro_get
 #'@param type string plot type
@@ -6,10 +6,17 @@
 #'@param abb integer number of characters to abbreviate y-axis label
 #'@export
 #'@examples
-#'dt<-dbhydro_get(station_id=c("FLAB08","FLAB09"),date_min="2011-03-01",date_max="2014-05-01",test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
-#'dbhydro_plot(dt,label="bottomleft",abb=3)
+#'dt<-getwq(station_id=c("FLAB08","FLAB09"),
+#'date_min="2011-03-01",date_max="2014-05-01",
+#'test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
+#'plotdbhydro(dt,label="bottomleft",abb=3)
+#'
+#'dt<-gethydro(stationid="JBTS",category="WEATHER",param="WNDS",date_min="2011-03-01",
+#'date_max="2012-05-01")
+#'
+#'plotdbhydro(dt,label="bottomleft",abb=3)
 
-dbhydro_plot<-function(dt,label="topleft",type="b",abb = Inf){
+plotdbhydro<-function(dt,label="topleft",type="b",abb = Inf){
 
   sites<-unlist(lapply(strsplit(names(dt)[2:ncol(dt)],"_"),function(x) x[1]))
   vars<-unlist(lapply(strsplit(names(dt)[2:ncol(dt)],"_"),function(x) x[2]))
@@ -39,9 +46,3 @@ dbhydro_plot<-function(dt,label="topleft",type="b",abb = Inf){
   }
 }
     
-    
-
-    
-  
-
-

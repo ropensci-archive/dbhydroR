@@ -11,6 +11,12 @@ gethydro(dbkey = NA, stationid = NA, category = NA, param = NA,
 \arguments{
 \item{dbkey}{character string of time series identifiers (e.g. Joe Bay mean daily wind speed is "15081"). These are listed alongside each time series in DBHYDRO.}
 
+\item{stationid}{character string Station ID}
+
+\item{category}{character string, choice of "WEATHER","SW","GW", or "WQ"}
+
+\item{param}{character string parameter query}
+
 \item{date_min}{character must be in POSIXct YYYY-MM-DD format}
 
 \item{date_max}{character must be in POSIXct YYYY-MM-DD format}
@@ -23,13 +29,18 @@ gethydro(dbkey = NA, stationid = NA, category = NA, param = NA,
 South Florida Water Management District
 }
 \examples{
+\dontrun{
 #One variable/station time series
 gethydro(dbkey="15081",date_min="2013-01-01",date_max="2013-02-02")
 
 #Multiple variable/station time series
-gethydro(dbkey=c("15081","15069"),date_min="2013-01-01",date_max="2013-02-02")
+gethydro(dbkey=c("15081","15069"),
+date_min="2013-01-01",date_max="2013-02-02")
 
 #Looking up unknown dbkeys
-gethydro(stationid="JBTS",category="WEATHER",param="WNDS",date_min="2013-01-01",date_max="2013-02-02")
+gethydro(stationid="JBTS",category="WEATHER",
+param="WNDS",date_min="2013-01-01",
+date_max="2013-02-02")
+}
 }
 

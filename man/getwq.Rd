@@ -39,15 +39,24 @@ TODO: return warning when no data rather than error
 }
 \examples{
 #one variable and one station
-getwq(station_id="FLAB08", date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+getwq(station_id="FLAB08",
+date_min="2011-03-01",date_max="2012-05-01",
+test_name="CHLOROPHYLLA-SALINE")
 
 #one variable at multiple stations
-getwq(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+getwq(station_id=c("FLAB08","FLAB09"),
+date_min="2011-03-01",date_max="2012-05-01",
+test_name="CHLOROPHYLLA-SALINE")
 
 #One variable at a wildcard station
-getwq(station_id=c("FLAB0\%"), date_min="2011-03-01",date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+getwq(station_id=c("FLAB0\%"),
+date_min="2011-03-01",
+date_max="2012-05-01",
+test_name="CHLOROPHYLLA-SALINE")
 
 #multiple variables at multiple stations
-getwq(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",date_max="2012-05-01",test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
+getwq(station_id=c("FLAB08","FLAB09"),
+date_min="2011-03-01",date_max="2012-05-01",
+test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
 }
 
