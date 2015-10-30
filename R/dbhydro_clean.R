@@ -44,10 +44,29 @@ cleanhydro<-function(res){
   }
   
   metadata<-read.csv(text=httr::content(res,"text"),skip=1,stringsAsFactors = FALSE)[1:(i-1),]
-  dt<-read.csv(text=httr::content(res,"text"),skip=i+1,stringsAsFactors = FALSE)
-  dt<-merge(metadata,dt)
-  dt$date<-as.POSIXct(strptime(dt$Daily.Date,format="%d-%b-%Y"))
   
-  reshape2::dcast(dt,date ~ Station + TYPE + UNITS,value.var="Data.Value",add.missing=T,fun.aggregate=mean)
+  dt<-read.csv(text=httr::content(res,"text"),skip=i+1,stringsAsFactors = FALSE)
+  
+   if(!any(names(dt) == "DBKEY")){
+     warning("Column headings missing. Guessing...")
+    
+     names(dt) <- c("Station", "DBKEY", "Daily.Date", "Data.Value", "Qualifer", "Revision.Date")
+     
+     if(all(is.na(as.POSIXct(strptime(dt$Daily.Date, format = "%d-%b-%Y"))))){
+       warning("Instantaneous data detected")
+       
+       names(dt) <- c("Inst.Date", "DCVP", "DBKEY", "Data.Value", "Code", "Quality.Flag")
+       dt <- merge(metadata, dt)
+       dt$date <- as.POSIXct(strptime(dt$Inst.Date, format = "%d-%b-%Y %H:%M"))
+      }
+  }else{
+  
+    dt<-merge(metadata,dt)
+    dt$date<-as.POSIXct(strptime(dt$Daily.Date,format="%d-%b-%Y"))
+    
+  }
+  
+  names(dt) <- tolower(names(dt))
+  reshape2::dcast(dt, date ~ station + type + units, value.var = "data.value", add.missing = T, fun.aggregate = mean)
   
 }
