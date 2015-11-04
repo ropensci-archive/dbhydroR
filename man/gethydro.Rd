@@ -37,6 +37,9 @@ gethydro(dbkey="15081",date_min="2013-01-01",date_max="2013-02-02")
 gethydro(dbkey=c("15081","15069"),
 date_min="2013-01-01",date_max="2013-02-02")
 
+#Instantaneous hydro retrieval
+gethydro(dbkey="IY639", date_min="2009-01-30", date_max="2015-11-04")
+
 #Looking up unknown dbkeys
 gethydro(stationid="JBTS",category="WEATHER",
 param="WNDS",date_min="2013-01-01",
