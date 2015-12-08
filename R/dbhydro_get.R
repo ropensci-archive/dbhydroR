@@ -166,6 +166,7 @@ gethydro<-function(dbkey=NA,stationid=NA,category=NA,param=NA,date_min=NA,date_m
 #'@param param string optional desired parameter name
 #'@param blind logical output dbkey results as object (TRUE) or simply print query results (FALSE)?
 #'@param freq character string frequency choice of daily ("DA")
+#'@details A value in the "Recorder" field on "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modeling group.
 #'@import XML
 #'@examples
 #'getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
@@ -182,7 +183,7 @@ getdbkey<-function(stationid,category,param=NA,freq="DA",blind=FALSE){
   res<-httr::GET(servfull,query=qy)
   res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1', httr::content(res,"text"))
   
-  res<-XML::readHTMLTable(res)[[3]][,c(2,4,5,6,10,11)]
+  res<-XML::readHTMLTable(res)[[3]][,c("Dbkey", "Group", "Data Type", "Freq", "Recorder", "Start Date", "End Date")]
   
   if(!is.na(param)){
     res<-res[as.character(res[,"Data Type"])==param,]
