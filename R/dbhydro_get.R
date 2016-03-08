@@ -18,9 +18,9 @@
 #'@examples
 #'
 #'#one variable and one station
-#'getwq(station_id="FLAB08",
-#'date_min="2011-03-01",date_max="2012-05-01",
-#'test_name="CHLOROPHYLLA-SALINE")
+#'getwq(station_id = "FLAB08",
+#'date_min = "2011-03-01", date_max = "2012-05-01", 
+#'test_name = "CHLOROPHYLLA-SALINE")
 #'\dontrun{
 #'#one variable at multiple stations
 #'getwq(station_id=c("FLAB08","FLAB09"),
@@ -145,11 +145,11 @@ gethydro<-function(dbkey=NA,stationid=NA,category=NA,param=NA,date_min=NA,date_m
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/web_io.report_process"
   
   if(!is.na(date_min)){
-    date_min<-strftime(date_min,format="%Y%m%d")
-    }
+    date_min <- strftime(date_min,format="%Y%m%d")
+  }
   if(!is.na(date_max)){
-    date_max<-strftime(date_max,format="%Y%m%d")
-    }
+    date_max <- strftime(date_max,format="%Y%m%d")
+  }
   
   qy<-list(v_period=period,v_start_date=date_min,v_end_date=date_max,v_report_type="format6",v_target_code=v_target_code,v_run_mode="onLine",v_js_flag="Y",v_dbkey=dbkey)
   
@@ -175,27 +175,31 @@ gethydro<-function(dbkey=NA,stationid=NA,category=NA,param=NA,date_min=NA,date_m
 #'getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
 #'}
 
-getdbkey<-function(stationid,category,param=NA,freq="DA",blind=FALSE){
+getdbkey <- function(stationid, category, param = NA, freq = "DA", blind = FALSE){
 
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
   
-  qy<-list(v_js_flag="Y",v_category=category,v_station=stationid,v_dbkey_list_flag="Y",v_order_by="STATION")
-  res<-httr::GET(servfull,query=qy)
-  res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1', httr::content(res,"text"))
+  qy <- list(v_js_flag = "Y", v_category = category, v_station = stationid, v_dbkey_list_flag = "Y", v_order_by = "STATION")
+  res <- httr::GET(servfull, query = qy)
+  res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1', httr::content(res, "text"))
   
-  res<-XML::readHTMLTable(res)[[3]][,c("Dbkey", "Group", "Data Type", "Freq", "Recorder", "Start Date", "End Date")]
+  if(length(XML::readHTMLTable(res)) < 3){
+    stop("No dbkeys found")  
+  }
+  
+  res <- XML::readHTMLTable(res)[[3]][,c("Dbkey", "Group", "Data Type", "Freq", "Recorder", "Start Date", "End Date")]
   
   if(!is.na(param)){
-    res<-res[as.character(res[,"Data Type"])==param,]
+    res <- res[as.character(res[,"Data Type"]) == param,]
   }
   if(!is.na(freq)){
-    res<-res[as.character(res[,"Freq"])==freq,]
+    res <- res[as.character(res[,"Freq"]) == freq,]
   }
-  res[,1]<-as.character(res[,1])
+  res[,1] <- as.character(res[,1])
   
-  if(blind==FALSE){
-    message(paste("Search results for"," '",stationid," ",category,"'",sep=""))
-  print(res)
+  if(blind == FALSE){
+    message(paste("Search results for", " '", stationid, " ", category, "'", sep = ""))
+    print(res)
   }else{
    res[,1] 
   }
