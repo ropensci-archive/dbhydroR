@@ -21,10 +21,12 @@ getdbkey(stationid, category, param = NA, freq = "DA", blind = FALSE)
 Retrieve a list of dbkeys from a DBHYDRO station ID
 }
 \examples{
+\dontrun{
 getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
 getdbkey(stationid="C111\%",category="SW")
 getdbkey(stationid="C111\%",category="GW")
 getdbkey(stationid="C111\%",category="WQ")
 getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
+}
 }
 

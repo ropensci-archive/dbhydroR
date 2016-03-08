@@ -12,7 +12,6 @@
 #'@param v_target_code string print to file? (not implemented)
 #'@param sample_id numeric (not implemented)
 #'@param project_code numeric (not implemented)
-#'@details TODO: return warning when no data rather than error
 #'@export
 #'@import httr
 #'@import RCurl
@@ -164,12 +163,13 @@ gethydro<-function(dbkey=NA,stationid=NA,category=NA,param=NA,date_min=NA,date_m
 #'@param blind logical output dbkey results as object (TRUE) or simply print query results (FALSE)?
 #'@param freq character string frequency choice of daily ("DA")
 #'@import XML
-#'@examples
+#'@examples \dontrun{
 #'getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
 #'getdbkey(stationid="C111%",category="SW")
 #'getdbkey(stationid="C111%",category="GW")
 #'getdbkey(stationid="C111%",category="WQ")
 #'getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
+#'}
 
 getdbkey<-function(stationid,category,param=NA,freq="DA",blind=FALSE){
 

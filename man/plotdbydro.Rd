@@ -20,6 +20,7 @@ plotdbhydro(dt, label = "topleft", type = "b", abb = Inf)
 Plot DBHYDRO data retrievals
 }
 \examples{
+\dontrun{
 dt<-getwq(station_id=c("FLAB08","FLAB09"),
 date_min="2011-03-01",date_max="2014-05-01",
 test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
@@ -29,5 +30,6 @@ dt<-gethydro(stationid="JBTS",category="WEATHER",param="WNDS",date_min="2011-03-
 date_max="2012-05-01")
 
 plotdbhydro(dt,label="bottomleft",abb=3)
+}
 }
 

@@ -5,7 +5,7 @@
 #'@param label string placement of site label choice of "topleft", "topright", "bottomleft", or "bottomright"
 #'@param abb integer number of characters to abbreviate y-axis label
 #'@export
-#'@examples
+#'@examples \dontrun{
 #'dt<-getwq(station_id=c("FLAB08","FLAB09"),
 #'date_min="2011-03-01",date_max="2014-05-01",
 #'test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
@@ -15,6 +15,7 @@
 #'date_max="2012-05-01")
 #'
 #'plotdbhydro(dt,label="bottomleft",abb=3)
+#'}
 
 plotdbhydro<-function(dt,label="topleft",type="b",abb = Inf){
 

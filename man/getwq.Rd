@@ -34,9 +34,6 @@ getwq(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
 \description{
 South Florida Water Management District
 }
-\details{
-TODO: return warning when no data rather than error
-}
 \examples{
 #one variable and one station
 getwq(station_id="FLAB08",
