@@ -23,73 +23,74 @@
 #'test_name = "CHLOROPHYLLA-SALINE")
 #'\dontrun{
 #'#one variable at multiple stations
-#'getwq(station_id=c("FLAB08","FLAB09"),
-#'date_min="2011-03-01",date_max="2012-05-01",
-#'test_name="CHLOROPHYLLA-SALINE")
+#'getwq(station_id = c("FLAB08", "FLAB09"),
+#'date_min = "2011-03-01", date_max = "2012-05-01",
+#'test_name = "CHLOROPHYLLA-SALINE")
 #'
 #'#One variable at a wildcard station
-#'getwq(station_id=c("FLAB0%"),
-#'date_min="2011-03-01",
-#'date_max="2012-05-01",
-#'test_name="CHLOROPHYLLA-SALINE")
+#'getwq(station_id = c("FLAB0%"),
+#'date_min = "2011-03-01",
+#'date_max = "2012-05-01",
+#'test_name = "CHLOROPHYLLA-SALINE")
 #'
 #'#multiple variables at multiple stations
-#'getwq(station_id=c("FLAB08","FLAB09"),
-#'date_min="2011-03-01",date_max="2012-05-01",
-#'test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
+#'getwq(station_id = c("FLAB08", "FLAB09"),
+#'date_min = "2011-03-01", date_max = "2012-05-01",
+#'test_name = c("CHLOROPHYLLA-SALINE", "SALINITY"))
 #'}
 
 
-getwq<-function(station_id=NA,date_min=NA,date_max=NA,test_name=NA,raw=FALSE,qc_strip="N",qc_field="N",test_number=NA,v_target_code="file_csv",sample_id=NA,project_code=NA){
+getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA, raw = FALSE, qc_strip = "N", qc_field = "N", test_number = NA, v_target_code = "file_csv", sample_id = NA, project_code = NA){
   
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/water_quality_data.report_full"
   
   #try(ping<-RCurl::getURL("http://www.sfwmd.gov/portal/page/portal/sfwmdmain/home%20page"),silent=TRUE)
   #if(!exists("ping")){stop("no internet connection")}
   
-  station_like<-station_id[grepl("%",station_id)]
-  if(length(station_like)>0){
-    station_id<-station_id[!grepl("%",station_id)]
-    station_like<-paste("(",paste("'",station_like,"'",sep="",collapse=","),")",sep="")
+  station_like <- station_id[grepl("%", station_id)]
+  if(length(station_like) > 0){
+    station_id <- station_id[!grepl("%", station_id)]
+    station_like <- paste("(", paste("'", station_like, "'", sep = "", collapse = ","), ")", sep = "")
   }else{
-    station_like<-NA
+    station_like <- NA
   }
   
-  station_list<-paste("(",paste("'",station_id,"'",sep="",collapse=","),")",sep="")
+  station_list <- paste("(",paste("'", station_id, "'", sep = "", collapse = ","), ")", sep = "")
   
   if(!is.na(date_min)){
-  date_min<-strftime(date_min,format="%d-%b-%Y")
-  date_min<-paste("> ","'",date_min,"'",sep="")
+    date_min <- strftime(date_min, format = "%d-%b-%Y")
+    date_min <- paste("> ", "'", date_min, "'", sep = "")
   }
   if(!is.na(date_max)){
-  date_max<-strftime(date_max,format="%d-%b-%Y")
-  date_max<-paste("< ","'",date_max,"'",sep="")
+    date_max <- strftime(date_max, format = "%d-%b-%Y")
+    date_max <- paste("< ", "'", date_max, "'", sep = "")
   }
   
-  test_list<-paste("(",paste("'",test_name,"'",sep="",collapse=","),")",sep="")
+  test_list <- paste("(", paste("'", test_name, "'", sep = "", collapse = ","), ")", sep = "")
   
-  if(qc_strip==TRUE){
-    qc_strip<-"Y"
-  }
-  if(qc_field==TRUE){
-    qc_field<-"Y"
+  if(qc_strip == TRUE){
+    qc_strip <- "Y"
   }
   
-  if(length(station_like)>0&any(!is.na(station_like))){
-    qy<-list(v_where_clause=paste("where","date_collected",date_min,"and","date_collected",date_max,"and","station_id","like",station_like,"and","test_name","in",test_list,sep=" "),v_target_code=v_target_code,v_exc_flagged=qc_strip,v_exc_qc=qc_field)
+  if(qc_field == TRUE){
+    qc_field <- "Y"
+  }
+  
+  if(length(station_like) > 0 & any(!is.na(station_like))){
+    qy <- list(v_where_clause = paste("where", "date_collected", date_min, "and", "date_collected", date_max, "and", "station_id", "like", station_like, "and", "test_name", "in", test_list, sep = " "), v_target_code = v_target_code, v_exc_flagged = qc_strip, v_exc_qc = qc_field)
   }else{
-  qy<-list(v_where_clause=paste("where","date_collected",date_min,"and","date_collected",date_max,"and","station_id","in",station_list,"and","test_name","in",test_list,sep=" "),v_target_code=v_target_code,v_exc_flagged=qc_strip,v_exc_qc=qc_field)
+    qy <- list(v_where_clause = paste("where", "date_collected", date_min, "and", "date_collected", date_max, "and", "station_id", "in", station_list, "and", "test_name", "in", test_list, sep = " "), v_target_code = v_target_code, v_exc_flagged = qc_strip, v_exc_qc = qc_field)
   }
   
-  res<-httr::GET(servfull,query=qy)
+  res <- httr::GET(servfull, query = qy)
   
-  if(raw==TRUE){
-    read.csv(text=httr::content(res,"text"))
+  if(raw == TRUE){
+    read.csv(text = httr::content(res, "text"))
   }else{
-    if(!any(!is.na(read.csv(text=httr::content(res,"text"))))){
+    if(!any(!is.na(read.csv(text = httr::content(res, "text"))))){
       message("No data found")
     }else{
-    cleanwq(read.csv(text=httr::content(res,"text")))
+      cleanwq(read.csv(text = httr::content(res, "text")))
     }
   }
 }
