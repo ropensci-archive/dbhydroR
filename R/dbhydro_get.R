@@ -113,48 +113,48 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
 #'@examples
 #'\dontrun{
 #'#One variable/station time series
-#'gethydro(dbkey="15081",date_min="2013-01-01",date_max="2013-02-02")
+#'gethydro(dbkey = "15081", date_min = "2013-01-01", date_max = "2013-02-02")
 #'
 #'#Multiple variable/station time series
-#'gethydro(dbkey=c("15081","15069"),
-#'date_min="2013-01-01",date_max="2013-02-02")
+#'gethydro(dbkey = c("15081", "15069"),
+#'date_min = "2013-01-01", date_max = "2013-02-02")
 #'
 #'#Instantaneous hydro retrieval
-#'gethydro(dbkey="IY639", date_min="2009-01-30", date_max="2015-11-04")
+#'gethydro(dbkey = "IY639", date_min = "2009-01-30", date_max = "2015-11-04")
 #'
 #'#Looking up unknown dbkeys
-#'gethydro(stationid="JBTS",category="WEATHER",
-#'param="WNDS",date_min="2013-01-01",
-#'date_max="2013-02-02")
+#'gethydro(stationid = "JBTS", category = "WEATHER",
+#'param = "WNDS", date_min = "2013-01-01", 
+#'date_max = "2013-02-02")
 #'}
 
-gethydro<-function(dbkey=NA,stationid=NA,category=NA,param=NA,date_min=NA,date_max=NA,period="uspec",v_target_code="file_csv"){
+gethydro <- function(dbkey = NA, stationid = NA, category = NA, param = NA, date_min = NA, date_max = NA, period = "uspec", v_target_code = "file_csv"){
 
-  if((is.na(stationid)|is.na(category))& all(is.na(dbkey))){
+  if((is.na(stationid) | is.na(category)) & all(is.na(dbkey))){
     stop("Must specify either a dbkey or stationid/category/param.")
   }
   
   if(!is.na(stationid)){
-    dbkey<-getdbkey(stationid = stationid,category = category,param = param,blind = TRUE)
+    dbkey <- getdbkey(stationid = stationid, category = category, param = param, blind = TRUE)
   }
   
   if(length(dbkey)>1){
-    dbkey<-paste(dbkey,"/",collapse="",sep="")
-    dbkey<-substring(dbkey,1,(nchar(dbkey)-1))
+    dbkey <- paste(dbkey, "/", collapse = "", sep = "")
+    dbkey <- substring(dbkey, 1, (nchar(dbkey) - 1))
   }
   
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/web_io.report_process"
   
   if(!is.na(date_min)){
-    date_min <- strftime(date_min,format="%Y%m%d")
+    date_min <- strftime(date_min, format = "%Y%m%d")
   }
   if(!is.na(date_max)){
-    date_max <- strftime(date_max,format="%Y%m%d")
+    date_max <- strftime(date_max, format = "%Y%m%d")
   }
   
-  qy<-list(v_period=period,v_start_date=date_min,v_end_date=date_max,v_report_type="format6",v_target_code=v_target_code,v_run_mode="onLine",v_js_flag="Y",v_dbkey=dbkey)
+  qy <- list(v_period = period, v_start_date = date_min, v_end_date = date_max, v_report_type = "format6", v_target_code = v_target_code, v_run_mode = "onLine", v_js_flag = "Y", v_dbkey = dbkey)
   
-  res<-httr::GET(servfull,query=qy)
+  res <- httr::GET(servfull, query = qy)
   cleanhydro(res)
 }
 
