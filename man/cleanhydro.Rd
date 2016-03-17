@@ -14,7 +14,7 @@ Cleans to by consistent with water quality formatting. Connects metadata header 
 }
 \examples{
 \dontrun{
-cleanhydro(gethydro(dbkey="15081",date_min="2013-01-01",date_max="2013-02-02"))
+cleanhydro(gethydro(dbkey = "15081", date_min = "2013-01-01", date_max = "2013-02-02"))
 }
 }
 

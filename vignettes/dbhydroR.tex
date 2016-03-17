@@ -207,51 +207,6 @@ Complex stationid/category/parameter combinations can easily cause errors or ret
 
 \end{itemize}
 
-\section{Plotting}
-
-Once data has been retrieved with \verb|getwq| or \texttt{gethydro} in non-raw form (or raw water quality data that has been cleaned with \verb|cleanwq|), and assigned to an R object, plots can be produced using the \verb|plotdbhydro| function. This function will create a dedicated panel of figures for each of the available variables. The following set of examples can be run from the R console by issuing the command:
-
-\begin{Schunk}
-\begin{Sinput}
-> example(plotdbhydro)
-\end{Sinput}
-\end{Schunk}
-
-\begin{itemize}
-
-\item{Water quality}
-\begin{Schunk}
-\begin{Sinput}
-> dt<-getwq(station_id=c("FLAB08","FLAB09"),
-+                 date_min="2011-03-01",date_max="2014-05-01",
-+                 test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
-> plotdbhydro(dt,label="bottomleft",abb=3)
-\end{Sinput}
-\end{Schunk}
-
-
-\item{Hydrologic}
-\begin{Schunk}
-\begin{Sinput}
-> dt<-gethydro(dbkey=c("15081","15069"),
-+              date_min="2013-01-01",date_max="2013-02-02")
-> plotdbhydro(dt)
-\end{Sinput}
-\end{Schunk}
-\end{itemize}
-
-\vspace{2pt}
-\begin{figure}[H]
-\begin{center}
-%\includegraphics[width=12cm,height=10cm]{Rplot}
-\includegraphics[width=343.5pt,height=310.8pt]{Rplot}
-\end{center}
-\label{fig:zero}
-\end{figure}
-%\FloatBarrier
-
-
-
 \section{\label{sec:appendix}Appendix}
 \subsection{Test names}
 There are many test names available in DBHYDRO. These are detailed in the following table.\\
