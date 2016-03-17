@@ -33,19 +33,22 @@ cleanwq<-function(dt){
 #'@param res output of gethydro of class "response"
 #'@examples
 #'\dontrun{
-#'cleanhydro(gethydro(dbkey="15081",date_min="2013-01-01",date_max="2013-02-02"))
+#'cleanhydro(gethydro(dbkey = "15081", date_min = "2013-01-01", date_max = "2013-02-02"))
 #'}
 
-cleanhydro<-function(res){
+cleanhydro <- function(res){
   
-  i<-1
-  while(any(!is.na(read.csv(text=httr::content(res,"text"),skip=i,stringsAsFactors = FALSE,header=FALSE)[i,10:16]))){
-    i<-i+1
+  i <- 1
+  while(any(!is.na(read.csv(text = httr::content(res, "text"), skip = i, stringsAsFactors = FALSE, header = FALSE)[i, 10:16]))){
+    i <- i + 1
   }
   
-  metadata<-read.csv(text=httr::content(res,"text"),skip=1,stringsAsFactors = FALSE)[1:(i-1),]
+  metadata <- read.csv(text = httr::content(res, "text"), skip = 1, stringsAsFactors = FALSE)[1:(i - 1),]
   
-  dt<-read.csv(text=httr::content(res,"text"),skip=i+1,stringsAsFactors = FALSE)
+  try({dt <- read.csv(text = httr::content(res, "text"), skip = i + 1, stringsAsFactors = FALSE)}, silent = T)
+  if(class(dt) != "data.frame"){
+    stop("No data found")
+  }
   
    if(!any(names(dt) == "DBKEY")){
      warning("Column headings missing. Guessing...")
@@ -60,10 +63,8 @@ cleanhydro<-function(res){
        dt$date <- as.POSIXct(strptime(dt$Inst.Date, format = "%d-%b-%Y %H:%M"))
       }
   }else{
-  
-    dt<-merge(metadata,dt)
-    dt$date<-as.POSIXct(strptime(dt$Daily.Date,format="%d-%b-%Y"))
-    
+    dt <- merge(metadata, dt)
+    dt$date <- as.POSIXct(strptime(dt$Daily.Date, format = "%d-%b-%Y"))
   }
   
   names(dt) <- tolower(names(dt))

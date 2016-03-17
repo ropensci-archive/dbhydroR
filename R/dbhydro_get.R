@@ -155,7 +155,13 @@ gethydro <- function(dbkey = NA, stationid = NA, category = NA, param = NA, date
   qy <- list(v_period = period, v_start_date = date_min, v_end_date = date_max, v_report_type = "format6", v_target_code = v_target_code, v_run_mode = "onLine", v_js_flag = "Y", v_dbkey = dbkey)
   
   res <- httr::GET(servfull, query = qy)
-  cleanhydro(res)
+  
+  try({res <- cleanhydro(res)}, silent = T)
+  if(class(res) == "response"){
+    stop("No data found")
+  }
+  
+  res
 }
 
 #'@name getdbkey
