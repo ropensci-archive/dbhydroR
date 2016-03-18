@@ -5,21 +5,21 @@
 #'@import reshape2
 #'@param dt data.frame output of getwq
 #'@examples
-#'dt<-read.csv(system.file("extdata","testwq.csv",package="dbhydroR"))
+#'dt <- read.csv(system.file("extdata", "testwq.csv", package = "dbhydroR"))
 #'cleanwq(dt)
 
-cleanwq<-function(dt){
-  dt<-dt[,1:23]
-  dt<-dt[dt$Matrix!="DI",]
+cleanwq <- function(dt){
+  dt <- dt[,1:23]
+  dt <- dt[dt$Matrix!="DI",]
   
-  dt$date<-as.POSIXct(strptime(dt$Collection_Date,format="%d-%b-%Y")) 
-  dwide<-reshape2::dcast(dt,date ~ Station.ID + Test.Name + Units, value.var="Value",add.missing=T,fun.aggregate=mean)
+  dt$date <- as.POSIXct(strptime(dt$Collection_Date, format = "%d-%b-%Y")) 
+  dwide <- reshape2::dcast(dt, date ~ Station.ID + Test.Name + Units, value.var = "Value", add.missing = T, fun.aggregate = mean)
   
   #if(any(names(dwide)=="_")){dwide<-dwide[,-which(names(dwide)=="_")]}
-  dwide<-dwide[,-2]
+  dwide <- dwide[,-2]
   
-  if(nrow(dwide[is.na(dwide[,1]),])>0){
-  dwide<-dwide[-which(is.na(dwide[,1])),]
+  if(nrow(dwide[is.na(dwide[,1]),]) > 0){
+    dwide <- dwide[-which(is.na(dwide[,1])),]
   }
   
   dwide
