@@ -15,7 +15,7 @@ getwq(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
 
 \item{date_max}{character must be in POSIXct YYYY-MM-DD format}
 
-\item{test_name}{character string of test name(s)}
+\item{test_name}{character string of test name(s). See vignette for specific options}
 
 \item{raw}{logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included.}
 

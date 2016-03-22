@@ -1,16 +1,21 @@
 #'@name cleanwq
 #'@title Clean raw water quality DBHYDRO data retrievals
-#'@description remove extra qa/db columns, remove qa "blanks", and convert results from long to wide format.
+#'@description Remove extra columns associated with QA flags, LIMS, and District recieving. Remove QA "blanks". Convert results from long to wide format.
+#'@details Current DBHYDRO practice is to return values below the MDL as 0 minus the uncertainty estimate.
 #'@export
 #'@import reshape2
 #'@param dt data.frame output of getwq
-#'@examples
+#'@examples \dontrun{
+#'#check handling of values below MDL
+#'dt <- getwq(station_id = "FLAB08", date_min = "2009-01-01", date_max = "2016-02-29", test_name = "PHOSPHATE, TOTAL AS P", raw = TRUE)
+#'dt <- getwq(station_id = "FLAB08", date_min = "2009-01-01", date_max = "2016-02-29", test_name = "AMMONIA-N", raw = TRUE)
+#'}
 #'dt <- read.csv(system.file("extdata", "testwq.csv", package = "dbhydroR"))
 #'cleanwq(dt)
 
 cleanwq <- function(dt){
   dt <- dt[,1:23]
-  dt <- dt[dt$Matrix!="DI",]
+  dt <- dt[dt$Matrix != "DI",]
   
   dt$date <- as.POSIXct(strptime(dt$Collection_Date, format = "%d-%b-%Y")) 
   dwide <- reshape2::dcast(dt, date ~ Station.ID + Test.Name + Units, value.var = "Value", add.missing = T, fun.aggregate = mean)

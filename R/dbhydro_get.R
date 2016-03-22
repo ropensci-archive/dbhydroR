@@ -4,7 +4,7 @@
 #'@param station_id character string of station id(s)
 #'@param date_min character must be in POSIXct YYYY-MM-DD format
 #'@param date_max character must be in POSIXct YYYY-MM-DD format
-#'@param test_name character string of test name(s)
+#'@param test_name character string of test name(s). See vignette for specific options
 #'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included. 
 #'@param qc_strip logical set TRUE to avoid returning QAQC flagged data entries
 #'@param qc_field logical set TRUE to avoid returning field QC results
