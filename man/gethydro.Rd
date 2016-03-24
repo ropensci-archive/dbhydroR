@@ -4,26 +4,16 @@
 \alias{gethydro}
 \title{Retrieve hydrologic data from the DBHYDRO Environmental Database}
 \usage{
-gethydro(dbkey = NA, stationid = NA, category = NA, param = NA,
-  date_min = NA, date_max = NA, period = "uspec",
-  v_target_code = "file_csv")
+gethydro(dbkey = NA, date_min = NA, date_max = NA, ...)
 }
 \arguments{
 \item{dbkey}{character string of time series identifiers (e.g. Joe Bay mean daily wind speed is "15081"). These are listed alongside each time series in DBHYDRO.}
-
-\item{stationid}{character string Station ID}
-
-\item{category}{character string, choice of "WEATHER","SW","GW", or "WQ"}
-
-\item{param}{character string parameter query}
 
 \item{date_min}{character must be in POSIXct YYYY-MM-DD format}
 
 \item{date_max}{character must be in POSIXct YYYY-MM-DD format}
 
-\item{period}{string optional return data from the last X days (not implemented)}
-
-\item{v_target_code}{string print to file? (not implemented)}
+\item{...}{Options passed on to \code{\link[dbhydroR]{getdbkey}}}
 }
 \description{
 South Florida Water Management District
@@ -41,7 +31,7 @@ date_min = "2013-01-01", date_max = "2013-02-02")
 gethydro(dbkey = "IY639", date_min = "2009-01-30", date_max = "2015-11-04")
 
 #Looking up unknown dbkeys
-gethydro(stationid = "JBTS", category = "WEATHER",
+gethydro(stationid = "JBTS", category = "WEATHER", 
 param = "WNDS", date_min = "2013-01-01", 
 date_max = "2013-02-02")
 }

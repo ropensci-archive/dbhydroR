@@ -5,7 +5,8 @@
 \title{Retrieve a list of dbkeys from a DBHYDRO station ID}
 \usage{
 getdbkey(category, stationid = NA, param = NA, freq = NA, stat = NA,
-  recorder = NA, agency = NA, strata = NA, detail.level = "summary")
+  recorder = NA, agency = NA, strata = NA, detail.level = "summary",
+  ...)
 }
 \arguments{
 \item{category}{character string, choice of "WEATHER","SW","GW", or "WQ"}
@@ -25,6 +26,8 @@ getdbkey(category, stationid = NA, param = NA, freq = NA, stat = NA,
 \item{strata}{numeric vector of length 2 specifying a range of z-coordinates relative to local ground elevation. Only applicable for queries in the "WEATHER" and "GW" categories.}
 
 \item{detail.level}{character string specifying the level of detail to return. Choices are "full", "summary", and "dbkey".}
+
+\item{...}{Options passed as named parameters}
 }
 \description{
 Retrieve a list of dbkeys from a DBHYDRO station ID

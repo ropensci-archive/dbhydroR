@@ -104,13 +104,9 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
 #'@title Retrieve hydrologic data from the DBHYDRO Environmental Database
 #'@description South Florida Water Management District
 #'@param dbkey character string of time series identifiers (e.g. Joe Bay mean daily wind speed is "15081"). These are listed alongside each time series in DBHYDRO.
-#'@param stationid character string Station ID
-#'@param category character string, choice of "WEATHER","SW","GW", or "WQ"
-#'@param param character string parameter query
 #'@param date_min character must be in POSIXct YYYY-MM-DD format
 #'@param date_max character must be in POSIXct YYYY-MM-DD format
-#'@param period string optional return data from the last X days (not implemented)
-#'@param v_target_code string print to file? (not implemented)
+#'@param ... Options passed on to \code{\link[dbhydroR]{getdbkey}}
 #'@export
 #'@import httr
 #'@import RCurl
@@ -127,23 +123,26 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
 #'gethydro(dbkey = "IY639", date_min = "2009-01-30", date_max = "2015-11-04")
 #'
 #'#Looking up unknown dbkeys
-#'gethydro(stationid = "JBTS", category = "WEATHER",
+#'gethydro(stationid = "JBTS", category = "WEATHER", 
 #'param = "WNDS", date_min = "2013-01-01", 
 #'date_max = "2013-02-02")
 #'}
 
-gethydro <- function(dbkey = NA, stationid = NA, category = NA, param = NA, date_min = NA, date_max = NA, period = "uspec", v_target_code = "file_csv"){
+gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, ...){
+  
+  period <- "uspec"
+  v_target_code <- "file_csv"
   
   if(!(nchar(date_min) == 10 & nchar(date_max) == 10)){
     stop("Enter dates as quote-wrapped character strings in YYYY-MM-DD format")
   }
 
-  if((is.na(stationid) | is.na(category)) & all(is.na(dbkey))){
-    stop("Must specify either a dbkey or stationid/category/param.")
-  }
+  # if((is.na(stationid) | is.na(category)) & all(is.na(dbkey))){
+  #   stop("Must specify either a dbkey or stationid/category/param.")
+  # }
   
-  if(!is.na(stationid)){
-    dbkey <- getdbkey(stationid = stationid, category = category, param = param, detail.level = "dbkey")
+  if(is.na(dbkey)){
+    dbkey <- getdbkey(detail.level = "dbkey", ...)
   }
   
   if(length(dbkey) > 1){
@@ -185,6 +184,7 @@ gethydro <- function(dbkey = NA, stationid = NA, category = NA, param = NA, date
 #'@param agency character string specifying collector agency
 #'@param strata numeric vector of length 2 specifying a range of z-coordinates relative to local ground elevation. Only applicable for queries in the "WEATHER" and "GW" categories.
 #'@param detail.level character string specifying the level of detail to return. Choices are "full", "summary", and "dbkey".
+#'@param ... Options passed as named parameters
 #'@details A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modeling group.
 #'@import XML
 #'@references \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
@@ -206,7 +206,7 @@ gethydro <- function(dbkey = NA, stationid = NA, category = NA, param = NA, date
 #'getdbkey(stationid = "C111%", category = "WQ")
 #'}
 
-getdbkey <- function(category, stationid = NA, param = NA, freq = NA, stat = NA, recorder = NA, agency = NA, strata = NA, detail.level = "summary"){
+getdbkey <- function(category, stationid = NA, param = NA, freq = NA, stat = NA, recorder = NA, agency = NA, strata = NA, detail.level = "summary", ...){
 
   if(!(detail.level %in% c("full", "summary", "dbkey"))){
     stop("Must specify either 'full', 'summary', or 'dbkey' for the detail.level argument ")
