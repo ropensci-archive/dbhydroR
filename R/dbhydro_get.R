@@ -143,10 +143,10 @@ gethydro <- function(dbkey = NA, stationid = NA, category = NA, param = NA, date
   }
   
   if(!is.na(stationid)){
-    dbkey <- getdbkey(stationid = stationid, category = category, param = param, blind = TRUE)
+    dbkey <- getdbkey(stationid = stationid, category = category, param = param, detail.level = "dbkey")
   }
   
-  if(length(dbkey)>1){
+  if(length(dbkey) > 1){
     dbkey <- paste(dbkey, "/", collapse = "", sep = "")
     dbkey <- substring(dbkey, 1, (nchar(dbkey) - 1))
   }
@@ -174,28 +174,59 @@ gethydro <- function(dbkey = NA, stationid = NA, category = NA, param = NA, date
 
 #'@name getdbkey
 #'@title Retrieve a list of dbkeys from a DBHYDRO station ID
+#'@description Retrieve a list of dbkeys from a DBHYDRO station ID
 #'@export
-#'@param stationid character string
 #'@param category character string, choice of "WEATHER","SW","GW", or "WQ"
-#'@param param string optional desired parameter name
-#'@param blind logical output dbkey results as object (TRUE) or simply print query results (FALSE)?
-#'@param freq character string frequency choice of daily ("DA")
+#'@param stationid character string
+#'@param param characterstring specifying desired parameter name
+#'@param freq character string specifying collection frequency (daily = "DA")
+#'@param stat character string specifying the statistic type
+#'@param recorder character string specifying recorder information
+#'@param agency character string specifying collector agency
+#'@param strata numeric vector of length 2 specifying a range of z-coordinates relative to local ground elevation. Only applicable for queries in the "WEATHER" and "GW" categories.
+#'@param detail.level character string specifying the level of detail to return. Choices are "full", "summary", and "dbkey".
 #'@details A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modeling group.
 #'@import XML
-#'@examples \dontrun{
-#'getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS")
-#'getdbkey(stationid = "C111%", category = "SW")
-#'getdbkey(stationid = "C111%", category = "GW")
-#'getdbkey(stationid = "C111%", category = "WQ")
-#'getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS")
-#'}
 #'@references \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
+#'@examples \dontrun{
+#'# Weather
+#'getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "summary")
+#'getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "dbkey")
+#'
+#'# Surfacewater
+#'getdbkey(stationid = "C111%", category = "SW")
+#'
+#'# Groundwater
+#'getdbkey(stationid = "C111%", category = "GW")
+#'getdbkey(stationid = "C111AE", category = "GW", param = "WELL",
+#' freq = "DA", stat = "MEAN", strata = c(9, 22), recorder = "TROL",
+#'  agency = "WMD", detail.level = "full")
+#'
+#'# Water Quality
+#'getdbkey(stationid = "C111%", category = "WQ")
+#'}
 
-getdbkey <- function(stationid, category, param = NA, freq = "DA", blind = FALSE){
+getdbkey <- function(category, stationid = NA, param = NA, freq = NA, stat = NA, recorder = NA, agency = NA, strata = NA, detail.level = "summary"){
 
-  servfull <- "http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
+  if(!(detail.level %in% c("full", "summary", "dbkey"))){
+    stop("Must specify either 'full', 'summary', or 'dbkey' for the detail.level argument ")
+  }
+
+  if(any(!is.na(strata))){
+    strata_from <- strata[1]
+    strata_to <- strata[2]
+  }else{
+    strata_from <- NA
+    strata_to <- NA
+  }
   
-  qy <- list(v_js_flag = "Y", v_category = category, v_station = stationid, v_dbkey_list_flag = "Y", v_order_by = "STATION")
+  qy <- setNames(as.list(c(category, stationid, param, freq, stat, recorder, agency, strata_from, strata_to, "Y", "STATION", "Y")), c("v_category", "v_station", "v_data_type", "v_frequency", "v_statistic_type", "v_recorder", "v_agency", "v_strata_from", "v_strata_to", "v_js_flag", "v_order_by", "v_dbkey_list_flag"))
+
+  if(any(is.na(qy))){
+    qy <- qy[-which(is.na(qy))]
+  }
+  
+  servfull <- "http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
   res <- httr::GET(servfull, query = qy)
   res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1', httr::content(res, "text"))
   
@@ -203,20 +234,30 @@ getdbkey <- function(stationid, category, param = NA, freq = "DA", blind = FALSE
     stop("No dbkeys found")  
   }
   
-  res <- XML::readHTMLTable(res)[[3]][,c("Dbkey", "Group", "Data Type", "Freq", "Recorder", "Start Date", "End Date")]
-  
-  if(!is.na(param)){
-    res <- res[as.character(res[,"Data Type"]) == param,]
+  if(detail.level == "full"){
+    res <- XML::readHTMLTable(res)[[3]]
+  }else{
+    res <- XML::readHTMLTable(res)[[3]][,c("Dbkey", "Group", "Data Type", "Freq", "Recorder", "Start Date", "End Date")]
   }
-  if(!is.na(freq)){
-    res <- res[as.character(res[,"Freq"]) == freq,]
+  
+  if(nrow(res) > 1){
+    not_na_col <- !(apply(res, 2, function(x) all(is.na(x))))
+    if(any(not_na_col == FALSE)){
+      res <- res[,not_na_col]  
+    }
+  }else{
+    not_na_element <- which(is.na(res))
+    if(length(not_na_element) > 0){
+      res <- res[-not_na_element]  
+    }
   }
   res[,1] <- as.character(res[,1])
   
-  if(blind == FALSE){
+  if(detail.level %in% c("full", "summary")){
     message(paste("Search results for", " '", stationid, " ", category, "'", sep = ""))
     print(res)
   }else{
-   res[,1] 
+    res[,1] 
   }
+  
 }

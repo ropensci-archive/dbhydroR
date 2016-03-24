@@ -4,29 +4,51 @@
 \alias{getdbkey}
 \title{Retrieve a list of dbkeys from a DBHYDRO station ID}
 \usage{
-getdbkey(stationid, category, param = NA, freq = "DA", blind = FALSE)
+getdbkey(category, stationid = NA, param = NA, freq = NA, stat = NA,
+  recorder = NA, agency = NA, strata = NA, detail.level = "summary")
 }
 \arguments{
-\item{stationid}{character string}
-
 \item{category}{character string, choice of "WEATHER","SW","GW", or "WQ"}
 
-\item{param}{string optional desired parameter name}
+\item{stationid}{character string}
 
-\item{freq}{character string frequency choice of daily ("DA")}
+\item{param}{characterstring specifying desired parameter name}
 
-\item{blind}{logical output dbkey results as object (TRUE) or simply print query results (FALSE)?}
+\item{freq}{character string specifying collection frequency (daily = "DA")}
+
+\item{stat}{character string specifying the statistic type}
+
+\item{recorder}{character string specifying recorder information}
+
+\item{agency}{character string specifying collector agency}
+
+\item{strata}{numeric vector of length 2 specifying a range of z-coordinates relative to local ground elevation. Only applicable for queries in the "WEATHER" and "GW" categories.}
+
+\item{detail.level}{character string specifying the level of detail to return. Choices are "full", "summary", and "dbkey".}
+}
+\description{
+Retrieve a list of dbkeys from a DBHYDRO station ID
 }
 \details{
 A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modeling group.
 }
 \examples{
 \dontrun{
-getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS")
+# Weather
+getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "summary")
+getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "dbkey")
+
+# Surfacewater
 getdbkey(stationid = "C111\%", category = "SW")
+
+# Groundwater
 getdbkey(stationid = "C111\%", category = "GW")
+getdbkey(stationid = "C111AE", category = "GW", param = "WELL",
+freq = "DA", stat = "MEAN", strata = c(9, 22), recorder = "TROL",
+ agency = "WMD", detail.level = "full")
+
+# Water Quality
 getdbkey(stationid = "C111\%", category = "WQ")
-getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS")
 }
 }
 \references{
