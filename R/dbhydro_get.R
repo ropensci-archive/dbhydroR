@@ -42,6 +42,10 @@
 
 getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA, raw = FALSE, qc_strip = "N", qc_field = "N", test_number = NA, v_target_code = "file_csv", sample_id = NA, project_code = NA){
   
+  if(!(nchar(date_min) == 10 & nchar(date_max) == 10)){
+    stop("Enter dates as quote-wrapped character strings in YYYY-MM-DD format")
+  }
+  
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/water_quality_data.report_full"
   
   #try(ping<-RCurl::getURL("http://www.sfwmd.gov/portal/page/portal/sfwmdmain/home%20page"),silent=TRUE)
@@ -129,6 +133,10 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
 #'}
 
 gethydro <- function(dbkey = NA, stationid = NA, category = NA, param = NA, date_min = NA, date_max = NA, period = "uspec", v_target_code = "file_csv"){
+  
+  if(!(nchar(date_min) == 10 & nchar(date_max) == 10)){
+    stop("Enter dates as quote-wrapped character strings in YYYY-MM-DD format")
+  }
 
   if((is.na(stationid) | is.na(category)) & all(is.na(dbkey))){
     stop("Must specify either a dbkey or stationid/category/param.")
@@ -172,15 +180,16 @@ gethydro <- function(dbkey = NA, stationid = NA, category = NA, param = NA, date
 #'@param param string optional desired parameter name
 #'@param blind logical output dbkey results as object (TRUE) or simply print query results (FALSE)?
 #'@param freq character string frequency choice of daily ("DA")
-#'@details A value in the "Recorder" field on "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modeling group.
+#'@details A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modeling group.
 #'@import XML
 #'@examples \dontrun{
-#'getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
-#'getdbkey(stationid="C111%",category="SW")
-#'getdbkey(stationid="C111%",category="GW")
-#'getdbkey(stationid="C111%",category="WQ")
-#'getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
+#'getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS")
+#'getdbkey(stationid = "C111%", category = "SW")
+#'getdbkey(stationid = "C111%", category = "GW")
+#'getdbkey(stationid = "C111%", category = "WQ")
+#'getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS")
 #'}
+#'@references \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
 
 getdbkey <- function(stationid, category, param = NA, freq = "DA", blind = FALSE){
 

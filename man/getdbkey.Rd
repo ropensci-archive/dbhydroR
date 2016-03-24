@@ -18,15 +18,18 @@ getdbkey(stationid, category, param = NA, freq = "DA", blind = FALSE)
 \item{blind}{logical output dbkey results as object (TRUE) or simply print query results (FALSE)?}
 }
 \details{
-A value in the "Recorder" field on "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modeling group.
+A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modeling group.
 }
 \examples{
 \dontrun{
-getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
-getdbkey(stationid="C111\%",category="SW")
-getdbkey(stationid="C111\%",category="GW")
-getdbkey(stationid="C111\%",category="WQ")
-getdbkey(stationid="JBTS",category="WEATHER",param="WNDS")
+getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS")
+getdbkey(stationid = "C111\%", category = "SW")
+getdbkey(stationid = "C111\%", category = "GW")
+getdbkey(stationid = "C111\%", category = "WQ")
+getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS")
 }
+}
+\references{
+\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
 }
 

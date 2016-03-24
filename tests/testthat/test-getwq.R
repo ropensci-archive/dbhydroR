@@ -17,3 +17,12 @@ test_that("getwq fails well", {
   expect_message(getwq(station_id = c("FLAB08", "FLAB09"), date_min = "1990-03-01", date_max = "1992-05-01", test_name = "CHLOROPHYLLA-SALINE"), "No data found")
   
 })
+
+test_that("non-character dates are handled", {
+  skip_on_cran()
+  skip_on_travis()
+  skip_on_appveyor()
+  
+  expect_error(getwq(station_id = c("FLAB08", "FLAB09"), date_min = 1990-03-01, date_max = 1992-05-01, test_name = "CHLOROPHYLLA-SALINE"), "Enter dates as quote-wrapped character strings in YYYY-MM-DD format")
+  
+})
