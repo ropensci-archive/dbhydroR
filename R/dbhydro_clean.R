@@ -7,8 +7,10 @@
 #'@param dt data.frame output of getwq
 #'@examples \dontrun{
 #'#check handling of values below MDL
-#'dt <- getwq(station_id = "FLAB08", date_min = "2009-01-01", date_max = "2016-02-29", test_name = "PHOSPHATE, TOTAL AS P", raw = TRUE)
-#'dt <- getwq(station_id = "FLAB08", date_min = "2009-01-01", date_max = "2016-02-29", test_name = "AMMONIA-N", raw = TRUE)
+#'dt <- getwq(station_id = "FLAB08", date_min = "2009-01-01",
+#' date_max = "2016-02-29", test_name = "PHOSPHATE, TOTAL AS P", raw = TRUE)
+#'dt <- getwq(station_id = "FLAB08", date_min = "2009-01-01",
+#' date_max = "2016-02-29", test_name = "AMMONIA-N", raw = TRUE)
 #'}
 #'dt <- read.csv(system.file("extdata", "testwq.csv", package = "dbhydroR"))
 #'cleanwq(dt)
