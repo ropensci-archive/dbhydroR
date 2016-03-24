@@ -2,21 +2,21 @@
 % Please edit documentation in R/dbhydro_get.R
 \name{gethydro}
 \alias{gethydro}
-\title{Retrieve hydrologic data from the DBHYDRO Environmental Database}
+\title{Retrieve DBHYDO hydrologic data}
 \usage{
 gethydro(dbkey = NA, date_min = NA, date_max = NA, ...)
 }
 \arguments{
-\item{dbkey}{character string of time series identifiers (e.g. Joe Bay mean daily wind speed is "15081"). These are listed alongside each time series in DBHYDRO.}
+\item{dbkey}{character string dataset identifier. See \code{\link[dbhydroR]{getdbkey}}}
 
-\item{date_min}{character must be in POSIXct YYYY-MM-DD format}
+\item{date_min}{character date must be in YYYY-MM-DD format}
 
-\item{date_max}{character must be in POSIXct YYYY-MM-DD format}
+\item{date_max}{character date must be in YYYY-MM-DD format}
 
 \item{...}{Options passed on to \code{\link[dbhydroR]{getdbkey}}}
 }
 \description{
-South Florida Water Management District
+Retrieve hydrologic data from the DBHYDRO Environmental Database
 }
 \examples{
 \dontrun{
@@ -30,7 +30,7 @@ date_min = "2013-01-01", date_max = "2013-02-02")
 #Instantaneous hydro retrieval
 gethydro(dbkey = "IY639", date_min = "2009-01-30", date_max = "2015-11-04")
 
-#Looking up unknown dbkeys
+#Looking up unknown dbkeys on the fly
 gethydro(stationid = "JBTS", category = "WEATHER", 
 param = "WNDS", date_min = "2013-01-01", 
 date_max = "2013-02-02")

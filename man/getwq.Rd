@@ -11,9 +11,9 @@ getwq(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
 \arguments{
 \item{station_id}{character string of station id(s)}
 
-\item{date_min}{character must be in POSIXct YYYY-MM-DD format}
+\item{date_min}{character date must be in POSIXct YYYY-MM-DD format}
 
-\item{date_max}{character must be in POSIXct YYYY-MM-DD format}
+\item{date_max}{character date must be in POSIXct YYYY-MM-DD format}
 
 \item{test_name}{character string of test name(s). See vignette for specific options}
 
@@ -32,7 +32,7 @@ getwq(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
 \item{project_code}{numeric (not implemented)}
 }
 \description{
-South Florida Water Management District
+Retrieve water quality data from the DBHYDRO Environmental Database
 }
 \examples{
 

@@ -1,9 +1,9 @@
 #'@name getwq
 #'@title Retrieve water quality data from the DBHYDRO Environmental Database
-#'@description South Florida Water Management District
+#'@description Retrieve water quality data from the DBHYDRO Environmental Database
 #'@param station_id character string of station id(s)
-#'@param date_min character must be in POSIXct YYYY-MM-DD format
-#'@param date_max character must be in POSIXct YYYY-MM-DD format
+#'@param date_min character date must be in POSIXct YYYY-MM-DD format
+#'@param date_max character date must be in POSIXct YYYY-MM-DD format
 #'@param test_name character string of test name(s). See vignette for specific options
 #'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included. 
 #'@param qc_strip logical set TRUE to avoid returning QAQC flagged data entries
@@ -101,11 +101,11 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
 
 
 #'@name gethydro
-#'@title Retrieve hydrologic data from the DBHYDRO Environmental Database
-#'@description South Florida Water Management District
-#'@param dbkey character string of time series identifiers (e.g. Joe Bay mean daily wind speed is "15081"). These are listed alongside each time series in DBHYDRO.
-#'@param date_min character must be in POSIXct YYYY-MM-DD format
-#'@param date_max character must be in POSIXct YYYY-MM-DD format
+#'@title Retrieve DBHYDO hydrologic data
+#'@description Retrieve hydrologic data from the DBHYDRO Environmental Database
+#'@param dbkey character string dataset identifier. See \code{\link[dbhydroR]{getdbkey}}
+#'@param date_min character date must be in YYYY-MM-DD format
+#'@param date_max character date must be in YYYY-MM-DD format
 #'@param ... Options passed on to \code{\link[dbhydroR]{getdbkey}}
 #'@export
 #'@import httr
@@ -122,7 +122,7 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
 #'#Instantaneous hydro retrieval
 #'gethydro(dbkey = "IY639", date_min = "2009-01-30", date_max = "2015-11-04")
 #'
-#'#Looking up unknown dbkeys
+#'#Looking up unknown dbkeys on the fly
 #'gethydro(stationid = "JBTS", category = "WEATHER", 
 #'param = "WNDS", date_min = "2013-01-01", 
 #'date_max = "2013-02-02")
@@ -172,22 +172,23 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, ...){
 }
 
 #'@name getdbkey
-#'@title Retrieve a list of dbkeys from a DBHYDRO station ID
-#'@description Retrieve a list of dbkeys from a DBHYDRO station ID
+#'@title Query dbkey information
+#'@description Retrieve a data.frame summary including dbkeys or a vector of dbkeys corresponding to specified parameters
 #'@export
-#'@param category character string, choice of "WEATHER","SW","GW", or "WQ"
-#'@param stationid character string
-#'@param param characterstring specifying desired parameter name
+#'@param category character string, choice of "WEATHER", "SW", "GW", or "WQ"
+#'@param stationid character string specifying station name
+#'@param param character string specifying desired parameter name
 #'@param freq character string specifying collection frequency (daily = "DA")
-#'@param stat character string specifying the statistic type
+#'@param stat character string specifying statistic type
 #'@param recorder character string specifying recorder information
 #'@param agency character string specifying collector agency
 #'@param strata numeric vector of length 2 specifying a range of z-coordinates relative to local ground elevation. Only applicable for queries in the "WEATHER" and "GW" categories.
 #'@param detail.level character string specifying the level of detail to return. Choices are "full", "summary", and "dbkey".
 #'@param ... Options passed as named parameters
-#'@details A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modeling group.
+#'@details A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modelling group.
 #'@import XML
 #'@references \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
+#'@references \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_meta_data}
 #'@examples \dontrun{
 #'# Weather
 #'getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "summary")

@@ -2,22 +2,22 @@
 % Please edit documentation in R/dbhydro_get.R
 \name{getdbkey}
 \alias{getdbkey}
-\title{Retrieve a list of dbkeys from a DBHYDRO station ID}
+\title{Query dbkey information}
 \usage{
 getdbkey(category, stationid = NA, param = NA, freq = NA, stat = NA,
   recorder = NA, agency = NA, strata = NA, detail.level = "summary",
   ...)
 }
 \arguments{
-\item{category}{character string, choice of "WEATHER","SW","GW", or "WQ"}
+\item{category}{character string, choice of "WEATHER", "SW", "GW", or "WQ"}
 
-\item{stationid}{character string}
+\item{stationid}{character string specifying station name}
 
-\item{param}{characterstring specifying desired parameter name}
+\item{param}{character string specifying desired parameter name}
 
 \item{freq}{character string specifying collection frequency (daily = "DA")}
 
-\item{stat}{character string specifying the statistic type}
+\item{stat}{character string specifying statistic type}
 
 \item{recorder}{character string specifying recorder information}
 
@@ -30,10 +30,10 @@ getdbkey(category, stationid = NA, param = NA, freq = NA, stat = NA,
 \item{...}{Options passed as named parameters}
 }
 \description{
-Retrieve a list of dbkeys from a DBHYDRO station ID
+Retrieve a data.frame summary including dbkeys or a vector of dbkeys corresponding to specified parameters
 }
 \details{
-A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modeling group.
+A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modelling group.
 }
 \examples{
 \dontrun{
@@ -56,5 +56,7 @@ getdbkey(stationid = "C111\%", category = "WQ")
 }
 \references{
 \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
+
+\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_meta_data}
 }
 
