@@ -4,7 +4,7 @@ STATION, DATA_TYPE, FREQUENCY, STATISTIC_TYPE, RECORDER, AGENCY, STRATA, OP_NUM
 
 Take a closer look at how qualifiers are treated in the cleanwq function:
   Document how results below the MDL are treated
-	Steve replaces these with the MDL itself
+	Steve replaces these with the MDL itself (bad for stats, return NA?)
 
 Create option to return uM results
 			
