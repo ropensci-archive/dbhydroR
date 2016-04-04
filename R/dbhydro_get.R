@@ -21,6 +21,7 @@
 #'getwq(station_id = "FLAB08",
 #'date_min = "2011-03-01", date_max = "2012-05-01", 
 #'test_name = "CHLOROPHYLLA-SALINE")
+#'
 #'\dontrun{
 #'#one variable at multiple stations
 #'getwq(station_id = c("FLAB08", "FLAB09"),

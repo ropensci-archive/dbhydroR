@@ -10,7 +10,7 @@ cleanhydro(res)
 \item{res}{output of \code{\link[dbhydroR]{gethydro}}}
 }
 \description{
-Cleans to be consistent with water quality formatting. Connects metadata header to actual measurements.
+Cleans output of gethydro query to be consistent with water quality formatting. Connects metadata header to actual measurements.
 }
 \examples{
 \dontrun{
