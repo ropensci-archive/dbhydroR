@@ -41,6 +41,10 @@ A value in the "Recorder" field of "PREF" should be used whenever possible. This
 getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "summary")
 getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "dbkey")
 
+# query on multiple values
+getdbkey(stationid = c("MBTS", "JBTS"), category = "WEATHER", param = "WNDS", freq = "DA", detail.level = "dbkey")
+
+
 # Surfacewater
 getdbkey(stationid = "C111\%", category = "SW")
 

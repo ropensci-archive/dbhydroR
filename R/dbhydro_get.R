@@ -89,12 +89,12 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
   res <- httr::GET(servfull, query = qy)
   
   if(raw == TRUE){
-    read.csv(text = httr::content(res, "text"))
+    suppressMessages(read.csv(text = httr::content(res, "text")))
   }else{
-    if(!any(!is.na(read.csv(text = httr::content(res, "text"))))){
+    if(!any(!is.na(suppressMessages(read.csv(text = httr::content(res, "text")))))){
       message("No data found")
     }else{
-      cleanwq(read.csv(text = httr::content(res, "text")))
+      cleanwq(suppressMessages(read.csv(text = httr::content(res, "text"))))
     }
   }
 }
@@ -194,6 +194,10 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, ...){
 #'getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "summary")
 #'getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "dbkey")
 #'
+#'# query on multiple values
+#'getdbkey(stationid = c("MBTS", "JBTS"), category = "WEATHER", param = "WNDS", freq = "DA", detail.level = "dbkey")
+#'
+#'
 #'# Surfacewater
 #'getdbkey(stationid = "C111%", category = "SW")
 #'
@@ -221,7 +225,20 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA, stat = NA,
     strata_to <- NA
   }
   
-  qy <- setNames(as.list(c(category, stationid, param, freq, stat, recorder, agency, strata_from, strata_to, "Y", "STATION", "Y")), c("v_category", "v_station", "v_data_type", "v_frequency", "v_statistic_type", "v_recorder", "v_agency", "v_strata_from", "v_strata_to", "v_js_flag", "v_order_by", "v_dbkey_list_flag"))
+  # expand parameters with length > 1 to be seperated by "/" with no trailing "/" ####
+  user_args <- list(v_category = category, v_station = stationid, v_data_type = param, v_frequency = freq, v_statistic_type = stat, v_recorder = recorder, v_agency = agency, v_strata_from = strata_from, v_strata_to = strata_to)
+  greater_length_args <- lapply(user_args, function(x) length(x))
+  if(length(which(greater_length_args > 1)) >  0){
+    collapse_args <- user_args[which(greater_length_args > 1)]
+    collapse_args <- paste0(do.call("c", collapse_args), "/", collapse = "")
+    collapse_args <- substring(collapse_args, 1, (nchar(collapse_args) - 1))
+    user_args[which(greater_length_args > 1)] <- collapse_args
+  }
+  
+  dbhydro_args <- setNames(as.list(c("Y", "STATION", "Y")), c("v_js_flag", "v_order_by", "v_dbkey_list_flag"))
+  qy <- c(user_args, dbhydro_args)
+    
+  # qy <- setNames(as.list(c(category, stationid, param, freq, stat, recorder, agency, strata_from, strata_to, "Y", "STATION", "Y")), c("v_category", "v_station", "v_data_type", "v_frequency", "v_statistic_type", "v_recorder", "v_agency", "v_strata_from", "v_strata_to", "v_js_flag", "v_order_by", "v_dbkey_list_flag"))
 
   if(any(is.na(qy))){
     qy <- qy[-which(is.na(qy))]
@@ -229,7 +246,7 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA, stat = NA,
   
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
   res <- httr::GET(servfull, query = qy)
-  res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1', httr::content(res, "text"))
+  res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1', suppressMessages(httr::content(res, "text")))
   
   if(length(XML::readHTMLTable(res)) < 3){
     stop("No dbkeys found")  

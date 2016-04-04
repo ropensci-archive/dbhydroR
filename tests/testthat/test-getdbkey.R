@@ -18,5 +18,8 @@ test_that("getdbkey works", {
   expect_is(res, "data.frame")
   expect_equal(nrow(res), 1)
   
+  res <- getdbkey(stationid = c("MBTS", "JBTS"), category = "WEATHER", param = "WNDS", freq = "DA", detail.level = "dbkey")
+  expect_equal(length(res), 2)
+  
 })
 

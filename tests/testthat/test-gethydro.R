@@ -7,6 +7,8 @@ test_that("gethydro works", {
   
   expect_is(gethydro(dbkey = "15081", date_min = "2013-01-01", date_max = "2013-02-02"), "data.frame")
   
+  gethydro(dbkey = c("15081", "15069"), date_min = "2013-01-01", date_max = "2013-02-02")
+  
 })
 
 test_that("gethydro fails well", {

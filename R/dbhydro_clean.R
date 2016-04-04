@@ -46,13 +46,13 @@ cleanwq <- function(dt){
 cleanhydro <- function(res){
   
   i <- 1
-  while(any(!is.na(read.csv(text = httr::content(res, "text"), skip = i, stringsAsFactors = FALSE, header = FALSE)[i, 10:16]))){
+  while(any(!is.na(suppressMessages(read.csv(text = httr::content(res, "text"), skip = i, stringsAsFactors = FALSE, header = FALSE))[i, 10:16]))){
     i <- i + 1
   }
   
-  metadata <- read.csv(text = httr::content(res, "text"), skip = 1, stringsAsFactors = FALSE)[1:(i - 1),]
+  metadata <- suppressMessages(read.csv(text = httr::content(res, "text"), skip = 1, stringsAsFactors = FALSE))[1:(i - 1),]
   
-  try({dt <- read.csv(text = httr::content(res, "text"), skip = i + 1, stringsAsFactors = FALSE)}, silent = T)
+  try({dt <- suppressMessages(read.csv(text = httr::content(res, "text"), skip = i + 1, stringsAsFactors = FALSE))}, silent = T)
   if(class(dt) != "data.frame"){
     stop("No data found")
   }
