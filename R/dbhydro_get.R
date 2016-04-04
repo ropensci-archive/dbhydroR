@@ -141,7 +141,7 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, ...){
   #   stop("Must specify either a dbkey or stationid/category/param.")
   # }
   
-  if(is.na(dbkey)){
+  if(all(is.na(dbkey))){
     dbkey <- getdbkey(detail.level = "dbkey", ...)
   }
   
