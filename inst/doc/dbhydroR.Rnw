@@ -6,6 +6,7 @@
 \usepackage{float}
 
 \usepackage{natbib}
+\usepackage[obeyspaces,spaces]{url}
 \bibliographystyle{plainnat}
 \bibpunct[; ]{(}{)}{,}{a}{}{;}
 
@@ -40,24 +41,24 @@
 
 \section{Introduction}
 
-This document introduces the \texttt{dbhydroR} package and its associated functions. These functions are aimed at improving programmatic workflows that query the DBHYDRO Environmental Database. HTTP requests are faciliated by the httr \citep{httr} and RCurl \citep{rcurl} packages. 
+This document introduces the \texttt{dbhydroR} package and its associated functions. These functions are aimed at improving programmatic workflows that query the DBHYDRO Environmental Database. HTTP requests are faciliated by the httr \citep{httr} package. 
 
 \section{Package installation}
 
-The \texttt{R} package \texttt{dbhydroR} is distributed via a \texttt{.tar.gz} (analagous to \texttt{.zip}) package archive file. This package contains the source code for package functions. In RStudio, it can be installed by navigating to \texttt{Tools} \verb|->| \texttt{Install Packages...} \verb|->| \texttt{Install from:} \verb|->| \texttt{Package Archive File}. Computers running the Windows operating system can only install binary \texttt{.zip} package archive files unless they have additional compiler software installed. The \texttt{dbhydroR} binary package can be installed by running the following command from the \texttt{R} console:
+The \texttt{R} package \texttt{dbhydroR} is distributed via a \texttt{.tar.gz} (analagous to \texttt{.zip}) package archive file. This package contains the source code for package functions. In RStudio, it can be installed by navigating to \texttt{Tools} \verb|->| \texttt{Install Packages...} \verb|->| \texttt{Install from:} \verb|->| \texttt{Package Archive File}. Computers running the Windows operating system can only install binary \texttt{.zip} package archive files unless they have additional \href{https://cran.r-project.org/bin/windows/Rtools/}{compiler software} installed. The \texttt{dbhydroR} binary package can be installed by running the following commands from the \texttt{R} console:
 
 <<echo = FALSE>>=
-options(continue = "+", width = 50, useFancyQuotes = FALSE)
+options(width = 50, useFancyQuotes = FALSE)
 @
+\vspace{10pt}
+\noindent\texttt{install.packages(c("httr", "RCurl", "reshape2", "XML"))}\\
+\noindent\texttt{install.packages(paste(}\verb|"\\\\ad.sfwmd.gov\\DFSRoot\\data\\restoration_sciences",|\\
+\verb|"\\projects\\joe_stachelek\\R\\dbhydroR_0.1-5.zip", sep = "")|\\
+\texttt{, type = "win.binary", repos = NULL)}
 
-<<eval=FALSE>>=
-install.packages("B:\\restoration_sciences\\projects\\joe_stachelek
-                 \\R\\dbhydro_0.1-1.zip",type="win.binary",
-                 repos=NULL,dependencies=TRUE)
-@
+\vspace{8pt}
 
-Once installed, the package can be loaded using the following command:
-
+\noindent Once installed, the package can be loaded using the following command:
 
 
 <<message=FALSE>>=
@@ -65,120 +66,139 @@ library(dbhydroR)
 @
 
 
-
 \section{Composing database queries}
+\subsection{Water quality data}
 
-The workhorse \texttt{dbhydroR} function is \verb|dbydro_get|. This function takes four required arguments. The user must specify a station ID, a test name, and a date range. Station IDs can be located on the \href{http://my.sfwmd.gov/KMLEXT/CUSTOMKMLS/DBHydro/DBHydroKML/DBHYDRO_KML.kmz}{SFWMD Google Earth portal}. A list of available test names can be found in the \nameref{sec:appendix} to this document. Dates must be specified in YYYY-MM-DD format (e.g. 2015-02-26).   The following set of examples retrieve measurements between March 2011 and May 2012. They can be run from the R console by issuing the command:
+Water quality data can be retrieved using the \texttt{getwq} function which takes four required arguments. The user must specify a station ID, a test name, and a date range. Station IDs can be located on the \href{http://my.sfwmd.gov/KMLEXT/CUSTOMKMLS/DBHydro/DBHydroKML/DBHYDRO_KML.kmz}{SFWMD Google Earth portal}. An abbreviated list of available test names can be found in the \nameref{sec:appendix} to this document while a full listing can be found at the \href{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_data_type_info}{DBHYDRO metadata page}. Dates must be specified in YYYY-MM-DD format (e.g. 2015-02-26).   The following set of examples retrieve measurements between March 2011 and May 2012. They can be run from the R console by issuing the command:
 
 <<eval=FALSE>>=
-example(dbhydro_get)
+example(getwq)
 @
 
 \begin{itemize}
 \item One variable at one station
 
 <<eval=FALSE>>=
-dbhydro_get(station_id="FLAB08", date_min="2011-03-01",
-            date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+getwq(station_id = "FLAB08", date_min = "2011-03-01", 
+      date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
 @
 
 \item One variable at multiple stations
 
 <<eval=FALSE>>=
-dbhydro_get(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",
-            date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+getwq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
+      date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
 @
 
 \item One variable at a wildcard station
 
 <<eval=FALSE>>=
-dbhydro_get(station_id=c("FLAB0%"), date_min="2011-03-01",
-            date_max="2012-05-01",test_name="CHLOROPHYLLA-SALINE")
+getwq(station_id = c("FLAB0%"), date_min = "2011-03-01", 
+      date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
 @
 
 \item Multiple variables at multiple stations
 
 <<eval=FALSE>>=
-dbhydro_get(station_id=c("FLAB08","FLAB09"), date_min="2011-03-01",
-            date_max="2012-05-01",test_name=c("CHLOROPHYLLA-SALINE",
-                                              "SALINITY"))
+getwq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
+      date_max = "2012-05-01", test_name = c("CHLOROPHYLLA-SALINE",
+      "SALINITY"))
 @
 
 \end{itemize}
 
-By default, \verb|dbhydro_get| returns a "cleaned output". First, the cleaning function \verb|dbhydro_clean| converts the raw output from native DBHYDRO "long" format (each piece of data on its own row) to "wide" format (each site x variable combination in its own column) using the reshape2 package \citep{reshape2}. Next, the QA blanks/flags and DBHydro database identifiers are stripped. Setting the \texttt{raw} flag to \texttt{TRUE} will force \verb|dbhydro_get| to retain this information. An example query that retains this information is shown below.
+\noindent By default, \verb|getwq| returns a \textit{cleaned output}. First, the cleaning function \verb|cleanwq| converts the raw output from native DBHYDRO \textit{long} format (each piece of data on its own row) to \textit{wide} format (each site x variable combination in its own column) using the reshape2 package \citep{reshape2}. Next, the extra columns associated with QA flags, LIMS, and District recieving are removed. Finally, row entries associated with QA \textit{blanks} are removed. Setting the \texttt{raw} flag to \texttt{TRUE} will force \verb|getwq| to retain this information. An example query that retains this information and the original \textit{long} formatting is shown below.
 
-<<eval=FALSE>>=
-dbhydro_get(station_id="FLAB08", date_min="2011-03-01",
-            date_max="2011-05-01",test_name="CHLOROPHYLLA-SALINE",
-            raw=TRUE)
+<<eval=FALSE, echo=TRUE>>=
+getwq(station_id = "FLAB08", date_min = "2011-03-01", 
+      date_max = "2011-05-01", test_name = "CHLOROPHYLLA-SALINE",
+      raw = TRUE)
 @
 
-\section{Plotting}
+\subsection{Hydrologic data}
 
-Once data has been retrieved with \verb|dbhydro_get| in non-raw form (or cleaned with \verb|dbhydro_clean|), and assigned to an R object, plots can be produced using the \verb|dbhydro_plot| function. This function will create a dedicated panel of figures for each of the available variables. The following example retrieves and plots measurements between March 2011 and May 2014. It can be run from the R console by issuing the command:
-
-<<eval=FALSE>>=
-example(dbhydro_plot)
-@
-
-or
+Hydrologic time series data can be retrieved using the \texttt{gethydro} function. The first task to accomplish prior to running \texttt{gethydro} is to identify one or more dbkeys. This can be done before-hand using the \texttt{getdbkey} function or the \href{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}{DBHYDRO Browser}. One useful strategy for finding desired dbkeys is to run the \texttt{getdbkey}   function interactively using progressively narrower search terms. For example, suppose we are interested in daily average wind data at Joe Bay but we have no alphanumeric \texttt{dbkey}. Initially we could run \texttt{getdbkey} with the \texttt{detail.level} set to "summary".
 
 <<eval=FALSE>>=
-dt<-dbhydro_get(station_id=c("FLAB08","FLAB09"),
-                date_min="2011-03-01",date_max="2014-05-01",
-                test_name=c("CHLOROPHYLLA-SALINE","SALINITY"))
-  
-dbhydro_plot(dt,label="bottomleft",abb=3)
+getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS",
+         detail.level = "summary")
 @
-\vspace{2pt}
-\begin{figure}[H]
-\begin{center}
-%\includegraphics[width=12cm,height=10cm]{Rplot}
-\includegraphics[width=343.5pt,height=310.8pt]{Rplot}
-\end{center}
-\label{fig:zero}
-\end{figure}
-%\FloatBarrier
 
+\noindent Our search returns two results but only one of them has a daily average (DA) measurement frequency. We can verify the remaining attributes of our likely dbkey by setting the \texttt{freq} parameter to "DA" and the \texttt{detail.level} parameter to "full".
 
+<<eval=FALSE>>=
+getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS",
+         freq = "DA", detail.level = "full")
+@
+
+\noindent This exact dbkey can only be returned reliably by specifying all of the \texttt{getdbkey} parameters applicable to the "WEATHER" category.
+
+<<eval=FALSE>>=
+getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS",
+         freq = "DA", stat = "MEAN", recorder = "CR10", agency = "WMD",
+         detail.level = "dbkey")
+@
+
+\noindent Now that we have our dbkey in hand, we can use is as input to \texttt{gethydro}. In addition to a dbkey, we must specify a date range. Dates must be entered in YYYY-MM-DD format (e.g. 2015-02-26).
+
+<<eval=FALSE>>=
+gethydro(dbkey = "15081",
+         date_min = "2013-01-01", date_max = "2013-02-02")
+@
+
+\noindent Alternatively, we can specify a set of arguments in our call to \texttt{gethydro} that will be passed to \texttt{getdbkey} on-the-fly. Use caution when using this strategy as complex stationid/category/parameter combinations can easily cause errors or return unexpected results. It is good practice to pre-screen your parameter values using \texttt{getdbkey}.
+
+<<eval=FALSE>>=
+gethydro(date_min = "2013-01-01", date_max = "2013-02-02",
+         stationid = "JBTS", category = "WEATHER", param = "WNDS",
+         freq = "DA", stat = "MEAN", recorder = "CR10", agency = "WMD")
+@
+
+\noindent The contents of multiple data streams can be returned by specifying multiple dbkeys or entering on-the-fly \texttt{getdbkey} queries that return multiple dbkeys.
+
+<<eval=FALSE>>=
+gethydro(dbkey = c("15081", "15069"), date_min = "2013-01-01",
+         date_max = "2013-02-02")
+@
+
+<<eval=FALSE>>=
+gethydro(date_min = "2013-01-01", date_max = "2013-02-02",
+         category = "WEATHER", stationid = c("JBTS", "MBTS"),
+         param = "WNDS", freq = "DA", stat = "MEAN")
+@
+
+\noindent More \texttt{gethydro} examples including queries of other \texttt{category} values ("SW", "GW", and "WQ") can be viewed by issuing the following commands from the \texttt{R} console:
+
+<<eval=FALSE>>=
+example(getdbkey)
+example(gethydro)
+@
+
+\newpage
 
 \section{\label{sec:appendix}Appendix}
 \subsection{Test names}
-There are many test names available in DBHYDRO. These are detailed in the following table.\\
+There are many test names available in DBHYDRO. A subset of these are detailed in the following table.\\
 
 \begin{longtable}{| p{.45\textwidth} | p{.55\textwidth} |} 
 \hline
 Code\\
 \hline
-ALKALINE PHOSPHATASE\\
 AMMONIA-N\\
 CARBON, TOTAL ORGANIC\\
-CAROTENOIDS\\
-CHLOROPHYLL-A\\
 CHLOROPHYLL-A(LC)\\
-CHLOROPHYLL-A, CORRECTED\\
-CHLOROPHYLL-B\\
 CHLOROPHYLL-B(LC)\\
-CHLOROPHYLL-C\\
 CHLOROPHYLLA-SALINE\\
-DEPTH,TOTAL\\
 DISSOLVED OXYGEN\\
 KJELDAHL NITROGEN,TOTAL\\
 NITRATE+NITRITE-N\\
 NITRITE-N\\
-ORP\\
-PAR-LIGHT ATTEN COEF\\
-PH,FIELD\\
-PHEOPHYTIN\\
 PHEOPHYTIN-A(LC)\\
 PHOSPHATE,ORTHO AS P\\
 PHOSPHATE,TOTAL AS P\\
 SALINITY\\
-SECCHI DISK DEPTH\\
 SILICA\\
-SP CONDUCTIVITY,FIELD\\
-SP CONDUCTIVITY,LAB\\
+SP CONDUCTIVITY, FIELD\\
 TEMP\\
 TOTAL NITROGEN\\
 TURBIDITY\\
@@ -187,7 +207,7 @@ TURBIDITY\\
 %\end{tabular}
 
 \subsection{Further reading}
-See section on URL-based data access in the \href{http://www.sfwmd.gov/portal/page/portal/xrepository/sfwmd_repository_pdf/dbhydrobrowsweruserdocumentation.pdf}{DBHYDRO Browser User's Guide}
+See section on URL-based data access in the \href{http://www.sfwmd.gov/portal/page/portal/xrepository/sfwmd_repository_pdf/dbhydrobrowseruserdocumentation.pdf}{DBHYDRO Browser User's Guide}
 
 \medskip
  
