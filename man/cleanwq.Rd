@@ -7,7 +7,7 @@
 cleanwq(dt)
 }
 \arguments{
-\item{dt}{data.frame output of \code{\link[dbhydroR]{}getwq}}
+\item{dt}{data.frame output of getwq}
 }
 \description{
 Remove extra columns associated with QA flags, LIMS, and District recieving. Remove QA "blanks". Convert results from long to wide format.

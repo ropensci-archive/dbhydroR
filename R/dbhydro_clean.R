@@ -4,7 +4,7 @@
 #'@details Current DBHYDRO practice is to return values below the MDL as 0 minus the uncertainty estimate.
 #'@export
 #'@import reshape2
-#'@param dt data.frame output of \code{\link[dbhydroR]{}getwq}
+#'@param dt data.frame output of getwq
 #'@examples \dontrun{
 #'#check handling of values below MDL
 #'dt <- getwq(station_id = "FLAB08", date_min = "2009-01-01",
@@ -38,6 +38,7 @@ cleanwq <- function(dt){
 #'@description Cleans output of gethydro query to be consistent with water quality formatting. Connects metadata header to actual measurements.
 #'@export
 #'@import reshape2
+#'@importFrom utils read.csv
 #'@param res output of \code{\link[dbhydroR]{gethydro}}
 #'@examples
 #'\dontrun{

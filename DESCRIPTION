@@ -10,7 +10,7 @@ Depends:
     R (>= 3.0.2)
 Imports:
     httr,reshape2,RCurl,XML
-License: LICENSE
+License: GPL
 LazyData: true
 NeedsCompilation: no
 Packaged: 2015-06-05 15:08:28 UTC; jose

@@ -42,7 +42,8 @@ getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level 
 getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "dbkey")
 
 # query on multiple values
-getdbkey(stationid = c("MBTS", "JBTS"), category = "WEATHER", param = "WNDS", freq = "DA", detail.level = "dbkey")
+getdbkey(stationid = c("MBTS", "JBTS"), category = "WEATHER",
+param = "WNDS", freq = "DA", detail.level = "dbkey")
 
 
 # Surfacewater

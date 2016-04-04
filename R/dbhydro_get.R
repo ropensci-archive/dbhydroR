@@ -15,6 +15,7 @@
 #'@export
 #'@import httr
 #'@import RCurl
+#'@importFrom utils read.csv
 #'@examples
 #'
 #'#one variable and one station
@@ -188,6 +189,7 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, ...){
 #'@param ... Options passed as named parameters
 #'@details A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modelling group.
 #'@import XML
+#'@importFrom stats setNames
 #'@references \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
 #'@references \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_meta_data}
 #'@examples \dontrun{
@@ -196,7 +198,8 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, ...){
 #'getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "dbkey")
 #'
 #'# query on multiple values
-#'getdbkey(stationid = c("MBTS", "JBTS"), category = "WEATHER", param = "WNDS", freq = "DA", detail.level = "dbkey")
+#'getdbkey(stationid = c("MBTS", "JBTS"), category = "WEATHER",
+#' param = "WNDS", freq = "DA", detail.level = "dbkey")
 #'
 #'
 #'# Surfacewater
