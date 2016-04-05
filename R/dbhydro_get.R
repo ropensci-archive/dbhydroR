@@ -241,8 +241,6 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA, stat = NA,
   
   dbhydro_args <- setNames(as.list(c("Y", "STATION", "Y")), c("v_js_flag", "v_order_by", "v_dbkey_list_flag"))
   qy <- c(user_args, dbhydro_args)
-    
-  # qy <- setNames(as.list(c(category, stationid, param, freq, stat, recorder, agency, strata_from, strata_to, "Y", "STATION", "Y")), c("v_category", "v_station", "v_data_type", "v_frequency", "v_statistic_type", "v_recorder", "v_agency", "v_strata_from", "v_strata_to", "v_js_flag", "v_order_by", "v_dbkey_list_flag"))
 
   if(any(is.na(qy))){
     qy <- qy[-which(is.na(qy))]
