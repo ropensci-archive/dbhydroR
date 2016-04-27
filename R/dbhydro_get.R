@@ -12,6 +12,7 @@
 #'@param v_target_code string print to file? (not implemented)
 #'@param sample_id numeric (not implemented)
 #'@param project_code numeric (not implemented)
+#'@param mdl_handling character specify values to return for measurements below the minimum detection limit choice of "raw", "half", or "full".
 #'@export
 #'@import httr
 #'@import RCurl
@@ -42,7 +43,7 @@
 #'}
 
 
-getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA, raw = FALSE, qc_strip = "N", qc_field = "N", test_number = NA, v_target_code = "file_csv", sample_id = NA, project_code = NA){
+getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA, mdl_handling = "raw", raw = FALSE, qc_strip = "N", qc_field = "N", test_number = NA, v_target_code = "file_csv", sample_id = NA, project_code = NA){
   
   if(!(nchar(date_min) == 10 & nchar(date_max) == 10)){
     stop("Enter dates as quote-wrapped character strings in YYYY-MM-DD format")
@@ -96,7 +97,7 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
     if(!any(!is.na(suppressMessages(read.csv(text = httr::content(res, "text")))))){
       message("No data found")
     }else{
-      cleanwq(suppressMessages(read.csv(text = httr::content(res, "text"))))
+      cleanwq(suppressMessages(read.csv(text = httr::content(res, "text"))), mdl_handling = mdl_handling)
     }
   }
 }

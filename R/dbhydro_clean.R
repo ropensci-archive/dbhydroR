@@ -5,27 +5,43 @@
 #'@export
 #'@import reshape2
 #'@param dt data.frame output of getwq
+#'@param mdl_handling character specify values to return for measurements below the minimum detection limit choice of "raw", "half", or "full".
 #'@examples \dontrun{
 #'#check handling of values below MDL
-#'dt <- getwq(station_id = "FLAB08", date_min = "2009-01-01",
-#' date_max = "2016-02-29", test_name = "PHOSPHATE, TOTAL AS P", raw = TRUE)
-#'dt <- getwq(station_id = "FLAB08", date_min = "2009-01-01",
-#' date_max = "2016-02-29", test_name = "AMMONIA-N", raw = TRUE)
+#' dt <- getwq("FLAB01", "2014-09-14", "2014-09-18", "NITRATE+NITRITE-N", raw = TRUE)
+#' cleanwq(dt, mdl_handling = "raw")
+#' cleanwq(dt, mdl_handling = "half")
 #'}
 #'
 #'dt <- read.csv(system.file("extdata", "testwq.csv", package = "dbhydroR"))
 #'cleanwq(dt)
 
-cleanwq <- function(dt){
+cleanwq <- function(dt, mdl_handling){
+  
+  if(!(mdl_handling %in% c("raw", "half", "full"))){
+    stop("mdl_handling must be one of 'raw', 'half', or 'full'")
+  }
+  
   dt <- dt[,1:23]
   dt <- dt[dt$Matrix != "DI",]
-  
   dt$date <- as.POSIXct(strptime(dt$Collection_Date, format = "%d-%b-%Y")) 
-  dwide <- reshape2::dcast(dt, date ~ Station.ID + Test.Name + Units, value.var = "Value", add.missing = T, fun.aggregate = mean)
   
+  correct_mdl <- function(dt, mdl_handling){
+    if(any(dt$Value < 0) & mdl_handling != "raw"){
+      if(mdl_handling == "half"){
+        dt[dt$Value < 0 & !is.na(dt$Value), "Value"] <- dt[dt$Value < 0 & !is.na(dt$Value), "MDL"] / 2
+      }else{
+        dt[dt$Value < 0 & !is.na(dt$Value), "Value"] <- dt[dt$Value < 0 & !is.na(dt$Value), "MDL"]
+      }
+    }
+    dt
+  }
+  
+  dt <- correct_mdl(dt, mdl_handling)
+  
+  dwide <- reshape2::dcast(dt, date ~ Station.ID + Test.Name + Units, value.var = "Value", add.missing = T, fun.aggregate = mean)
   #if(any(names(dwide)=="_")){dwide<-dwide[,-which(names(dwide)=="_")]}
   dwide <- dwide[,-2]
-  
   if(nrow(dwide[is.na(dwide[,1]),]) > 0){
     dwide <- dwide[-which(is.na(dwide[,1])),]
   }

@@ -4,10 +4,12 @@
 \alias{cleanwq}
 \title{Clean raw water quality DBHYDRO data retrievals}
 \usage{
-cleanwq(dt)
+cleanwq(dt, mdl_handling)
 }
 \arguments{
 \item{dt}{data.frame output of getwq}
+
+\item{mdl_handling}{character specify values to return for measurements below the minimum detection limit choice of "raw", "half", or "full".}
 }
 \description{
 Remove extra columns associated with QA flags, LIMS, and District recieving. Remove QA "blanks". Convert results from long to wide format.
@@ -18,10 +20,9 @@ Current DBHYDRO practice is to return values below the MDL as 0 minus the uncert
 \examples{
 \dontrun{
 #check handling of values below MDL
-dt <- getwq(station_id = "FLAB08", date_min = "2009-01-01",
-date_max = "2016-02-29", test_name = "PHOSPHATE, TOTAL AS P", raw = TRUE)
-dt <- getwq(station_id = "FLAB08", date_min = "2009-01-01",
-date_max = "2016-02-29", test_name = "AMMONIA-N", raw = TRUE)
+dt <- getwq("FLAB01", "2014-09-14", "2014-09-18", "NITRATE+NITRITE-N", raw = TRUE)
+cleanwq(dt, mdl_handling = "raw")
+cleanwq(dt, mdl_handling = "half")
 }
 
 dt <- read.csv(system.file("extdata", "testwq.csv", package = "dbhydroR"))

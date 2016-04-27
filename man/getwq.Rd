@@ -5,8 +5,9 @@
 \title{Retrieve water quality data from the DBHYDRO Environmental Database}
 \usage{
 getwq(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
-  raw = FALSE, qc_strip = "N", qc_field = "N", test_number = NA,
-  v_target_code = "file_csv", sample_id = NA, project_code = NA)
+  mdl_handling = "raw", raw = FALSE, qc_strip = "N", qc_field = "N",
+  test_number = NA, v_target_code = "file_csv", sample_id = NA,
+  project_code = NA)
 }
 \arguments{
 \item{station_id}{character string of station id(s)}
@@ -16,6 +17,8 @@ getwq(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
 \item{date_max}{character date must be in POSIXct YYYY-MM-DD format}
 
 \item{test_name}{character string of test name(s). See vignette for specific options}
+
+\item{mdl_handling}{character specify values to return for measurements below the minimum detection limit choice of "raw", "half", or "full".}
 
 \item{raw}{logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included.}
 
