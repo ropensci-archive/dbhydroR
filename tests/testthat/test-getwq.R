@@ -16,6 +16,8 @@ test_that("getwq fails well", {
   
   expect_message(getwq(station_id = c("FLAB08", "FLAB09"), date_min = "1990-03-01", date_max = "1992-05-01", test_name = "CHLOROPHYLLA-SALINE"), "No data found")
   
+  expect_message(getwq(station_id = "ROOK467", date_min = "2012-07-19", date_max = "2016-04-27", test_name = "AMMONIA-N"), "No data found")
+  
 })
 
 test_that("non-character dates are handled", {

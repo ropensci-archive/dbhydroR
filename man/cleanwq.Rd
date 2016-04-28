@@ -4,7 +4,7 @@
 \alias{cleanwq}
 \title{Clean raw water quality DBHYDRO data retrievals}
 \usage{
-cleanwq(dt, mdl_handling)
+cleanwq(dt, mdl_handling = "raw")
 }
 \arguments{
 \item{dt}{data.frame output of getwq}

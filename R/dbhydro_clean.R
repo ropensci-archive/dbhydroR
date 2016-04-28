@@ -16,18 +16,18 @@
 #'dt <- read.csv(system.file("extdata", "testwq.csv", package = "dbhydroR"))
 #'cleanwq(dt)
 
-cleanwq <- function(dt, mdl_handling){
-  
+cleanwq <- function(dt, mdl_handling = "raw"){
   if(!(mdl_handling %in% c("raw", "half", "full"))){
     stop("mdl_handling must be one of 'raw', 'half', or 'full'")
   }
   
   dt <- dt[,1:23]
   dt <- dt[dt$Matrix != "DI",]
+  
   dt$date <- as.POSIXct(strptime(dt$Collection_Date, format = "%d-%b-%Y")) 
   
   correct_mdl <- function(dt, mdl_handling){
-    if(any(dt$Value < 0) & mdl_handling != "raw"){
+    if(any(dt$Value < 0 & !is.na(dt$Value)) & mdl_handling != "raw"){
       if(mdl_handling == "half"){
         dt[dt$Value < 0 & !is.na(dt$Value), "Value"] <- dt[dt$Value < 0 & !is.na(dt$Value), "MDL"] / 2
       }else{

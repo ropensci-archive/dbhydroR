@@ -90,14 +90,16 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
   }
   
   res <- httr::GET(servfull, query = qy)
+  res <- suppressMessages(read.csv(text = httr::content(res, "text"), stringsAsFactors = FALSE, na.strings = c(" ", "")))
+  res <- res[rowSums(is.na(res)) != ncol(res),]
   
   if(raw == TRUE){
-    suppressMessages(read.csv(text = httr::content(res, "text")))
+    res
   }else{
-    if(!any(!is.na(suppressMessages(read.csv(text = httr::content(res, "text")))))){
+    if(!any(!is.na(res)) | !any(res$Matrix != "DI")){
       message("No data found")
     }else{
-      cleanwq(suppressMessages(read.csv(text = httr::content(res, "text"))), mdl_handling = mdl_handling)
+      cleanwq(res, mdl_handling = mdl_handling)
     }
   }
 }
@@ -276,7 +278,7 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA, stat = NA,
   
   if(detail.level %in% c("full", "summary")){
     message(paste("Search results for", " '", stationid, " ", category, "'", sep = ""))
-    print(res)
+    res
   }else{
     res[,1] 
   }
