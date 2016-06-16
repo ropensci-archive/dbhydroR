@@ -48,12 +48,12 @@ This document introduces the \texttt{dbhydroR} package and its associated functi
 The \texttt{R} package \texttt{dbhydroR} is distributed via a \texttt{.tar.gz} (analagous to \texttt{.zip}) package archive file. This package contains the source code for package functions. In RStudio, it can be installed by navigating to \texttt{Tools} \verb|->| \texttt{Install Packages...} \verb|->| \texttt{Install from:} \verb|->| \texttt{Package Archive File}. Computers running the Windows operating system can only install binary \texttt{.zip} package archive files unless they have additional \href{https://cran.r-project.org/bin/windows/Rtools/}{compiler software} installed. The \texttt{dbhydroR} binary package can be installed by running the following commands from the \texttt{R} console:
 
 <<echo = FALSE>>=
-options(width = 50, useFancyQuotes = FALSE)
+options(width = 50, useFancyQuotes = FALSE, prompt = " ", continue = " ")
 @
 \vspace{10pt}
 \noindent\texttt{install.packages(c("httr", "RCurl", "reshape2", "XML"))}\\
 \noindent\texttt{install.packages(paste(}\verb|"\\\\ad.sfwmd.gov\\DFSRoot\\data\\restoration_sciences",|\\
-\verb|"\\projects\\joe_stachelek\\R\\dbhydroR_0.1-5.zip", sep = "")|\\
+\verb|"\\projects\\joe_stachelek\\R\\dbhydroR_0.1-6.zip", sep = "")|\\
 \texttt{, type = "win.binary", repos = NULL)}
 
 \vspace{8pt}
