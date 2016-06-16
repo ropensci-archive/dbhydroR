@@ -20,7 +20,7 @@ cleanwq <- function(dt, mdl_handling = "raw"){
   if(!(mdl_handling %in% c("raw", "half", "full"))){
     stop("mdl_handling must be one of 'raw', 'half', or 'full'")
   }
-  
+
   dt <- dt[,1:23]
   dt <- dt[dt$Matrix != "DI",]
   
@@ -38,10 +38,12 @@ cleanwq <- function(dt, mdl_handling = "raw"){
   }
   
   dt <- correct_mdl(dt, mdl_handling)
-  
+
   dwide <- reshape2::dcast(dt, date ~ Station.ID + Test.Name + Units, value.var = "Value", add.missing = T, fun.aggregate = mean)
   #if(any(names(dwide)=="_")){dwide<-dwide[,-which(names(dwide)=="_")]}
-  dwide <- dwide[,-2]
+  # if(ncol(dwide) > 2){
+  #   dwide <- dwide[,-2]
+  # }
   if(nrow(dwide[is.na(dwide[,1]),]) > 0){
     dwide <- dwide[-which(is.na(dwide[,1])),]
   }
