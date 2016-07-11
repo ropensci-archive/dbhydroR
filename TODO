@@ -1,12 +1,7 @@
-A dbkey is specified by the following combination of parameters:
-STATION, DATA_TYPE, FREQUENCY, STATISTIC_TYPE, RECORDER, AGENCY, STRATA, OP_NUM
-*ignore GROUP_NAME
+add ability to query all tests for wq stations
 
-Take a closer look at how qualifiers are treated in the cleanwq function:
-  Document how results below the MDL are treated
-	Steve replaces these with the MDL itself (bad for stats, return NA?)
+add ability to query all wq stations under a particular project
 
-Create option to return uM results
-			
+add ability to do reverse dbkey lookups
 
-add check to make sure that dates have been entered as character strings; convert if neccesary
+handle timeouts gracefully on very large queries
