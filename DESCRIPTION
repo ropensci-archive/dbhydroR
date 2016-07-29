@@ -3,9 +3,10 @@ Title: Retrieval, Cleaning and Plotting of DBHydro Data
 Description: Functions are provided to query the DBHydro database, clean the
     output, and produce plots.
 Version: 0.1-6
-Date: 2016-04-04
-Author: Joseph Stachelek <jstachel@sfwmd.gov>
-Maintainer: Joseph Stachelek <jstachel@sfwmd.gov>
+Author: Joseph Stachelek <stachel2@msu.edu>
+Maintainer: Joseph Stachelek <stachel2@msu.edu>
+URL: http://www.github.com/SFWMD/dbhydro
+BugReports: http://www.github.com/SFWMD/dbhydro/issues
 Depends:
     R (>= 3.0.2)
 Imports:
