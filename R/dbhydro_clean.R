@@ -29,9 +29,11 @@ cleanwq <- function(dt, mdl_handling = "raw"){
   correct_mdl <- function(dt, mdl_handling){
     if(any(dt$Value < 0 & !is.na(dt$Value)) & mdl_handling != "raw"){
       if(mdl_handling == "half"){
-        dt[dt$Value < 0 & !is.na(dt$Value), "Value"] <- dt[dt$Value < 0 & !is.na(dt$Value), "MDL"] / 2
+        dt[dt$Value < 0 & !is.na(dt$Value), "Value"] <- 
+          dt[dt$Value < 0 & !is.na(dt$Value), "MDL"] / 2
       }else{
-        dt[dt$Value < 0 & !is.na(dt$Value), "Value"] <- dt[dt$Value < 0 & !is.na(dt$Value), "MDL"]
+        dt[dt$Value < 0 & !is.na(dt$Value), "Value"] <- 
+          dt[dt$Value < 0 & !is.na(dt$Value), "MDL"]
       }
     }
     dt
@@ -39,7 +41,8 @@ cleanwq <- function(dt, mdl_handling = "raw"){
   
   dt <- correct_mdl(dt, mdl_handling)
 
-  dwide <- reshape2::dcast(dt, date ~ Station.ID + Test.Name + Units, value.var = "Value", add.missing = TRUE, fun.aggregate = mean)
+  dwide <- reshape2::dcast(dt, date ~ Station.ID + Test.Name + Units,
+           value.var = "Value", add.missing = TRUE, fun.aggregate = mean)
   #if(any(names(dwide)=="_")){dwide<-dwide[,-which(names(dwide)=="_")]}
   # if(ncol(dwide) > 2){
   #   dwide <- dwide[,-2]
@@ -66,13 +69,16 @@ cleanwq <- function(dt, mdl_handling = "raw"){
 cleanhydro <- function(res){
   
   i <- 1
-  while(any(!is.na(suppressMessages(read.csv(text = httr::content(res, "text"), skip = i, stringsAsFactors = FALSE, header = FALSE))[i, 10:16]))){
+  while(any(!is.na(suppressMessages(read.csv(text = httr::content(res,
+    "text"), skip = i, stringsAsFactors = FALSE, header = FALSE))[i, 10:16]))){
     i <- i + 1
   }
   
-  metadata <- suppressMessages(read.csv(text = httr::content(res, "text"), skip = 1, stringsAsFactors = FALSE))[1:(i - 1),]
+  metadata <- suppressMessages(read.csv(text = httr::content(res, "text"),
+              skip = 1, stringsAsFactors = FALSE))[1:(i - 1),]
   
-  try({dt <- suppressMessages(read.csv(text = httr::content(res, "text"), skip = i + 1, stringsAsFactors = FALSE))}, silent = TRUE)
+  try({dt <- suppressMessages(read.csv(text = httr::content(res, "text"),
+             skip = i + 1, stringsAsFactors = FALSE))}, silent = TRUE)
   if(class(dt) != "data.frame"){
     stop("No data found")
   }
@@ -80,12 +86,14 @@ cleanhydro <- function(res){
    if(!any(names(dt) == "DBKEY")){
      warning("Column headings missing. Guessing...")
     
-     names(dt) <- c("Station", "DBKEY", "Daily.Date", "Data.Value", "Qualifer", "Revision.Date")
+     names(dt) <- c("Station", "DBKEY", "Daily.Date", "Data.Value",
+                  "Qualifer", "Revision.Date")
      
      if(all(is.na(as.POSIXct(strptime(dt$Daily.Date, format = "%d-%b-%Y"))))){
        warning("Instantaneous data detected")
        
-       names(dt) <- c("Inst.Date", "DCVP", "DBKEY", "Data.Value", "Code", "Quality.Flag")
+       names(dt) <- c("Inst.Date", "DCVP", "DBKEY", "Data.Value",
+                    "Code", "Quality.Flag")
        dt <- merge(metadata, dt)
        dt$date <- as.POSIXct(strptime(dt$Inst.Date, format = "%d-%b-%Y %H:%M"))
       }
@@ -95,6 +103,7 @@ cleanhydro <- function(res){
   }
   
   names(dt) <- tolower(names(dt))
-  reshape2::dcast(dt, date ~ station + type + units, value.var = "data.value", add.missing = TRUE, fun.aggregate = mean)
+  reshape2::dcast(dt, date ~ station + type + units, value.var = "data.value",
+    add.missing = TRUE, fun.aggregate = mean)
   
 }
