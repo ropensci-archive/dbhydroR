@@ -39,7 +39,7 @@ cleanwq <- function(dt, mdl_handling = "raw"){
   
   dt <- correct_mdl(dt, mdl_handling)
 
-  dwide <- reshape2::dcast(dt, date ~ Station.ID + Test.Name + Units, value.var = "Value", add.missing = T, fun.aggregate = mean)
+  dwide <- reshape2::dcast(dt, date ~ Station.ID + Test.Name + Units, value.var = "Value", add.missing = TRUE, fun.aggregate = mean)
   #if(any(names(dwide)=="_")){dwide<-dwide[,-which(names(dwide)=="_")]}
   # if(ncol(dwide) > 2){
   #   dwide <- dwide[,-2]
@@ -72,7 +72,7 @@ cleanhydro <- function(res){
   
   metadata <- suppressMessages(read.csv(text = httr::content(res, "text"), skip = 1, stringsAsFactors = FALSE))[1:(i - 1),]
   
-  try({dt <- suppressMessages(read.csv(text = httr::content(res, "text"), skip = i + 1, stringsAsFactors = FALSE))}, silent = T)
+  try({dt <- suppressMessages(read.csv(text = httr::content(res, "text"), skip = i + 1, stringsAsFactors = FALSE))}, silent = TRUE)
   if(class(dt) != "data.frame"){
     stop("No data found")
   }
@@ -95,6 +95,6 @@ cleanhydro <- function(res){
   }
   
   names(dt) <- tolower(names(dt))
-  reshape2::dcast(dt, date ~ station + type + units, value.var = "data.value", add.missing = T, fun.aggregate = mean)
+  reshape2::dcast(dt, date ~ station + type + units, value.var = "data.value", add.missing = TRUE, fun.aggregate = mean)
   
 }

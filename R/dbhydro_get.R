@@ -168,7 +168,7 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, ...){
   
   res <- httr::GET(servfull, query = qy)
   
-  try({res <- cleanhydro(res)}, silent = T)
+  try({res <- cleanhydro(res)}, silent = TRUE)
   if(class(res) == "response"){
     stop("No data found")
   }
