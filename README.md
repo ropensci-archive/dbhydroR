@@ -6,6 +6,7 @@
 ## Installation
 
 `install.packages("devtools") #Requires RTools if using Windows`
+
 `devtools::install_github("SFWMD/dbhydro")`
 
 ### Load dbhydro
