@@ -11,7 +11,7 @@
 
 ### Load dbhydro
 
-`library('dbhydro')`
+`library('dbhydroR')`
 
 ## Usage
 
