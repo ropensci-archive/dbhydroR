@@ -1,7 +1,9 @@
 Package: dbhydroR
-Title: Retrieval, Cleaning and Plotting of DBHydro Data
-Description: Functions are provided to query the DBHydro database, clean the
-    output, and produce plots.
+Title: 'DBHYDRO' hydrologic and water quality data from R
+Description: Client for programmatic access to the South Florida Water
+  Management District's 'DBHYDRO' database at 
+  http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu, with functions
+  for accessing hydrologic and water quality data. 
 Version: 0.1-6
 Author: Joseph Stachelek <stachel2@msu.edu>
 Maintainer: Joseph Stachelek <stachel2@msu.edu>
@@ -10,11 +12,12 @@ BugReports: http://www.github.com/SFWMD/dbhydro/issues
 Depends:
     R (>= 3.0.2)
 Imports:
-    httr,reshape2,RCurl,XML
+    httr,
+    reshape2,
+    RCurl,
+    XML
 License: GPL
 LazyData: true
-NeedsCompilation: no
-Packaged: 2015-06-05 15:08:28 UTC; jose
 Suggests:
     testthat
 RoxygenNote: 5.0.1
