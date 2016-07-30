@@ -43,7 +43,10 @@
 #'}
 
 
-getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA, mdl_handling = "raw", raw = FALSE, qc_strip = "N", qc_field = "N", test_number = NA, v_target_code = "file_csv", sample_id = NA, project_code = NA){
+getwq <- function(station_id = NA, date_min = NA, date_max = NA,
+         test_name = NA, mdl_handling = "raw", raw = FALSE, qc_strip = "N",
+         qc_field = "N", test_number = NA, v_target_code = "file_csv",
+         sample_id = NA, project_code = NA){
   
   if(!(nchar(date_min) == 10 & nchar(date_max) == 10)){
     stop("Enter dates as quote-wrapped character strings in YYYY-MM-DD format")
@@ -51,18 +54,22 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
   
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/water_quality_data.report_full"
   
-  #try(ping<-RCurl::getURL("http://www.sfwmd.gov/portal/page/portal/sfwmdmain/home%20page"),silent=TRUE)
+  #try(ping<-RCurl::getURL(
+  # "http://www.sfwmd.gov/portal/page/portal/sfwmdmain/home%20page"),
+  # silent=TRUE)
   #if(!exists("ping")){stop("no internet connection")}
   
   station_like <- station_id[grepl("%", station_id)]
   if(length(station_like) > 0){
     station_id <- station_id[!grepl("%", station_id)]
-    station_like <- paste("(", paste("'", station_like, "'", sep = "", collapse = ","), ")", sep = "")
+    station_like <- paste("(", paste("'", station_like, "'", sep = "",
+                    collapse = ","), ")", sep = "")
   }else{
     station_like <- NA
   }
   
-  station_list <- paste("(",paste("'", station_id, "'", sep = "", collapse = ","), ")", sep = "")
+  station_list <- paste("(",paste("'", station_id, "'", sep = "",
+                  collapse = ","), ")", sep = "")
   
   if(!is.na(date_min)){
     date_min <- strftime(date_min, format = "%d-%b-%Y")
@@ -73,7 +80,8 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
     date_max <- paste("< ", "'", date_max, "'", sep = "")
   }
   
-  test_list <- paste("(", paste("'", test_name, "'", sep = "", collapse = ","), ")", sep = "")
+  test_list <- paste("(", paste("'", test_name, "'", sep = "",
+               collapse = ","), ")", sep = "")
   
   if(qc_strip == TRUE){
     qc_strip <- "Y"
@@ -84,13 +92,22 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
   }
   
   if(length(station_like) > 0 & any(!is.na(station_like))){
-    qy <- list(v_where_clause = paste("where", "date_collected", date_min, "and", "date_collected", date_max, "and", "station_id", "like", station_like, "and", "test_name", "in", test_list, sep = " "), v_target_code = v_target_code, v_exc_flagged = qc_strip, v_exc_qc = qc_field)
+    qy <- list(v_where_clause = paste("where", "date_collected", date_min,
+          "and", "date_collected", date_max, "and", "station_id", "like",
+          station_like, "and", "test_name", "in", test_list, sep = " "),
+          v_target_code = v_target_code, v_exc_flagged = qc_strip,
+          v_exc_qc = qc_field)
   }else{
-    qy <- list(v_where_clause = paste("where", "date_collected", date_min, "and", "date_collected", date_max, "and", "station_id", "in", station_list, "and", "test_name", "in", test_list, sep = " "), v_target_code = v_target_code, v_exc_flagged = qc_strip, v_exc_qc = qc_field)
+    qy <- list(v_where_clause = paste("where", "date_collected", date_min,
+          "and", "date_collected", date_max, "and", "station_id", "in",
+          station_list, "and", "test_name", "in", test_list, sep = " "),
+          v_target_code = v_target_code, v_exc_flagged = qc_strip,
+          v_exc_qc = qc_field)
   }
   
   res <- httr::GET(servfull, query = qy)
-  res <- suppressMessages(read.csv(text = httr::content(res, "text"), stringsAsFactors = FALSE, na.strings = c(" ", "")))
+  res <- suppressMessages(read.csv(text = httr::content(res, "text"),
+         stringsAsFactors = FALSE, na.strings = c(" ", "")))
   res <- res[rowSums(is.na(res)) != ncol(res),]
   
   if(raw == TRUE){
@@ -164,7 +181,9 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, ...){
     date_max <- strftime(date_max, format = "%Y%m%d")
   }
   
-  qy <- list(v_period = period, v_start_date = date_min, v_end_date = date_max, v_report_type = "format6", v_target_code = v_target_code, v_run_mode = "onLine", v_js_flag = "Y", v_dbkey = dbkey)
+  qy <- list(v_period = period, v_start_date = date_min, v_end_date = date_max,
+        v_report_type = "format6", v_target_code = v_target_code,
+        v_run_mode = "onLine", v_js_flag = "Y", v_dbkey = dbkey)
   
   res <- httr::GET(servfull, query = qy)
   
@@ -218,10 +237,13 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, ...){
 #'getdbkey(stationid = "C111%", category = "WQ")
 #'}
 
-getdbkey <- function(category, stationid = NA, param = NA, freq = NA, stat = NA, recorder = NA, agency = NA, strata = NA, detail.level = "summary", ...){
+getdbkey <- function(category, stationid = NA, param = NA, freq = NA,
+            stat = NA, recorder = NA, agency = NA, strata = NA,
+            detail.level = "summary", ...){
 
   if(!(detail.level %in% c("full", "summary", "dbkey"))){
-    stop("Must specify either 'full', 'summary', or 'dbkey' for the detail.level argument ")
+    stop("Must specify either 'full', 'summary',
+      or 'dbkey' for the detail.level argument ")
   }
 
   if(any(!is.na(strata))){
@@ -232,8 +254,12 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA, stat = NA,
     strata_to <- NA
   }
   
-  # expand parameters with length > 1 to be seperated by "/" with no trailing "/" ####
-  user_args <- list(v_category = category, v_station = stationid, v_data_type = param, v_frequency = freq, v_statistic_type = stat, v_recorder = recorder, v_agency = agency, v_strata_from = strata_from, v_strata_to = strata_to)
+  # expand parameters with length > 1 to be seperated by "/" 
+  # with no trailing "/" ####
+  user_args <- list(v_category = category, v_station = stationid,
+               v_data_type = param, v_frequency = freq, v_statistic_type = stat,
+               v_recorder = recorder, v_agency = agency,
+               v_strata_from = strata_from, v_strata_to = strata_to)
   greater_length_args <- lapply(user_args, function(x) length(x))
   if(length(which(greater_length_args > 1)) >  0){
     collapse_args <- user_args[which(greater_length_args > 1)]
@@ -242,7 +268,8 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA, stat = NA,
     user_args[which(greater_length_args > 1)] <- collapse_args
   }
   
-  dbhydro_args <- setNames(as.list(c("Y", "STATION", "Y")), c("v_js_flag", "v_order_by", "v_dbkey_list_flag"))
+  dbhydro_args <- setNames(as.list(c("Y", "STATION", "Y")), c("v_js_flag",
+                  "v_order_by", "v_dbkey_list_flag"))
   qy <- c(user_args, dbhydro_args)
 
   if(any(is.na(qy))){
@@ -251,7 +278,8 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA, stat = NA,
   
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
   res <- httr::GET(servfull, query = qy)
-  res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1', suppressMessages(httr::content(res, "text")))
+  res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1',
+         suppressMessages(httr::content(res, "text")))
   
   if(length(XML::readHTMLTable(res)) < 3){
     stop("No dbkeys found")  
@@ -260,7 +288,8 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA, stat = NA,
   if(detail.level == "full"){
     res <- XML::readHTMLTable(res)[[3]]
   }else{
-    res <- XML::readHTMLTable(res)[[3]][,c("Dbkey", "Group", "Data Type", "Freq", "Recorder", "Start Date", "End Date")]
+    res <- XML::readHTMLTable(res)[[3]][,c("Dbkey", "Group", "Data Type",
+           "Freq", "Recorder", "Start Date", "End Date")]
   }
   
   if(nrow(res) > 1){
@@ -277,7 +306,8 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA, stat = NA,
   res[,1] <- as.character(res[,1])
   
   if(detail.level %in% c("full", "summary")){
-    message(paste("Search results for", " '", stationid, " ", category, "'", sep = ""))
+    message(paste("Search results for", " '", stationid, " ", category, "'",
+      sep = ""))
     res
   }else{
     res[,1] 
