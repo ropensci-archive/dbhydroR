@@ -4,6 +4,7 @@
 # Programmatic access to the South Florida Water Management District's [DBHYDRO database](http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu)
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Travis-CI Build Status](https://travis-ci.org/SFWMD/dbhydro.svg?branch=master)](https://travis-ci.org/SFWMD/dbhydro)
 
 ## Installation
 
