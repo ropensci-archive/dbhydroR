@@ -52,7 +52,7 @@ gethydro(date_min = "2013-01-01", date_max = "2013-02-02",
 
 ## References
 
-`vignette("dbhydroR", package="dbhydroR")`
+`vignette("dbhydroR", package = "dbhydroR")`
 
 [DBHYDRO User's Guide](http://www.sfwmd.gov/portal/page/portal/xrepository/sfwmd_repository_pdf/dbhydrobrowseruserdocumentation.pdf)
 
