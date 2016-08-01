@@ -1,12 +1,10 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-sudo: required
-
 language: R
 sudo: false
 cache: packages
 
 before_install:
-- sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-latex-extra
+- tlmgr install mdframed
 
 notifications:
   email:
