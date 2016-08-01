@@ -5,12 +5,8 @@ cache: packages
 
 before_install:
 - tlmgr install mdframed
+- tlmgr install needspace
 
-notifications:
-  email:
-    on_success: change
-    on_failure: change
-    
 env:
   global:
     - _R_CHECK_FORCE_SUGGESTS_=False
