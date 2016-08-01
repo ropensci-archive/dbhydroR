@@ -51,12 +51,6 @@ The \texttt{R} package \texttt{dbhydroR} is distributed via a \texttt{.tar.gz} (
 options(width = 50, useFancyQuotes = FALSE, prompt = " ", continue = " ")
 @
 \vspace{10pt}
-\noindent\texttt{install.packages(c("httr", "RCurl", "reshape2", "XML"))}\\
-\noindent\texttt{install.packages(paste(}\verb|"\\\\ad.sfwmd.gov\\DFSRoot\\data\\restoration_sciences",|\\
-\verb|"\\projects\\joe_stachelek\\R\\dbhydroR_0.1-6.zip", sep = "")|\\
-\texttt{, type = "win.binary", repos = NULL)}
-
-\vspace{8pt}
 
 \noindent Once installed, the package can be loaded using the following command:
 
