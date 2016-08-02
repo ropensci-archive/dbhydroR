@@ -48,16 +48,21 @@ This document introduces the \texttt{dbhydroR} package and its associated functi
 The \texttt{R} package \texttt{dbhydroR} is distributed via a \texttt{.tar.gz} (analagous to \texttt{.zip}) package archive file. This package contains the source code for package functions. In RStudio, it can be installed by navigating to \texttt{Tools} \verb|->| \texttt{Install Packages...} \verb|->| \texttt{Install from:} \verb|->| \texttt{Package Archive File}. Computers running the Windows operating system can only install binary \texttt{.zip} package archive files unless they have additional \href{https://cran.r-project.org/bin/windows/Rtools/}{compiler software} installed. The \texttt{dbhydroR} binary package can be installed by running the following commands from the \texttt{R} console:
 
 <<echo = FALSE>>=
-options(width = 50, useFancyQuotes = FALSE)
+options(width = 50, useFancyQuotes = FALSE, prompt = " ", continue = " ")
 @
 \vspace{10pt}
-\noindent\texttt{install.packages(c("httr", "RCurl", "reshape2", "XML"))}\\
-\noindent\texttt{install.packages(paste(}\verb|"\\\\ad.sfwmd.gov\\DFSRoot\\data\\restoration_sciences",|\\
-\verb|"\\projects\\joe_stachelek\\R\\dbhydroR_0.1-5.zip", sep = "")|\\
-\texttt{, type = "win.binary", repos = NULL)}
+
+\subsection{Stable version from CRAN}
+<<eval=FALSE>>=
+install.packages("dbhydroR")
+@
+
+\subsection{or development version from Github}
+<<eval = FALSE>>=
+devtools::install_github("SFWMD/dbhydro")
+@
 
 \vspace{8pt}
-
 \noindent Once installed, the package can be loaded using the following command:
 
 
@@ -107,7 +112,7 @@ getwq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
 
 \end{itemize}
 
-\noindent By default, \verb|getwq| returns a \textit{cleaned output}. First, the cleaning function \verb|cleanwq| converts the raw output from native DBHYDRO \textit{long} format (each piece of data on its own row) to \textit{wide} format (each site x variable combination in its own column) using the reshape2 package \citep{reshape2}. Next, the extra columns associated with QA flags, LIMS, and District recieving are removed. Finally, row entries associated with QA \textit{blanks} are removed. Setting the \texttt{raw} flag to \texttt{TRUE} will force \verb|getwq| to retain this information. An example query that retains this information and the original \textit{long} formatting is shown below.
+\noindent By default, \verb|getwq| returns a \textit{cleaned output}. First, the cleaning function \verb|cleanwq| converts the raw output from native DBHYDRO \textit{long} format (each piece of data on its own row) to \textit{wide} format (each site x variable combination in its own column) using the reshape2 package \citep{reshape2}. Next, the extra columns associated with QA flags, LIMS, and District receiving are removed. Finally, row entries associated with QA \textit{blanks} are removed. Setting the \texttt{raw} flag to \texttt{TRUE} will force \verb|getwq| to retain this information. An example query that retains this information and the original \textit{long} formatting is shown below.
 
 <<eval=FALSE, echo=TRUE>>=
 getwq(station_id = "FLAB08", date_min = "2011-03-01", 
