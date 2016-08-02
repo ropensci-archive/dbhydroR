@@ -1,5 +1,5 @@
 
-![](inst/doc/profile.png)
+![](inst/images/profile.png)
 
 # Programmatic access to the South Florida Water Management District's [DBHYDRO database](http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu)
 
