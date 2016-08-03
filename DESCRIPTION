@@ -1,5 +1,5 @@
 Package: dbhydroR
-Title: 'DBHYDRO' hydrologic and water quality data from R
+Title: 'DBHYDRO' Hydrologic and Water Quality Data from R
 Description: Client for programmatic access to the South Florida Water
   Management District's 'DBHYDRO' database at 
   http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu, with functions
