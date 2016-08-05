@@ -1,22 +1,28 @@
 
 ![](inst/images/profile.png)
 
-# Programmatic access to the South Florida Water Management District's [DBHYDRO database](http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu)
+# Programmatic access to the South Florida Water Management District's [DBHYDRO database](http://sfwmd.gov/dbhydro)
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Travis-CI Build Status](https://travis-ci.org/SFWMD/dbhydro.svg?branch=master)](https://travis-ci.org/SFWMD/dbhydro)
 
 ## Installation
 
-`install.packages("devtools") #Requires RTools if using Windows`
+### Stable version from CRAN
+
+`install.packages(dbhydroR)`
+
+### or development version from Github
+
+`install.packages("devtools") # Requires RTools if using Windows`
 
 `devtools::install_github("SFWMD/dbhydro")`
+
+## Usage
 
 ### Load dbhydroR
 
 `library("dbhydroR")`
-
-## Usage
 
 ### One variable at one station
 ```

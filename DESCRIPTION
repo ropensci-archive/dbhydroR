@@ -2,7 +2,7 @@ Package: dbhydroR
 Title: 'DBHYDRO' Hydrologic and Water Quality Data
 Description: Client for programmatic access to the South Florida Water
   Management District's 'DBHYDRO' database at 
-  <http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu>, with functions
+  <http://sfwmd.gov/dbhydro>, with functions
   for accessing hydrologic and water quality data. 
 Version: 0.1-6
 Author: Joseph Stachelek <stachel2@msu.edu>
