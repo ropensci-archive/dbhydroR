@@ -90,7 +90,7 @@ cleanhydro <- function(res){
                   "Qualifer", "Revision.Date")
      
      if(all(is.na(as.POSIXct(strptime(dt$Daily.Date, format = "%d-%b-%Y"))))){
-       warning("Instantaneous data detected")
+       message("Returning instantaneous data...")
        
        names(dt) <- c("Inst.Date", "DCVP", "DBKEY", "Data.Value",
                     "Code", "Quality.Flag")
