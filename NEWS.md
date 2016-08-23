@@ -1,6 +1,3 @@
----
-output: pdf_document
----
 dbhydroR 0.1-5
 ===================
 
