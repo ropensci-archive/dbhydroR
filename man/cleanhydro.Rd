@@ -4,7 +4,7 @@
 \alias{cleanhydro}
 \title{Clean raw hydrologic DBHYDRO data retrievals}
 \usage{
-cleanhydro(res, raw = FALSE, ...)
+cleanhydro(res, raw = FALSE)
 }
 \arguments{
 \item{res}{output of \code{\link[dbhydroR]{gethydro}}}

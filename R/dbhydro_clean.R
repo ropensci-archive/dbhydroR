@@ -77,7 +77,7 @@ cleanwq <- function(dt, mdl_handling = "raw"){
 #'cleanhydro(res, raw = TRUE)
 #'}
 
-cleanhydro <- function(res, raw = FALSE, ...){
+cleanhydro <- function(res, raw = FALSE){
   
   i <- 1
   while(any(!is.na(suppressMessages(read.csv(text = httr::content(res,
