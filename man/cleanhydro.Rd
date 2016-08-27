@@ -4,17 +4,29 @@
 \alias{cleanhydro}
 \title{Clean raw hydrologic DBHYDRO data retrievals}
 \usage{
-cleanhydro(res)
+cleanhydro(res, raw = FALSE, ...)
 }
 \arguments{
 \item{res}{output of \code{\link[dbhydroR]{gethydro}}}
+
+\item{raw}{logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included.}
 }
 \description{
 Cleans output of gethydro query to be consistent with water quality formatting. Connects metadata header to actual measurements.
 }
 \examples{
 \dontrun{
-cleanhydro(gethydro(dbkey = "15081", date_min = "2013-01-01", date_max = "2013-02-02"))
+servfull <- "http://my.sfwmd.gov/dbhydroplsql/web_io.report_process"
+
+qy <- structure(list(v_period = "uspec", v_start_date = "20130101", v_end_date = "20130202",
+v_report_type = "format6", v_target_code = "file_csv", v_run_mode = "onLine", v_js_flag = "Y",
+ v_dbkey = "15081"), .Names = c("v_period", "v_start_date", "v_end_date", "v_report_type",
+  "v_target_code", "v_run_mode", "v_js_flag", "v_dbkey"))
+
+res <- httr::GET(servfull, query = qy)
+
+cleanhydro(res, raw = FALSE)
+cleanhydro(res, raw = TRUE)
 }
 }
 

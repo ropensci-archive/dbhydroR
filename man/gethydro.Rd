@@ -4,7 +4,7 @@
 \alias{gethydro}
 \title{Retrieve DBHYDO hydrologic data}
 \usage{
-gethydro(dbkey = NA, date_min = NA, date_max = NA, ...)
+gethydro(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE, ...)
 }
 \arguments{
 \item{dbkey}{character string dataset identifier. See \code{\link[dbhydroR]{getdbkey}}}
@@ -12,6 +12,8 @@ gethydro(dbkey = NA, date_min = NA, date_max = NA, ...)
 \item{date_min}{character date must be in YYYY-MM-DD format}
 
 \item{date_max}{character date must be in YYYY-MM-DD format}
+
+\item{raw}{logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included.}
 
 \item{...}{Options passed on to \code{\link[dbhydroR]{getdbkey}}}
 }
