@@ -61,12 +61,13 @@ cleanwq <- function(dt, mdl_handling = "raw"){
 #'@import reshape2
 #'@importFrom utils read.csv
 #'@param res output of \code{\link[dbhydroR]{gethydro}}
+#'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included.
 #'@examples
 #'\dontrun{
 #'cleanhydro(gethydro(dbkey = "15081", date_min = "2013-01-01", date_max = "2013-02-02"))
 #'}
 
-cleanhydro <- function(res){
+cleanhydro <- function(res, raw = FALSE, ...){
   
   i <- 1
   while(any(!is.na(suppressMessages(read.csv(text = httr::content(res,
@@ -84,7 +85,7 @@ cleanhydro <- function(res){
   }
   
    if(!any(names(dt) == "DBKEY")){
-     warning("Column headings missing. Guessing...")
+     message("Column headings missing. Guessing...")
     
      names(dt) <- c("Station", "DBKEY", "Daily.Date", "Data.Value",
                   "Qualifer", "Revision.Date")
@@ -94,6 +95,7 @@ cleanhydro <- function(res){
        
        names(dt) <- c("Inst.Date", "DCVP", "DBKEY", "Data.Value",
                     "Code", "Quality.Flag")
+
        dt <- merge(metadata, dt)
        dt$date <- as.POSIXct(strptime(dt$Inst.Date, format = "%d-%b-%Y %H:%M"))
       }
@@ -103,7 +105,11 @@ cleanhydro <- function(res){
   }
   
   names(dt) <- tolower(names(dt))
-  reshape2::dcast(dt, date ~ station + type + units, value.var = "data.value",
-    add.missing = TRUE, fun.aggregate = mean)
   
+  if(raw == TRUE){
+    dt
+  }else{
+    reshape2::dcast(dt, date ~ station + type + units, value.var = "data.value",
+      add.missing = TRUE, fun.aggregate = mean)
+  }
 }

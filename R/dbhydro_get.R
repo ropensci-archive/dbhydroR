@@ -128,6 +128,7 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'@param dbkey character string dataset identifier. See \code{\link[dbhydroR]{getdbkey}}
 #'@param date_min character date must be in YYYY-MM-DD format
 #'@param date_max character date must be in YYYY-MM-DD format
+#'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included.
 #'@param ... Options passed on to \code{\link[dbhydroR]{getdbkey}}
 #'@export
 #'@import httr
@@ -150,7 +151,7 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'date_max = "2013-02-02")
 #'}
 
-gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, ...){
+gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE, ...){
   
   period <- "uspec"
   v_target_code <- "file_csv"
@@ -186,8 +187,7 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, ...){
         v_run_mode = "onLine", v_js_flag = "Y", v_dbkey = dbkey)
   
   res <- httr::GET(servfull, query = qy)
-  
-  try({res <- cleanhydro(res)}, silent = TRUE)
+  try({res <- cleanhydro(res, raw, ...)}, silent = TRUE)
   if(class(res) == "response"){
     stop("No data found")
   }
