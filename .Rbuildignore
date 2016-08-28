@@ -3,3 +3,9 @@
 ^\.travis\.yml$
 ^CONDUCT\.md$
 ^review\.md$
+^inst/doc/dbhydroR\.aux$
+^inst/doc/dbhydroR\.bbl$
+^inst/doc/dbhydroR\.blg$
+^inst/doc/dbhydroR\.log$
+^inst/doc/dbhydroR-concordance\.tex$
+^inst/doc/dbhydroR\.tex$
