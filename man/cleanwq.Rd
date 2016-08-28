@@ -4,10 +4,12 @@
 \alias{cleanwq}
 \title{Clean raw water quality DBHYDRO data retrievals}
 \usage{
-cleanwq(dt, mdl_handling = "raw")
+cleanwq(dt, raw = FALSE, mdl_handling = "raw")
 }
 \arguments{
 \item{dt}{data.frame output of \code{\link{getwq}}}
+
+\item{raw}{logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included}
 
 \item{mdl_handling}{character string specifying the handling of measurement values below the minimum detection limit (MDL). Example choices for this argument include:
 \itemize{
@@ -17,7 +19,7 @@ cleanwq(dt, mdl_handling = "raw")
 }}
 }
 \description{
-Removes extra columns associated with QA flags and QA blanks which are used to check on potential sources of contamination. Converts \code{\link{getwq}} results from long (each piece of data on its own row) to \code{wide} format (each site x variable combination in its own column).
+Removes extra columns associated with QA flags and QA blanks which are used to check on potential sources of contamination. If raw is set to TRUE, \code{\link{getwq}} results are converted from long (each piece of data on its own row) to \code{wide} format (each site x variable combination in its own column).
 }
 \examples{
 \dontrun{

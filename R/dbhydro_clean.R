@@ -1,9 +1,10 @@
 #'@name cleanwq
 #'@title Clean raw water quality DBHYDRO data retrievals
-#'@description Removes extra columns associated with QA flags and QA blanks which are used to check on potential sources of contamination. Converts \code{\link{getwq}} results from long (each piece of data on its own row) to \code{wide} format (each site x variable combination in its own column).
+#'@description Removes extra columns associated with QA flags and QA blanks which are used to check on potential sources of contamination. If raw is set to TRUE, \code{\link{getwq}} results are converted from long (each piece of data on its own row) to \code{wide} format (each site x variable combination in its own column).
 #'@export
 #'@import reshape2
 #'@param dt data.frame output of \code{\link{getwq}}
+#'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included
 #'@param mdl_handling character string specifying the handling of measurement values below the minimum detection limit (MDL). Example choices for this argument include:
 #'\itemize{
 #'\item \code{raw}: Returns values exactly as they are stored in the database. Current practice is to return values below the MDL as 0 minus the uncertainty estimate.
@@ -21,12 +22,11 @@
 #'dt <- read.csv(system.file("extdata", "testwq.csv", package = "dbhydroR"))
 #'cleanwq(dt)
 
-cleanwq <- function(dt, mdl_handling = "raw"){
+cleanwq <- function(dt, raw = FALSE, mdl_handling = "raw"){
   if(!(mdl_handling %in% c("raw", "half", "full"))){
     stop("mdl_handling must be one of 'raw', 'half', or 'full'")
   }
-
-  dt <- dt[,1:23]
+  
   dt <- dt[dt$Matrix != "DI",]
   
   dt$date <- as.POSIXct(strptime(dt$Collection_Date, format = "%d-%b-%Y")) 
@@ -45,18 +45,23 @@ cleanwq <- function(dt, mdl_handling = "raw"){
   }
   
   dt <- correct_mdl(dt, mdl_handling)
-
-  dwide <- reshape2::dcast(dt, date ~ Station.ID + Test.Name + Units,
-           value.var = "Value", add.missing = TRUE, fun.aggregate = mean)
-  #if(any(names(dwide)=="_")){dwide<-dwide[,-which(names(dwide)=="_")]}
-  # if(ncol(dwide) > 2){
-  #   dwide <- dwide[,-2]
-  # }
-  if(nrow(dwide[is.na(dwide[,1]),]) > 0){
-    dwide <- dwide[-which(is.na(dwide[,1])),]
-  }
   
-  dwide
+  if(raw  == TRUE){
+    dt
+  }else{
+    dt <- dt[,c(1:23, which(names(dt) == "date"))]  
+    dwide <- reshape2::dcast(dt, date ~ Station.ID + Test.Name + Units,
+           value.var = "Value", add.missing = TRUE, fun.aggregate = mean)
+    #if(any(names(dwide)=="_")){dwide<-dwide[,-which(names(dwide)=="_")]}
+    # if(ncol(dwide) > 2){
+    #   dwide <- dwide[,-2]
+    # }
+    if(nrow(dwide[is.na(dwide[,1]),]) > 0){
+      dwide <- dwide[-which(is.na(dwide[,1])),]
+    }
+  
+    dwide
+  }
 }
 
 #'@name cleanhydro

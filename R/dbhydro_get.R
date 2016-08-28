@@ -48,7 +48,6 @@
 #'test_name = c("CHLOROPHYLLA-SALINE", "SALINITY"))
 #'}
 
-
 getwq <- function(station_id = NA, date_min = NA, date_max = NA,
          test_name = NA, mdl_handling = "raw", raw = FALSE, qc_strip = "N",
          qc_field = "N", test_number = NA, v_target_code = "file_csv",
@@ -116,17 +115,12 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
          stringsAsFactors = FALSE, na.strings = c(" ", "")))
   res <- res[rowSums(is.na(res)) != ncol(res),]
   
-  if(raw == TRUE){
-    res
+  if(!any(!is.na(res)) | !any(res$Matrix != "DI")){
+    message("No data found")
   }else{
-    if(!any(!is.na(res)) | !any(res$Matrix != "DI")){
-      message("No data found")
-    }else{
-      cleanwq(res, mdl_handling = mdl_handling)
-    }
+    cleanwq(res, raw = raw, mdl_handling = mdl_handling)
   }
 }
-
 
 #'@name gethydro
 #'@title Retrieve hydrologic data from the DBHYDRO Environmental Database

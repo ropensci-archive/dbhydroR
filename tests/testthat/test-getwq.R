@@ -18,6 +18,9 @@ test_that("getwq fails well", {
   expect_message(getwq(station_id = "ROOK467", date_min = "2012-07-19",
     date_max = "2016-04-27", test_name = "AMMONIA-N"), "No data found")
   
+  expect_message(getwq("FLAB01", "1983-09-14", "1986-09-18", "NITRATE+NITRITE-N",
+    raw = TRUE), "No data found")
+  
 })
 
 test_that("non-character dates are handled", {
@@ -35,6 +38,16 @@ test_that("mdl_handling inputs are sane", {
   expect_error(cleanwq(getwq("FLAB01", "2014-09-14", "2014-09-18",
     "NITRATE+NITRITE-N", raw = TRUE), mdl_handling = "crazy"),
     "mdl_handling must be one of 'raw', 'half', or 'full'")
+})
+
+test_that("mdl handling occurs when getwq raw is TRUE", {
+  skip_on_cran()
+  
+  expect_equal(
+    getwq("FLAB01", "2014-09-14", "2014-09-18", "NITRATE+NITRITE-N",
+          raw = TRUE, mdl_handling='half')$Value,
+    getwq("FLAB01", "2014-09-14", "2014-09-18", "NITRATE+NITRITE-N",
+          raw = FALSE, mdl_handling='half')[,2])
 })
 
 test_that("multiple stations return correct num of columns", {
