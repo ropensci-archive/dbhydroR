@@ -112,7 +112,7 @@ getwq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
 
 \end{itemize}
 
-\noindent By default, \verb|getwq| returns a \textit{cleaned output}. First, the cleaning function \verb|cleanwq| converts the raw output from native DBHYDRO \textit{long} format (each piece of data on its own row) to \textit{wide} format (each site x variable combination in its own column) using the reshape2 package \citep{reshape2}. Next, the extra columns associated with QA flags, LIMS, and District receiving are removed. Finally, row entries associated with QA \textit{blanks} are removed. Setting the \texttt{raw} flag to \texttt{TRUE} will force \verb|getwq| to retain this information. An example query that retains this information and the original \textit{long} formatting is shown below.
+\noindent By default, \verb|getwq| returns a \textit{cleaned output}. First, the cleaning function \verb|cleanwq| converts the raw output from native DBHYDRO \textit{long} format (each piece of data on its own row) to \textit{wide} format (each site x variable combination in its own column) using the reshape2 package \citep{reshape2}. Next, the extra columns associated with QA flags, LIMS, and District receiving are removed. Finally, row entries associated with QA field \textit{blanks}, which are used to check on potential sources of contamination, are removed.  Setting the \texttt{raw} flag to \texttt{TRUE} will force \verb|getwq| to retain information on QA field blanks as well as the other QA fields. An example query that retains this information and the original \textit{long} formatting is shown below.
 
 <<eval=FALSE, echo=TRUE>>=
 getwq(station_id = "FLAB08", date_min = "2011-03-01", 
