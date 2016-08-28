@@ -41,7 +41,7 @@
 
 \section{Introduction}
 
-This document introduces the \texttt{dbhydroR} package and its associated functions. These functions are aimed at improving programmatic workflows that query the DBHYDRO Environmental Database. HTTP requests are faciliated by the httr \citep{httr} package. 
+This document introduces the \texttt{dbhydroR} package and its associated functions. These functions are aimed at improving programmatic workflows that query the DBHYDRO Environmental Database which holds over 35 million hydrologic and water quality records from the Florida Everglades and surrounding areas.  
 
 \section{Package installation}
 
