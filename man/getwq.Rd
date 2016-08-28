@@ -20,7 +20,7 @@ getwq(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
 
 \item{mdl_handling}{character string specifying the handling of measurement values below the minimum detection limit (MDL). Example choices for this argument include:
 \itemize{
-\item \code{raw}: Returns values exactly as they are stored in the database. Values below the MDL are assigned an arbitrary low value.
+\item \code{raw}: Returns values exactly as they are stored in the database. Current practice is to return values below the MDL as 0 minus the uncertainty estimate.
 \item \code{half}: Returns values below the MDL as half the MDL
 \item \code{full}: Returns values below the MDL as the MDL
 }}
@@ -41,6 +41,9 @@ getwq(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
 }
 \description{
 Retrieve water quality data from the DBHYDRO Environmental Database
+}
+\details{
+By default, \code{getwq} returns a cleaned output. First, the cleaning function \code{\link{cleanwq}} converts the raw output from native DBHYDRO long format (each piece of data on its own row) to wide format (each site x variable combination in its own column). Next, the extra columns associated with QA flags, LIMS, and District receiving are removed. Finally, row entries associated with QA field blanks, which are used to check on potential sources of contamination, are removed. Setting the raw flag to TRUE will force getwq to retain information on QA field blanks as well as the other QA fields.
 }
 \examples{
 

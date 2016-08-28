@@ -7,7 +7,7 @@
 gethydro(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE, ...)
 }
 \arguments{
-\item{dbkey}{character string dataset identifier. See \code{\link[dbhydroR]{getdbkey}}}
+\item{dbkey}{character string specifying a unique data series. See \code{\link[dbhydroR]{getdbkey}}}
 
 \item{date_min}{character date must be in YYYY-MM-DD format}
 
@@ -19,6 +19,22 @@ gethydro(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE, ...)
 }
 \description{
 Retrieve hydrologic data from the DBHYDRO Environmental Database
+}
+\details{
+\code{gethydro} can be run in one of two ways. 
+
+\itemize{
+
+\item The first, is to identify one or more \code{dbkeys} before-hand that correspond to unique data series and are passed to the \code{dbkey} argument. \code{dbkeys} can be found by:
+\itemize{ \item iterative calls to \code{\link{getdbkey}} (see example)
+\item using the ArcGIS Online Station Map (\url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}) 
+\item using the DBHYDRO Browser (\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
+} 
+
+\item The second way to run \code{gethydro} is to specify additional arguments to \code{...} which are passed to \code{\link{getdbkey}} on-the-fly. 
+
+}
+By default, \code{gethydro} returns a cleaned output where metadata is wholly contained in the column name. This is accomplished internally by the \code{\link{cleanhydro}} function. If additional metadata such as lattitude and longitude are desired set the \code{raw} argument to \code{TRUE}.
 }
 \examples{
 \dontrun{

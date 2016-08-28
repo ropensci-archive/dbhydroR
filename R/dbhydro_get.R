@@ -22,6 +22,7 @@
 #'@import httr
 #'@import RCurl
 #'@importFrom utils read.csv
+#'@details By default, \code{getwq} returns a cleaned output. First, the cleaning function \code{\link{cleanwq}} converts the raw output from native DBHYDRO long format (each piece of data on its own row) to wide format (each site x variable combination in its own column). Next, the extra columns associated with QA flags, LIMS, and District receiving are removed. Finally, row entries associated with QA field blanks, which are used to check on potential sources of contamination, are removed. Setting the raw flag to TRUE will force getwq to retain information on QA field blanks as well as the other QA fields.
 #'@examples
 #'
 #'#one variable and one station
@@ -130,7 +131,7 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'@name gethydro
 #'@title Retrieve DBHYDO hydrologic data
 #'@description Retrieve hydrologic data from the DBHYDRO Environmental Database
-#'@param dbkey character string dataset identifier. See \code{\link[dbhydroR]{getdbkey}}
+#'@param dbkey character string specifying a unique data series. See \code{\link[dbhydroR]{getdbkey}}
 #'@param date_min character date must be in YYYY-MM-DD format
 #'@param date_max character date must be in YYYY-MM-DD format
 #'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included.
@@ -138,6 +139,20 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'@export
 #'@import httr
 #'@import RCurl
+#'@details  \code{gethydro} can be run in one of two ways. 
+#'
+#'\itemize{
+#'
+#'\item The first, is to identify one or more \code{dbkeys} before-hand that correspond to unique data series and are passed to the \code{dbkey} argument. \code{dbkeys} can be found by:
+#'\itemize{ \item iterative calls to \code{\link{getdbkey}} (see example)
+#'\item using the ArcGIS Online Station Map (\url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}) 
+#'\item using the DBHYDRO Browser (\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
+#'} 
+#'
+#'\item The second way to run \code{gethydro} is to specify additional arguments to \code{...} which are passed to \code{\link{getdbkey}} on-the-fly. 
+#'
+#'}
+#'By default, \code{gethydro} returns a cleaned output where metadata is wholly contained in the column name. This is accomplished internally by the \code{\link{cleanhydro}} function. If additional metadata such as lattitude and longitude are desired set the \code{raw} argument to \code{TRUE}.
 #'@examples
 #'\dontrun{
 #'#One variable/station time series
