@@ -129,7 +129,7 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 
 
 #'@name gethydro
-#'@title Retrieve DBHYDO hydrologic data
+#'@title Retrieve hydrologic data from the DBHYDRO Environmental Database
 #'@description Retrieve hydrologic data from the DBHYDRO Environmental Database
 #'@param dbkey character string specifying a unique data series. See \code{\link[dbhydroR]{getdbkey}}
 #'@param date_min character date must be in YYYY-MM-DD format
@@ -152,7 +152,7 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'\item The second way to run \code{gethydro} is to specify additional arguments to \code{...} which are passed to \code{\link{getdbkey}} on-the-fly. 
 #'
 #'}
-#'By default, \code{gethydro} returns a cleaned output where metadata is wholly contained in the column name. This is accomplished internally by the \code{\link{cleanhydro}} function. If additional metadata such as lattitude and longitude are desired set the \code{raw} argument to \code{TRUE}.
+#'By default, \code{gethydro} returns a cleaned output where metadata (station-name, variable, measurement units) is wholly contained in the column name. This is accomplished internally by the \code{\link{cleanhydro}} function. If additional metadata such as lattitude and longitude are desired set the \code{raw} argument to \code{TRUE}.
 #'@examples
 #'\dontrun{
 #'#One variable/station time series
@@ -207,12 +207,60 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE, ...)
         v_run_mode = "onLine", v_js_flag = "Y", v_dbkey = dbkey)
   
   res <- httr::GET(servfull, query = qy)
-  try({res <- cleanhydro(res, raw, ...)}, silent = TRUE)
+  try({res <- parse_hydro_response(res, raw, ...)}, silent = TRUE)
+  
   if(class(res) == "response"){
     stop("No data found")
   }
   
+  if(raw == FALSE){
+    res <- cleanhydro(res)
+  }
+  
   res
+}
+
+# connect metadata header to results
+parse_hydro_response <- function(res, raw = FALSE){
+    
+    i <- 1
+    while(any(!is.na(suppressMessages(read.csv(text = httr::content(res,
+          "text"), skip = i, stringsAsFactors = FALSE, header = FALSE))[i, 10:16]))){
+      i <- i + 1
+    }
+    
+    metadata <- suppressMessages(read.csv(text = httr::content(res, "text"),
+                                          skip = 1, stringsAsFactors = FALSE))[1:(i - 1),]
+    
+    try({dt <- suppressMessages(read.csv(text = httr::content(res, "text"),
+                                         skip = i + 1, stringsAsFactors = FALSE))}, silent = TRUE)
+    if(class(dt) != "data.frame"){
+      stop("No data found")
+    }
+    
+    if(!any(names(dt) == "DBKEY")){
+      message("Column headings missing. Guessing...")
+      
+      names(dt) <- c("Station", "DBKEY", "Daily.Date", "Data.Value",
+                     "Qualifer", "Revision.Date")
+      
+      if(all(is.na(as.POSIXct(strptime(dt$Daily.Date, format = "%d-%b-%Y"))))){
+        message("Returning instantaneous data...")
+        
+        names(dt) <- c("Inst.Date", "DCVP", "DBKEY", "Data.Value",
+                       "Code", "Quality.Flag")
+        
+        dt <- merge(metadata, dt)
+        dt$date <- as.POSIXct(strptime(dt$Inst.Date, format = "%d-%b-%Y %H:%M"))
+      }
+    }else{
+      dt <- merge(metadata, dt)
+      dt$date <- as.POSIXct(strptime(dt$Daily.Date, format = "%d-%b-%Y"))
+    }
+    
+    names(dt) <- tolower(names(dt))
+    
+    dt
 }
 
 #'@name getdbkey
@@ -332,5 +380,4 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA,
   }else{
     res[,1] 
   }
-  
 }

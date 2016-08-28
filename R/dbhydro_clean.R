@@ -1,11 +1,16 @@
 #'@name cleanwq
 #'@title Clean raw water quality DBHYDRO data retrievals
-#'@description Remove extra columns associated with QA flags, LIMS, and District recieving. Remove QA "blanks". Convert results from long to wide format.
-#'@details Current DBHYDRO practice is to return values below the MDL as 0 minus the uncertainty estimate.
+#'@description Removes extra columns associated with QA flags and QA blanks which are used to check on potential sources of contamination. Converts \code{\link{getwq}} results from long (each piece of data on its own row) to \code{wide} format (each site x variable combination in its own column).
 #'@export
 #'@import reshape2
-#'@param dt data.frame output of getwq
-#'@param mdl_handling character specify values to return for measurements below the minimum detection limit choice of "raw", "half", or "full".
+#'@param dt data.frame output of \code{\link{getwq}}
+#'@param mdl_handling character string specifying the handling of measurement values below the minimum detection limit (MDL). Example choices for this argument include:
+#'\itemize{
+#'\item \code{raw}: Returns values exactly as they are stored in the database. Current practice is to return values below the MDL as 0 minus the uncertainty estimate.
+#'\item \code{half}: Returns values below the MDL as half the MDL
+#'\item \code{full}: Returns values below the MDL as the MDL
+#'}
+#'
 #'@examples \dontrun{
 #'#check handling of values below MDL
 #' dt <- getwq("FLAB01", "2014-09-14", "2014-09-18", "NITRATE+NITRITE-N", raw = TRUE)
@@ -56,70 +61,16 @@ cleanwq <- function(dt, mdl_handling = "raw"){
 
 #'@name cleanhydro
 #'@title Clean raw hydrologic DBHYDRO data retrievals
-#'@description Cleans output of gethydro query to be consistent with water quality formatting. Connects metadata header to actual measurements.
+#'@description Converts output of \code{\link{gethydro}} from long (each piece of data on its own row) to wide format (each site x variable combination in its own column). Metadata (station-name, variable, measurement units) is parsed so that it is wholly contained in column names. 
 #'@export
 #'@import reshape2
-#'@importFrom utils read.csv
-#'@param res output of \code{\link[dbhydroR]{gethydro}}
-#'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included.
+#'@param dt data.frame output of \code{\link[dbhydroR]{gethydro}}
 #'@examples
 #'\dontrun{
-#'servfull <- "http://my.sfwmd.gov/dbhydroplsql/web_io.report_process"
-#'
-#'qy <- structure(list(v_period = "uspec", v_start_date = "20130101", v_end_date = "20130202",
-#' v_report_type = "format6", v_target_code = "file_csv", v_run_mode = "onLine", v_js_flag = "Y",
-#'  v_dbkey = "15081"), .Names = c("v_period", "v_start_date", "v_end_date", "v_report_type",
-#'   "v_target_code", "v_run_mode", "v_js_flag", "v_dbkey"))
-#'
-#'res <- httr::GET(servfull, query = qy)
-#'
-#'cleanhydro(res, raw = FALSE)
-#'cleanhydro(res, raw = TRUE)
+#'cleanhydro(gethydro(dbkey = "15081", date_min = "2013-01-01", date_max = "2013-02-02", raw = TRUE))
 #'}
 
-cleanhydro <- function(res, raw = FALSE){
-  
-  i <- 1
-  while(any(!is.na(suppressMessages(read.csv(text = httr::content(res,
-    "text"), skip = i, stringsAsFactors = FALSE, header = FALSE))[i, 10:16]))){
-    i <- i + 1
-  }
-  
-  metadata <- suppressMessages(read.csv(text = httr::content(res, "text"),
-              skip = 1, stringsAsFactors = FALSE))[1:(i - 1),]
-  
-  try({dt <- suppressMessages(read.csv(text = httr::content(res, "text"),
-             skip = i + 1, stringsAsFactors = FALSE))}, silent = TRUE)
-  if(class(dt) != "data.frame"){
-    stop("No data found")
-  }
-  
-   if(!any(names(dt) == "DBKEY")){
-     message("Column headings missing. Guessing...")
-    
-     names(dt) <- c("Station", "DBKEY", "Daily.Date", "Data.Value",
-                  "Qualifer", "Revision.Date")
-     
-     if(all(is.na(as.POSIXct(strptime(dt$Daily.Date, format = "%d-%b-%Y"))))){
-       message("Returning instantaneous data...")
-       
-       names(dt) <- c("Inst.Date", "DCVP", "DBKEY", "Data.Value",
-                    "Code", "Quality.Flag")
-
-       dt <- merge(metadata, dt)
-       dt$date <- as.POSIXct(strptime(dt$Inst.Date, format = "%d-%b-%Y %H:%M"))
-      }
-  }else{
-    dt <- merge(metadata, dt)
-    dt$date <- as.POSIXct(strptime(dt$Daily.Date, format = "%d-%b-%Y"))
-  }
-  
-  names(dt) <- tolower(names(dt))
-  
-  if(raw == TRUE){
-    dt
-  }else{
+cleanhydro <- function(dt){
     reshape2::dcast(dt, date ~ station + type + units, value.var = "data.value",
       add.missing = TRUE, fun.aggregate = mean)
-  }
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/dbhydro_get.R
 \name{gethydro}
 \alias{gethydro}
-\title{Retrieve DBHYDO hydrologic data}
+\title{Retrieve hydrologic data from the DBHYDRO Environmental Database}
 \usage{
 gethydro(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE, ...)
 }
@@ -34,7 +34,7 @@ Retrieve hydrologic data from the DBHYDRO Environmental Database
 \item The second way to run \code{gethydro} is to specify additional arguments to \code{...} which are passed to \code{\link{getdbkey}} on-the-fly. 
 
 }
-By default, \code{gethydro} returns a cleaned output where metadata is wholly contained in the column name. This is accomplished internally by the \code{\link{cleanhydro}} function. If additional metadata such as lattitude and longitude are desired set the \code{raw} argument to \code{TRUE}.
+By default, \code{gethydro} returns a cleaned output where metadata (station-name, variable, measurement units) is wholly contained in the column name. This is accomplished internally by the \code{\link{cleanhydro}} function. If additional metadata such as lattitude and longitude are desired set the \code{raw} argument to \code{TRUE}.
 }
 \examples{
 \dontrun{
