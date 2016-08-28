@@ -2,7 +2,5 @@ rref <- bibentry(
    bibtype = "Manual",
    title = "dbhydroR: Everglades Hydrologic and Water Quality Data from R",
    author = person("Joseph Stachelek"),
-   organization = "Michigan State University",
-   address = "East Lansing, USA",
    year = 2016,
    url = "https://github.com/SFWMD/dbhydro")

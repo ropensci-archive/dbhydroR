@@ -70,3 +70,10 @@ gethydro(date_min = "2013-01-01", date_max = "2013-02-02",
 
 [DBHYDRO User's Guide](http://www.sfwmd.gov/portal/page/portal/xrepository/sfwmd_repository_pdf/dbhydrobrowseruserdocumentation.pdf)
 
+## Meta
+
+* Please [report any issues or bugs](https://github.com/SFWMD/dbhydroR/issues).
+
+* Get citation information for `dbhydroR` in R by running `citation(package = 'dbhydroR')`
+
+* Please note that this project is released with a [Contributor Code of Conduct](https://github.com/SFWMD/dbhydroR/blob/master/CONDUCT.md). By participating in this project you agree to abide by its terms
