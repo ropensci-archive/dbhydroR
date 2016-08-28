@@ -4,15 +4,20 @@
 #'@param station_id character string of station id(s)
 #'@param date_min character date must be in POSIXct YYYY-MM-DD format
 #'@param date_max character date must be in POSIXct YYYY-MM-DD format
-#'@param test_name character string of test name(s). See vignette for specific options
-#'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included. 
+#'@param test_name character string of test name(s). See the ArcGIS Online Station Map at \url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html} for specific options
+#'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included 
 #'@param qc_strip logical set TRUE to avoid returning QAQC flagged data entries
 #'@param qc_field logical set TRUE to avoid returning field QC results
 #'@param test_number numeric test name alternative (not implemented)
 #'@param v_target_code string print to file? (not implemented)
 #'@param sample_id numeric (not implemented)
 #'@param project_code numeric (not implemented)
-#'@param mdl_handling character specify values to return for measurements below the minimum detection limit choice of "raw", "half", or "full".
+#'@param mdl_handling character string specifying the handling of measurement values below the minimum detection limit (MDL). Example choices for this argument include:
+#'\itemize{
+#'\item \code{raw}: Returns values exactly as they are stored in the database. Current practice is to return values below the MDL as 0 minus the uncertainty estimate.
+#'\item \code{half}: Returns values below the MDL as half the MDL
+#'\item \code{full}: Returns values below the MDL as the MDL
+#'}
 #'@export
 #'@import httr
 #'@import RCurl

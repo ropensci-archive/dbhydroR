@@ -16,11 +16,16 @@ getwq(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
 
 \item{date_max}{character date must be in POSIXct YYYY-MM-DD format}
 
-\item{test_name}{character string of test name(s). See vignette for specific options}
+\item{test_name}{character string of test name(s). See the ArcGIS Online Station Map at \url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html} for specific options}
 
-\item{mdl_handling}{character specify values to return for measurements below the minimum detection limit choice of "raw", "half", or "full".}
+\item{mdl_handling}{character string specifying the handling of measurement values below the minimum detection limit (MDL). Example choices for this argument include:
+\itemize{
+\item \code{raw}: Returns values exactly as they are stored in the database. Values below the MDL are assigned an arbitrary low value.
+\item \code{half}: Returns values below the MDL as half the MDL
+\item \code{full}: Returns values below the MDL as the MDL
+}}
 
-\item{raw}{logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included.}
+\item{raw}{logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included}
 
 \item{qc_strip}{logical set TRUE to avoid returning QAQC flagged data entries}
 
