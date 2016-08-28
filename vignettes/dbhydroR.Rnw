@@ -122,7 +122,7 @@ getwq(station_id = "FLAB08", date_min = "2011-03-01",
 
 \subsection{Hydrologic data}
 
-Hydrologic time series data can be retrieved using the \texttt{gethydro} function. The first task to accomplish prior to running \texttt{gethydro} is to identify one or more dbkeys. This can be done before-hand using the \texttt{getdbkey} function or the \href{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}{DBHYDRO Browser}. One useful strategy for finding desired dbkeys is to run the \texttt{getdbkey}   function interactively using progressively narrower search terms. For example, suppose we are interested in daily average wind data at Joe Bay but we have no alphanumeric \texttt{dbkey}. Initially we could run \texttt{getdbkey} with the \texttt{detail.level} set to "summary".
+Hydrologic time series data can be retrieved using the \texttt{gethydro} function. The first task to accomplish prior to running \texttt{gethydro} is to identify one or more dbkeys. This can be done before-hand using the \texttt{getdbkey} function, the \href{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}{ArGIS Online Station Map} or the \href{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}{DBHYDRO Browser}. One useful strategy for finding desired dbkeys is to run the \texttt{getdbkey}   function interactively using progressively narrower search terms. For example, suppose we are interested in daily average wind data at Joe Bay but we have no alphanumeric \texttt{dbkey}. Initially we could run \texttt{getdbkey} with the \texttt{detail.level} set to "summary".
 
 <<eval=FALSE>>=
 getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS",
