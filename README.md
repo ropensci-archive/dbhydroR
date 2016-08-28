@@ -28,25 +28,29 @@
 
 `library("dbhydroR")`
 
-### One variable at one station
+### Water Quality Data
+
+Station IDs and date ranges can be viewed in the [ArcGIS Online Station Map](http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). Test names can be viewed in the [Data Types Metadata Table](http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_data_type_info).
+
+#### One variable at one station
 ```
 getwq(station_id = "FLAB08", date_min = "2011-03-01", 
       date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
 ```
 
-### One variable at multiple stations 
+#### One variable at multiple stations 
 ```
 getwq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
       date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
 ```
 
-### One variable at a wildcard station
+#### One variable at a wildcard station
 ```
 getwq(station_id = c("FLAB0%"), date_min = "2011-03-01", 
       date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
 ```
 
-### Multiple variables at multiple stations
+#### Multiple variables at multiple stations
 ```
 getwq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
       date_max = "2012-05-01", test_name = c("CHLOROPHYLLA-SALINE",

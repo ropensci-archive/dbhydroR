@@ -74,7 +74,7 @@ library(dbhydroR)
 \section{Composing database queries}
 \subsection{Water quality data}
 
-Water quality data can be retrieved using the \texttt{getwq} function which takes four required arguments. The user must specify a station ID, a test name, and a date range. Station IDs can be located on the \href{http://my.sfwmd.gov/KMLEXT/CUSTOMKMLS/DBHydro/DBHydroKML/DBHYDRO_KML.kmz}{SFWMD Google Earth portal}. An abbreviated list of available test names can be found in the \nameref{sec:appendix} to this document while a full listing can be found at the \href{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_data_type_info}{DBHYDRO metadata page}. Dates must be specified in YYYY-MM-DD format (e.g. 2015-02-26).   The following set of examples retrieve measurements between March 2011 and May 2012. They can be run from the R console by issuing the command:
+Water quality data can be retrieved using the \texttt{getwq} function which takes four required arguments. The user must specify a station ID, a test name, and a date range. Station IDs can be located on the \href{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}{ArcGIS Online Station Map} or the  \href{http://my.sfwmd.gov/KMLEXT/CUSTOMKMLS/DBHydro/DBHydroKML/DBHYDRO_KML.kmz}{Google Earth kmz file}. An abbreviated list of available test names can be found in the \nameref{sec:appendix} to this document while a full listing can be found at the \href{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_data_type_info}{DBHYDRO metadata page}. Dates must be specified in YYYY-MM-DD format (e.g. 2015-02-26).   The following set of examples retrieve measurements between March 2011 and May 2012. They can be run from the R console by issuing the command:
 
 <<eval=FALSE>>=
 example(getwq)
