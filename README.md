@@ -66,11 +66,21 @@ cleanwq(raw_data)
 ```
 
 ### Hydrologic data
+Station IDs and date ranges can be viewed in the [ArcGIS Online Station Map](http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html). 
+
+#### Identify unique time series (dbkeys) before-hand
+```
+getdbkey(stationid = "C111%", stat = 'MEAN', category = "WQ", detail.level = "full")
+gethydro(dbkey = 38104, date_min = "2009-01-01", date_max = "2009-01-12")
+```
+
+#### Pass station info on-the-fly
 ```
 gethydro(date_min = "2013-01-01", date_max = "2013-02-02",
          stationid = "JBTS", category = "WEATHER", param = "WNDS",
          freq = "DA", stat = "MEAN", recorder = "CR10", agency = "WMD")
 ```
+
 #### Operate on raw data
 ```
 raw_data <- gethydro(date_min = "2013-01-01", date_max = "2013-02-02",
