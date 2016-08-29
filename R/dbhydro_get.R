@@ -157,11 +157,11 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'date_min = "2013-01-01", date_max = "2013-02-02")
 #'
 #'#Instantaneous hydro retrieval
-#'gethydro(dbkey = "IY639", date_min = "2009-01-30", date_max = "2015-11-04")
+#'gethydro(dbkey = "IY639", date_min = "2015-11-01", date_max = "2015-11-04")
 #'
 #'#Looking up unknown dbkeys on the fly
 #'gethydro(stationid = "JBTS", category = "WEATHER", 
-#'param = "WNDS", date_min = "2013-01-01", 
+#'param = "WNDS", freq = "DA", date_min = "2013-01-01", 
 #'date_max = "2013-02-02")
 #'}
 
@@ -201,7 +201,7 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE, ...)
         v_run_mode = "onLine", v_js_flag = "Y", v_dbkey = dbkey)
   
   res <- httr::GET(servfull, query = qy)
-  try({res <- parse_hydro_response(res, raw, ...)}, silent = TRUE)
+  try({res <- parse_hydro_response(res, raw)}, silent = TRUE)
   
   if(class(res) == "response"){
     stop("No data found")
