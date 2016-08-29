@@ -331,8 +331,8 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA,
     user_args[which(greater_length_args > 1)] <- collapse_args
   }
   
-  dbhydro_args <- setNames(as.list(c("Y", "STATION", "Y")), c("v_js_flag",
-                  "v_order_by", "v_dbkey_list_flag"))
+  dbhydro_args <- setNames(as.list(c("Y", "STATION", "Y", "100000")), c("v_js_flag",
+                  "v_order_by", "v_dbkey_list_flag", "display_quantity"))
   qy <- c(user_args, dbhydro_args)
 
   if(any(is.na(qy))){
@@ -371,6 +371,8 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA,
     
     res[,c("Latitude", "Longitude")] <- format_coords(res)
     
+    res[,-(names(res) %in% c("Get Data"))]
+        
   }else{
     res <- XML::readHTMLTable(res)[[3]][,c("Dbkey", "Group", "Data Type",
            "Freq", "Recorder", "Start Date", "End Date")]
