@@ -48,6 +48,7 @@ param = "WNDS", freq = "DA", detail.level = "dbkey")
 
 # Surfacewater
 getdbkey(stationid = "C111\%", category = "SW")
+getdbkey(category = "SW", stationid = "LAKE\%", detail.level = "full")
 
 # Groundwater
 getdbkey(stationid = "C111\%", category = "GW")

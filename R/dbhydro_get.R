@@ -288,6 +288,7 @@ parse_hydro_response <- function(res, raw = FALSE){
 #'
 #'# Surfacewater
 #'getdbkey(stationid = "C111%", category = "SW")
+#'getdbkey(category = "SW", stationid = "LAKE%", detail.level = "full")
 #'
 #'# Groundwater
 #'getdbkey(stationid = "C111%", category = "GW")
@@ -348,7 +349,28 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA,
   }
   
   if(detail.level == "full"){
-    res <- XML::readHTMLTable(res)[[3]]
+    res <- XML::readHTMLTable(res, stringsAsFactors = FALSE)[[3]]
+    names(res) <- gsub("\\n", "", names(res))
+    
+    format_coords <- function(dt){
+      coords <- dt[,c("Latitude", "Longitude")]
+      coords <- apply(coords, 2, function(x) gsub("\\.", "", x))
+      if(is.null(nrow(coords))){
+        coords <- as.numeric(paste0(substring(coords, 1, 2),
+                   ".",
+                   substring(coords, 4, nchar(coords))))
+        coords <- coords * c(1, -1)
+      }else{
+        coords <- apply(coords, 2, function(x) as.numeric(paste0(substring(x, 1, 2),
+                    ".",
+                    substring(x, 4, nchar(x)))))
+        coords <- coords * matrix(c(rep(1, nrow(coords)), rep(-1, nrow(coords))), ncol = 2)
+      }
+      coords
+    }
+    
+    res[,c("Latitude", "Longitude")] <- format_coords(res)
+    
   }else{
     res <- XML::readHTMLTable(res)[[3]][,c("Dbkey", "Group", "Data Type",
            "Freq", "Recorder", "Start Date", "End Date")]
