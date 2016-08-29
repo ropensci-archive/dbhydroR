@@ -45,7 +45,7 @@ This document introduces the \texttt{dbhydroR} package and its associated functi
 
 \section{Package installation}
 
-The \texttt{R} package \texttt{dbhydroR} is distributed via a \texttt{.tar.gz} (analagous to \texttt{.zip}) package archive file. This package contains the source code for package functions. In RStudio, it can be installed by navigating to \texttt{Tools} \verb|->| \texttt{Install Packages...} \verb|->| \texttt{Install from:} \verb|->| \texttt{Package Archive File}. Computers running the Windows operating system can only install binary \texttt{.zip} package archive files unless they have additional \href{https://cran.r-project.org/bin/windows/Rtools/}{compiler software} installed. The \texttt{dbhydroR} binary package can be installed by running the following commands from the \texttt{R} console:
+Computers running the Windows operating system can only install binary package archive files unless they have additional \href{https://cran.r-project.org/bin/windows/Rtools/}{compiler software} installed. The \texttt{dbhydroR} package can be installed by running the following commands from the \texttt{R} console:
 
 <<echo = FALSE>>=
 options(width = 50, useFancyQuotes = FALSE, prompt = " ", continue = " ")
@@ -115,14 +115,20 @@ getwq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
 \noindent By default, \verb|getwq| returns a \textit{cleaned output}. First, the cleaning function \verb|cleanwq| converts the raw output from native DBHYDRO \textit{long} format (each piece of data on its own row) to \textit{wide} format (each site x variable combination in its own column) using the reshape2 package \citep{reshape2}. Next, the extra columns associated with QA flags, LIMS, and District receiving are removed. Finally, row entries associated with QA field \textit{blanks}, which are used to check on potential sources of contamination, are removed.  Setting the \texttt{raw} flag to \texttt{TRUE} will force \verb|getwq| to retain information on QA field blanks as well as the other QA fields. An example query that retains this information and the original \textit{long} formatting is shown below.
 
 <<eval=FALSE, echo=TRUE>>=
-getwq(station_id = "FLAB08", date_min = "2011-03-01", 
+raw_wq <- getwq(station_id = "FLAB08", date_min = "2011-03-01", 
       date_max = "2011-05-01", test_name = "CHLOROPHYLLA-SALINE",
       raw = TRUE)
 @
 
+This raw data can then be cleaned using the `cleanwq` function:
+
+<<eval=FALSE, echo=TRUE>>=
+cleanwq(raw_wq)
+@
+
 \subsection{Hydrologic data}
 
-Hydrologic time series data can be retrieved using the \texttt{gethydro} function. The first task to accomplish prior to running \texttt{gethydro} is to identify one or more dbkeys. This can be done before-hand using the \texttt{getdbkey} function, the \href{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}{ArGIS Online Station Map} or the \href{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}{DBHYDRO Browser}. One useful strategy for finding desired dbkeys is to run the \texttt{getdbkey}   function interactively using progressively narrower search terms. For example, suppose we are interested in daily average wind data at Joe Bay but we have no alphanumeric \texttt{dbkey}. Initially we could run \texttt{getdbkey} with the \texttt{detail.level} set to "summary".
+Hydrologic time series data can be retrieved using the \texttt{gethydro} function. The first task to accomplish prior to running \texttt{gethydro} is to identify one or more dbkeys which correspond to unique site x variable time-series. This can be done before-hand using the \texttt{getdbkey} function, the \href{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}{ArGIS Online Station Map} or the \href{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}{DBHYDRO Browser}. One useful strategy for finding desired dbkeys is to run the \texttt{getdbkey}   function interactively using progressively narrower search terms. For example, suppose we are interested in daily average wind data at Joe Bay but we have no alphanumeric \texttt{dbkey}. Initially we could run \texttt{getdbkey} with the \texttt{detail.level} set to "summary".
 
 <<eval=FALSE>>=
 getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS",
@@ -177,6 +183,16 @@ gethydro(date_min = "2013-01-01", date_max = "2013-02-02",
 <<eval=FALSE>>=
 example(getdbkey)
 example(gethydro)
+@
+
+\noindent By default, \verb|gethydro| returns a \textit{cleaned output}. First, the cleaning function \verb|cleanhydro| converts the raw output from native DBHYDRO \textit{long} format (each piece of data on its own row) to \textit{wide} format (each site x variable combination in its own column) using the reshape2 package \citep{reshape2}. Next, some extra columns are removed that are associated with measurement location (longitude/latitude), frequency, and QA flags are removed. Setting the \texttt{raw} flag to \texttt{TRUE} will force \verb|gethydro| to retain the original formatting and metadata fields. An example query that retains this information and the original \textit{long} formatting is shown below.
+
+<<eval=FALSE>>=
+raw_data <- gethydro(date_min = "2013-01-01", date_max = "2013-02-02",
+         stationid = "JBTS", category = "WEATHER", param = "WNDS",
+         freq = "DA", stat = "MEAN", recorder = "CR10", agency = "WMD", raw = TRUE)
+         
+cleanhydro(raw_data)
 @
 
 \newpage

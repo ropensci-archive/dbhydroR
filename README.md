@@ -57,11 +57,26 @@ getwq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
       "SALINITY"))
 ```
 
+#### Operate on raw data
+```
+raw_data <- getwq(station_id = "FLAB08", date_min = "2011-03-01", 
+      date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE", raw = TRUE)
+cleanwq(raw_data)
+```
+
 ### Hydrologic data
 ```
 gethydro(date_min = "2013-01-01", date_max = "2013-02-02",
          stationid = "JBTS", category = "WEATHER", param = "WNDS",
          freq = "DA", stat = "MEAN", recorder = "CR10", agency = "WMD")
+```
+#### Operate on raw data
+```
+raw_data <- gethydro(date_min = "2013-01-01", date_max = "2013-02-02",
+         stationid = "JBTS", category = "WEATHER", param = "WNDS",
+         freq = "DA", stat = "MEAN", recorder = "CR10", agency = "WMD", raw = TRUE)
+         
+cleanhydro(raw_data)
 ```
 
 ## References
