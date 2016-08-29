@@ -274,7 +274,7 @@ parse_hydro_response <- function(res, raw = FALSE){
 #'@param detail.level character string specifying the level of detail to return. Choices are "full", "summary", and "dbkey".
 #'@param ... Options passed as named parameters
 #'@details A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modelling group.
-#'@import XML
+#'@importFrom XML readHTMLTable
 #'@importFrom stats setNames
 #'@references \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
 #'@references \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_meta_data}
