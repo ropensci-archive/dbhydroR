@@ -29,7 +29,7 @@ cleanwq <- function(dt, raw = FALSE, mdl_handling = "raw"){
   
   dt <- dt[dt$Matrix != "DI",]
   
-  dt$date <- as.POSIXct(strptime(dt$Collection_Date, format = "%d-%b-%Y")) 
+  dt$date <- as.POSIXct(strptime(dt$Collection_Date, format = "%d-%b-%Y"), tz = "America/New_York") 
   
   correct_mdl <- function(dt, mdl_handling){
     if(any(dt$Value < 0 & !is.na(dt$Value)) & mdl_handling != "raw"){

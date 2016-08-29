@@ -245,11 +245,13 @@ parse_hydro_response <- function(res, raw = FALSE){
                        "Code", "Quality.Flag")
         
         dt <- merge(metadata, dt)
-        dt$date <- as.POSIXct(strptime(dt$Inst.Date, format = "%d-%b-%Y %H:%M"), tz = "EST")
+        dt$date <- as.POSIXct(strptime(dt$Inst.Date, format = "%d-%b-%Y %H:%M"),
+                    tz = "America/New_York")
       }
     }else{
       dt <- merge(metadata, dt)
-      dt$date <- as.POSIXct(strptime(dt$Daily.Date, format = "%d-%b-%Y"), tz = "EST")
+      dt$date <- as.POSIXct(strptime(dt$Daily.Date, format = "%d-%b-%Y"),
+                  tz = "America/New_York")
     }
     
     names(dt) <- tolower(names(dt))
