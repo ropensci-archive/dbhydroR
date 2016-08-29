@@ -19,8 +19,7 @@
 #'\item \code{full}: Returns values below the MDL as the MDL
 #'}
 #'@export
-#'@import httr
-#'@import RCurl
+#'@importFrom httr GET content
 #'@importFrom utils read.csv
 #'@details By default, \code{getwq} returns a cleaned output. First, the cleaning function \code{\link{cleanwq}} converts the raw output from native DBHYDRO long format (each piece of data on its own row) to wide format (each site x variable combination in its own column). Next, the extra columns associated with QA flags, LIMS, and District receiving are removed. Finally, row entries associated with QA field blanks, which are used to check on potential sources of contamination, are removed. Setting the raw flag to TRUE will force getwq to retain information on QA field blanks as well as the other QA fields.
 #'@examples
@@ -131,8 +130,7 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included.
 #'@param ... Options passed on to \code{\link[dbhydroR]{getdbkey}}
 #'@export
-#'@import httr
-#'@import RCurl
+#'@importFrom httr GET content
 #'@details  \code{gethydro} can be run in one of two ways. 
 #'
 #'\itemize{
@@ -165,7 +163,8 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'date_max = "2013-02-02")
 #'}
 
-gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE, ...){
+gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
+              ...){
   
   period <- "uspec"
   v_target_code <- "file_csv"
@@ -219,15 +218,16 @@ parse_hydro_response <- function(res, raw = FALSE){
     
     i <- 1
     while(any(!is.na(suppressMessages(read.csv(text = httr::content(res,
-          "text"), skip = i, stringsAsFactors = FALSE, header = FALSE))[i, 10:16]))){
+          "text"), skip = i, stringsAsFactors = FALSE,
+          header = FALSE))[i, 10:16]))){
       i <- i + 1
     }
     
     metadata <- suppressMessages(read.csv(text = httr::content(res, "text"),
-                                          skip = 1, stringsAsFactors = FALSE))[1:(i - 1),]
+                  skip = 1, stringsAsFactors = FALSE))[1:(i - 1),]
     
     try({dt <- suppressMessages(read.csv(text = httr::content(res, "text"),
-                                         skip = i + 1, stringsAsFactors = FALSE))}, silent = TRUE)
+                skip = i + 1, stringsAsFactors = FALSE))}, silent = TRUE)
     if(class(dt) != "data.frame"){
       stop("No data found")
     }
@@ -333,8 +333,9 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA,
     user_args[which(greater_length_args > 1)] <- collapse_args
   }
   
-  dbhydro_args <- setNames(as.list(c("Y", "STATION", "Y", "100000")), c("v_js_flag",
-                  "v_order_by", "v_dbkey_list_flag", "display_quantity"))
+  dbhydro_args <- setNames(as.list(c("Y", "STATION", "Y", "100000")),
+                    c("v_js_flag", "v_order_by", "v_dbkey_list_flag",
+                    "display_quantity"))
   qy <- c(user_args, dbhydro_args)
 
   if(any(is.na(qy))){
@@ -344,7 +345,7 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA,
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
   res <- httr::GET(servfull, query = qy)
   res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1',
-         suppressMessages(httr::content(res, "text")))
+          suppressMessages(httr::content(res, "text")))
   
   if(length(XML::readHTMLTable(res)) < 3){
     stop("No dbkeys found")  
@@ -363,10 +364,12 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA,
                    substring(coords, 4, nchar(coords))))
         coords <- coords * c(1, -1)
       }else{
-        coords <- apply(coords, 2, function(x) as.numeric(paste0(substring(x, 1, 2),
+        coords <- apply(coords, 2, function(x) as.numeric(paste0(
+                    substring(x, 1, 2),
                     ".",
                     substring(x, 4, nchar(x)))))
-        coords <- coords * matrix(c(rep(1, nrow(coords)), rep(-1, nrow(coords))), ncol = 2)
+        coords <- coords * matrix(c(rep(1, nrow(coords)),
+                    rep(-1, nrow(coords))), ncol = 2)
       }
       coords
     }

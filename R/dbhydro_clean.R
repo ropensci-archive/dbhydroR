@@ -2,7 +2,7 @@
 #'@title Clean raw water quality DBHYDRO data retrievals
 #'@description Removes extra columns associated with QA flags and QA blanks which are used to check on potential sources of contamination. If raw is set to TRUE, \code{\link{getwq}} results are converted from long (each piece of data on its own row) to \code{wide} format (each site x variable combination in its own column).
 #'@export
-#'@import reshape2
+#'@importFrom reshape2 dcast
 #'@param dt data.frame output of \code{\link{getwq}}
 #'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included
 #'@param mdl_handling character string specifying the handling of measurement values below the minimum detection limit (MDL). Example choices for this argument include:
@@ -29,7 +29,8 @@ cleanwq <- function(dt, raw = FALSE, mdl_handling = "raw"){
   
   dt <- dt[dt$Matrix != "DI",]
   
-  dt$date <- as.POSIXct(strptime(dt$Collection_Date, format = "%d-%b-%Y"), tz = "America/New_York") 
+  dt$date <- as.POSIXct(strptime(dt$Collection_Date, format = "%d-%b-%Y"),
+              tz = "America/New_York") 
   
   correct_mdl <- function(dt, mdl_handling){
     if(any(dt$Value < 0 & !is.na(dt$Value)) & mdl_handling != "raw"){
@@ -68,7 +69,7 @@ cleanwq <- function(dt, raw = FALSE, mdl_handling = "raw"){
 #'@title Clean raw hydrologic DBHYDRO data retrievals
 #'@description Converts output of \code{\link{gethydro}} from long (each piece of data on its own row) to wide format (each site x variable combination in its own column). Metadata (station-name, variable, measurement units) is parsed so that it is wholly contained in column names. 
 #'@export
-#'@import reshape2
+#'@importFrom reshape2 dcast
 #'@param dt data.frame output of \code{\link[dbhydroR]{gethydro}}
 #'@examples
 #'\dontrun{
