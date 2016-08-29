@@ -61,6 +61,7 @@ getwq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
 ```
 raw_data <- getwq(station_id = "FLAB08", date_min = "2011-03-01", 
       date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE", raw = TRUE)
+
 cleanwq(raw_data)
 ```
 
