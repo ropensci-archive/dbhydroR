@@ -8,7 +8,7 @@
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/dbhydroR)](https://cran.r-project.org/package=dbhydroR) 
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/dbhydroR)](https://cran.r-project.org/package=dbhydroR)
 
-`dbhydroR` provides scripted access to the South Florida Water Management District's DBHYDRO database which holds over 35 million hydrolgic and water quality records from the Florida Everglades and surrounding areas. 
+`dbhydroR` provides scripted access to the South Florida Water Management District's DBHYDRO database which holds over 35 million hydrologic and water quality records from the Florida Everglades and surrounding areas. 
 
 ## Installation
 
