@@ -1,7 +1,7 @@
 #'@name getwq
 #'@title Retrieve water quality data from the DBHYDRO Environmental Database
 #'@description Retrieve water quality data from the DBHYDRO Environmental Database
-#'@param station_id character string of station id(s)
+#'@param station_id character string of station id(s). See the SFWMD station search utility at \url{http://my.sfwmd.gov/dbhydroplsql/water_quality_data.show_group_station_characters} for specific options
 #'@param date_min character date must be in POSIXct YYYY-MM-DD format
 #'@param date_max character date must be in POSIXct YYYY-MM-DD format
 #'@param test_name character string of test name(s). See the ArcGIS Online Station Map at \url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html} for specific options
