@@ -1,6 +1,6 @@
-#'@name cleanwq
+#'@name clean_wq
 #'@title Clean raw water quality DBHYDRO data retrievals
-#'@description Removes extra columns associated with QA flags and QA blanks which are used to check on potential sources of contamination. If raw is set to TRUE, \code{\link{getwq}} results are converted from long (each piece of data on its own row) to \code{wide} format (each site x variable combination in its own column).
+#'@description Removes extra columns associated with QA flags and QA blanks which are used to check on potential sources of contamination. If raw is set to TRUE, \code{\link{get_wq}} results are converted from long (each piece of data on its own row) to \code{wide} format (each site x variable combination in its own column).
 #'@export
 #'@importFrom reshape2 dcast
 #'@param dt data.frame output of \code{\link{getwq}}
@@ -15,14 +15,14 @@
 #'@examples \dontrun{
 #'#check handling of values below MDL
 #' dt <- getwq("FLAB01", "2014-09-14", "2014-09-18", "NITRATE+NITRITE-N", raw = TRUE)
-#' cleanwq(dt, mdl_handling = "raw")
-#' cleanwq(dt, mdl_handling = "half")
+#' clean_wq(dt, mdl_handling = "raw")
+#' clean_wq(dt, mdl_handling = "half")
 #'}
 #'
 #'dt <- read.csv(system.file("extdata", "testwq.csv", package = "dbhydroR"))
-#'cleanwq(dt)
+#'clean_wq(dt)
 
-cleanwq <- function(dt, raw = FALSE, mdl_handling = "raw"){
+clean_wq <- function(dt, raw = FALSE, mdl_handling = "raw"){
   if(!(mdl_handling %in% c("raw", "half", "full"))){
     stop("mdl_handling must be one of 'raw', 'half', or 'full'")
   }
@@ -65,18 +65,18 @@ cleanwq <- function(dt, raw = FALSE, mdl_handling = "raw"){
   }
 }
 
-#'@name cleanhydro
+#'@name clean_hydro
 #'@title Clean raw hydrologic DBHYDRO data retrievals
-#'@description Converts output of \code{\link{gethydro}} from long (each piece of data on its own row) to wide format (each site x variable combination in its own column). Metadata (station-name, variable, measurement units) is parsed so that it is wholly contained in column names. 
+#'@description Converts output of \code{\link{get_hydro}} from long (each piece of data on its own row) to wide format (each site x variable combination in its own column). Metadata (station-name, variable, measurement units) is parsed so that it is wholly contained in column names. 
 #'@export
 #'@importFrom reshape2 dcast
 #'@param dt data.frame output of \code{\link[dbhydroR]{gethydro}}
 #'@examples
 #'\dontrun{
-#'cleanhydro(gethydro(dbkey = "15081", date_min = "2013-01-01", date_max = "2013-02-02", raw = TRUE))
+#'clean_hydro(gethydro(dbkey = "15081", date_min = "2013-01-01", date_max = "2013-02-02", raw = TRUE))
 #'}
 
-cleanhydro <- function(dt){
+clean_hydro <- function(dt){
     reshape2::dcast(dt, date ~ station + type + units, value.var = "data.value",
       add.missing = TRUE, fun.aggregate = mean)
 }

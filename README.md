@@ -34,35 +34,35 @@ Station IDs and date ranges can be viewed in the [ArcGIS Online Station Map](htt
 
 #### One variable at one station
 ```
-getwq(station_id = "FLAB08", date_min = "2011-03-01", 
+get_wq(station_id = "FLAB08", date_min = "2011-03-01", 
       date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
 ```
 
 #### One variable at multiple stations 
 ```
-getwq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
+get_wq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
       date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
 ```
 
 #### One variable at a wildcard station
 ```
-getwq(station_id = c("FLAB0%"), date_min = "2011-03-01", 
+get_wq(station_id = c("FLAB0%"), date_min = "2011-03-01", 
       date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
 ```
 
 #### Multiple variables at multiple stations
 ```
-getwq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
+get_wq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
       date_max = "2012-05-01", test_name = c("CHLOROPHYLLA-SALINE",
       "SALINITY"))
 ```
 
 #### Operate on raw data
 ```
-raw_data <- getwq(station_id = "FLAB08", date_min = "2011-03-01", 
+raw_data <- get_wq(station_id = "FLAB08", date_min = "2011-03-01", 
       date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE", raw = TRUE)
 
-cleanwq(raw_data)
+clean_wq(raw_data)
 ```
 
 ### Hydrologic data
@@ -70,24 +70,24 @@ Station IDs and date ranges can be viewed in the [ArcGIS Online Station Map](htt
 
 #### Identify unique time series (dbkeys) before-hand
 ```
-getdbkey(stationid = "C111%", stat = 'MEAN', category = "WQ", detail.level = "full")
-gethydro(dbkey = 38104, date_min = "2009-01-01", date_max = "2009-01-12")
+get_dbkey(stationid = "C111%", stat = 'MEAN', category = "WQ", detail.level = "full")
+get_hydro(dbkey = 38104, date_min = "2009-01-01", date_max = "2009-01-12")
 ```
 
 #### Pass station info on-the-fly
 ```
-gethydro(date_min = "2013-01-01", date_max = "2013-02-02",
+get_hydro(date_min = "2013-01-01", date_max = "2013-02-02",
          stationid = "JBTS", category = "WEATHER", param = "WNDS",
          freq = "DA", stat = "MEAN", recorder = "CR10", agency = "WMD")
 ```
 
 #### Operate on raw data
 ```
-raw_data <- gethydro(date_min = "2013-01-01", date_max = "2013-02-02",
+raw_data <- get_hydro(date_min = "2013-01-01", date_max = "2013-02-02",
          stationid = "JBTS", category = "WEATHER", param = "WNDS",
          freq = "DA", stat = "MEAN", recorder = "CR10", agency = "WMD", raw = TRUE)
          
-cleanhydro(raw_data)
+clean_hydro(raw_data)
 ```
 
 ## References

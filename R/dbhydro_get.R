@@ -1,4 +1,4 @@
-#'@name getwq
+#'@name get_wq
 #'@title Retrieve water quality data from the DBHYDRO Environmental Database
 #'@description Retrieve water quality data from the DBHYDRO Environmental Database
 #'@param station_id character string of station id(s). See the SFWMD station search utility at \url{http://my.sfwmd.gov/dbhydroplsql/water_quality_data.show_group_station_characters} for specific options
@@ -18,36 +18,37 @@
 #'\item \code{half}: Returns values below the MDL as half the MDL
 #'\item \code{full}: Returns values below the MDL as the MDL
 #'}
+#'@aliases getwq
 #'@export
 #'@importFrom httr GET content
 #'@importFrom utils read.csv
-#'@details By default, \code{getwq} returns a cleaned output. First, the cleaning function \code{\link{cleanwq}} converts the raw output from native DBHYDRO long format (each piece of data on its own row) to wide format (each site x variable combination in its own column). Next, the extra columns associated with QA flags, LIMS, and District receiving are removed. Finally, row entries associated with QA field blanks, which are used to check on potential sources of contamination, are removed. Setting the raw flag to TRUE will force getwq to retain information on QA field blanks as well as the other QA fields.
+#'@details By default, \code{get_wq} returns a cleaned output. First, the cleaning function \code{\link{clean_wq}} converts the raw output from native DBHYDRO long format (each piece of data on its own row) to wide format (each site x variable combination in its own column). Next, the extra columns associated with QA flags, LIMS, and District receiving are removed. Finally, row entries associated with QA field blanks, which are used to check on potential sources of contamination, are removed. Setting the raw flag to TRUE will force getwq to retain information on QA field blanks as well as the other QA fields.
 #'@examples
 #'
 #'#one variable and one station
-#'getwq(station_id = "FLAB08",
+#'get_wq(station_id = "FLAB08",
 #'date_min = "2011-03-01", date_max = "2012-05-01", 
 #'test_name = "CHLOROPHYLLA-SALINE")
 #'
 #'\dontrun{
 #'#one variable at multiple stations
-#'getwq(station_id = c("FLAB08", "FLAB09"),
+#'get_wq(station_id = c("FLAB08", "FLAB09"),
 #'date_min = "2011-03-01", date_max = "2012-05-01",
 #'test_name = "CHLOROPHYLLA-SALINE")
 #'
 #'#One variable at a wildcard station
-#'getwq(station_id = c("FLAB0%"),
+#'get_wq(station_id = c("FLAB0%"),
 #'date_min = "2011-03-01",
 #'date_max = "2012-05-01",
 #'test_name = "CHLOROPHYLLA-SALINE")
 #'
 #'#multiple variables at multiple stations
-#'getwq(station_id = c("FLAB08", "FLAB09"),
+#'get_wq(station_id = c("FLAB08", "FLAB09"),
 #'date_min = "2011-03-01", date_max = "2012-05-01",
 #'test_name = c("CHLOROPHYLLA-SALINE", "SALINITY"))
 #'}
 
-getwq <- function(station_id = NA, date_min = NA, date_max = NA,
+get_wq <- function(station_id = NA, date_min = NA, date_max = NA,
          test_name = NA, mdl_handling = "raw", raw = FALSE, qc_strip = "N",
          qc_field = "N", test_number = NA, v_target_code = "file_csv",
          sample_id = NA, project_code = NA){
@@ -117,53 +118,68 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
   if(!any(!is.na(res)) | !any(res$Matrix != "DI")){
     message("No data found")
   }else{
-    cleanwq(res, raw = raw, mdl_handling = mdl_handling)
+    clean_wq(res, raw = raw, mdl_handling = mdl_handling)
   }
 }
 
-#'@name gethydro
+#'@export
+getwq <- function(station_id = NA, date_min = NA, date_max = NA,
+                  test_name = NA, mdl_handling = "raw", raw = FALSE,
+                  qc_strip = "N", qc_field = "N", test_number = NA,
+                  v_target_code = "file_csv", sample_id = NA,
+                  project_code = NA){
+  .Deprecated("get_wq")
+  get_wq(station_id = station_id, date_min = date_min, date_max = date_max,
+         test_name = test_name, mdl_handling = mdl_handling, raw = raw,
+         qc_strip = qc_strip, qc_field = qc_field, test_number = test_number,
+         v_target_code = v_target_code, sample_id = sample_id,
+         project_code = project_code)
+  }
+
+#'@name get_hydro
 #'@title Retrieve hydrologic data from the DBHYDRO Environmental Database
 #'@description Retrieve hydrologic data from the DBHYDRO Environmental Database
-#'@param dbkey character string specifying a unique data series. See \code{\link[dbhydroR]{getdbkey}}
+#'@param dbkey character string specifying a unique data series. See \code{\link[dbhydroR]{get_dbkey}}
 #'@param date_min character date must be in YYYY-MM-DD format
 #'@param date_max character date must be in YYYY-MM-DD format
 #'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included.
-#'@param ... Options passed on to \code{\link[dbhydroR]{getdbkey}}
+#'@param ... Options passed on to \code{\link[dbhydroR]{get_dbkey}}
+#'@aliases gethydro
 #'@export
 #'@importFrom httr GET content
-#'@details  \code{gethydro} can be run in one of two ways. 
+#'@details  \code{get_hydro} can be run in one of two ways. 
 #'
 #'\itemize{
 #'
 #'\item The first, is to identify one or more \code{dbkeys} before-hand that correspond to unique data series and are passed to the \code{dbkey} argument. \code{dbkeys} can be found by:
-#'\itemize{ \item iterative calls to \code{\link{getdbkey}} (see example)
+#'\itemize{ \item iterative calls to \code{\link{get_dbkey}} (see example)
 #'\item using the ArcGIS Online Station Map (\url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}) 
 #'\item using the DBHYDRO Browser (\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
 #'} 
 #'
-#'\item The second way to run \code{gethydro} is to specify additional arguments to \code{...} which are passed to \code{\link{getdbkey}} on-the-fly. 
+#'\item The second way to run \code{get_hydro} is to specify additional arguments to \code{...} which are passed to \code{\link{get_dbkey}} on-the-fly. 
 #'
 #'}
-#'By default, \code{gethydro} returns a cleaned output where metadata (station-name, variable, measurement units) is wholly contained in the column name. This is accomplished internally by the \code{\link{cleanhydro}} function. If additional metadata such as lattitude and longitude are desired set the \code{raw} argument to \code{TRUE}.
+#'By default, \code{get_hydro} returns a cleaned output where metadata (station-name, variable, measurement units) is wholly contained in the column name. This is accomplished internally by the \code{\link{clean_hydro}} function. If additional metadata such as lattitude and longitude are desired set the \code{raw} argument to \code{TRUE}.
 #'@examples
 #'\dontrun{
 #'#One variable/station time series
-#'gethydro(dbkey = "15081", date_min = "2013-01-01", date_max = "2013-02-02")
+#'get_hydro(dbkey = "15081", date_min = "2013-01-01", date_max = "2013-02-02")
 #'
 #'#Multiple variable/station time series
-#'gethydro(dbkey = c("15081", "15069"),
+#'get_hydro(dbkey = c("15081", "15069"),
 #'date_min = "2013-01-01", date_max = "2013-02-02")
 #'
 #'#Instantaneous hydro retrieval
-#'gethydro(dbkey = "IY639", date_min = "2015-11-01", date_max = "2015-11-04")
+#'get_hydro(dbkey = "IY639", date_min = "2015-11-01", date_max = "2015-11-04")
 #'
 #'#Looking up unknown dbkeys on the fly
-#'gethydro(stationid = "JBTS", category = "WEATHER", 
+#'get_hydro(stationid = "JBTS", category = "WEATHER", 
 #'param = "WNDS", freq = "DA", date_min = "2013-01-01", 
 #'date_max = "2013-02-02")
 #'}
 
-gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
+get_hydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
               ...){
   
   period <- "uspec"
@@ -178,7 +194,7 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
   # }
   
   if(all(is.na(dbkey))){
-    dbkey <- getdbkey(detail.level = "dbkey", ...)
+    dbkey <- get_dbkey(detail.level = "dbkey", ...)
   }
   
   if(length(dbkey) > 1){
@@ -207,7 +223,7 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
   }
   
   if(raw == FALSE){
-    res <- cleanhydro(res)
+    res <- clean_hydro(res)
   }
   
   res
@@ -259,7 +275,15 @@ parse_hydro_response <- function(res, raw = FALSE){
     dt
 }
 
-#'@name getdbkey
+#'@export
+gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
+                     ...){
+  .Deprecated("get_hydro")
+  get_hydro(dbkey = dbkey, date_min = date_min, date_max = date_max, raw = raw,
+            ...)
+}
+
+#'@name get_dbkey
 #'@title Query dbkey information
 #'@description Retrieve a data.frame summary including dbkeys or a vector of dbkeys corresponding to specified parameters
 #'@export
@@ -273,36 +297,37 @@ parse_hydro_response <- function(res, raw = FALSE){
 #'@param strata numeric vector of length 2 specifying a range of z-coordinates relative to local ground elevation. Only applicable for queries in the "WEATHER" and "GW" categories.
 #'@param detail.level character string specifying the level of detail to return. Choices are "full", "summary", and "dbkey".
 #'@param ... Options passed as named parameters
-#'@details A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modelling group.
+#'@details A \code{dbkey} represents a unique station x variable time-series. A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modelling group.
+#'@aliases getdbkey
 #'@importFrom XML readHTMLTable
 #'@importFrom stats setNames
 #'@references \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
 #'@references \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_meta_data}
 #'@examples \dontrun{
 #'# Weather
-#'getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "summary")
-#'getdbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "dbkey")
+#'get_dbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "summary")
+#'get_dbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "dbkey")
 #'
 #'# query on multiple values
-#'getdbkey(stationid = c("MBTS", "JBTS"), category = "WEATHER",
+#'get_dbkey(stationid = c("MBTS", "JBTS"), category = "WEATHER",
 #' param = "WNDS", freq = "DA", detail.level = "dbkey")
 #'
 #'
 #'# Surfacewater
-#'getdbkey(stationid = "C111%", category = "SW")
-#'getdbkey(category = "SW", stationid = "LAKE%", detail.level = "full")
+#'get_dbkey(stationid = "C111%", category = "SW")
+#'get_dbkey(category = "SW", stationid = "LAKE%", detail.level = "full")
 #'
 #'# Groundwater
-#'getdbkey(stationid = "C111%", category = "GW")
-#'getdbkey(stationid = "C111AE", category = "GW", param = "WELL",
+#'get_dbkey(stationid = "C111%", category = "GW")
+#'get_dbkey(stationid = "C111AE", category = "GW", param = "WELL",
 #' freq = "DA", stat = "MEAN", strata = c(9, 22), recorder = "TROL",
 #'  agency = "WMD", detail.level = "full")
 #'
 #'# Water Quality
-#'getdbkey(stationid = "C111%", category = "WQ")
+#'get_dbkey(stationid = "C111%", category = "WQ")
 #'}
 
-getdbkey <- function(category, stationid = NA, param = NA, freq = NA,
+get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
             stat = NA, recorder = NA, agency = NA, strata = NA,
             detail.level = "summary", ...){
 
@@ -403,4 +428,14 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA,
   }else{
     res[,1] 
   }
+}
+
+#'@export
+getdbkey <- function(category, stationid = NA, param = NA, freq = NA,
+                     stat = NA, recorder = NA, agency = NA, strata = NA,
+                     detail.level = "summary", ...){
+  .Deprecated("get_dbkey")
+  get_dbkey(category = category, stationid = stationid, param = param,
+            freq = freq, stat = stat, recorder = recorder, agency = agency,
+            strata = strata, detail.level = "summary", ...)
 }

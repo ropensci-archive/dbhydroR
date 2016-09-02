@@ -1,23 +1,23 @@
-context("getdbkey")
+context("get_dbkey")
 
-test_that("getdbkey fails well", {
+test_that("get_dbkey fails well", {
   skip_on_cran()
   
-  expect_error(getdbkey(stationid = "S152%", category = "SW"),
+  expect_error(get_dbkey(stationid = "S152%", category = "SW"),
     "No dbkeys found")
   
 })
 
-test_that("getdbkey works", {
+test_that("get_dbkey works", {
   skip_on_cran()
 
-  res <- invisible(getdbkey(stationid = "C111AE", category = "GW",
+  res <- invisible(get_dbkey(stationid = "C111AE", category = "GW",
          param = "WELL", freq = "DA", stat = "MEAN", strata = c(9, 22),
          recorder = "TROL", agency = "WMD", detail.level = "full"))
   expect_is(invisible(res), "data.frame")
   expect_equal(nrow(res), 1)
   
-  res <- getdbkey(stationid = c("MBTS", "JBTS"), category = "WEATHER",
+  res <- get_dbkey(stationid = c("MBTS", "JBTS"), category = "WEATHER",
          param = "WNDS", freq = "DA", detail.level = "dbkey")
   expect_equal(length(res), 2)
   
