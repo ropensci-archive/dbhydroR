@@ -1,6 +1,7 @@
 #'@name clean_wq
 #'@title Clean raw water quality DBHYDRO data retrievals
 #'@description Removes extra columns associated with QA flags and QA blanks which are used to check on potential sources of contamination. If raw is set to TRUE, \code{\link{get_wq}} results are converted from long (each piece of data on its own row) to \code{wide} format (each site x variable combination in its own column).
+#'@aliases cleanwq
 #'@export
 #'@importFrom reshape2 dcast
 #'@param dt data.frame output of \code{\link{getwq}}
@@ -65,9 +66,16 @@ clean_wq <- function(dt, raw = FALSE, mdl_handling = "raw"){
   }
 }
 
+#'@export
+cleanwq <- function(dt, raw = FALSE, mdl_handling = "raw"){
+  .Deprecated("clean_wq")
+  clean_wq(dt = dt, raw = raw, mdl_handling = mdl_handling)
+}
+
 #'@name clean_hydro
 #'@title Clean raw hydrologic DBHYDRO data retrievals
 #'@description Converts output of \code{\link{get_hydro}} from long (each piece of data on its own row) to wide format (each site x variable combination in its own column). Metadata (station-name, variable, measurement units) is parsed so that it is wholly contained in column names. 
+#'@aliases cleanhydro
 #'@export
 #'@importFrom reshape2 dcast
 #'@param dt data.frame output of \code{\link[dbhydroR]{gethydro}}
@@ -79,4 +87,9 @@ clean_wq <- function(dt, raw = FALSE, mdl_handling = "raw"){
 clean_hydro <- function(dt){
     reshape2::dcast(dt, date ~ station + type + units, value.var = "data.value",
       add.missing = TRUE, fun.aggregate = mean)
+}
+
+cleanhydro <- function(dt){
+  .Deprecated("clean_hydro")
+  clean_hydro(dt = dt)
 }
