@@ -111,8 +111,9 @@ get_wq <- function(station_id = NA, date_min = NA, date_max = NA,
   }
   
   res <- httr::GET(servfull, query = qy)
-  res <- suppressMessages(read.csv(text = httr::content(res, "text"),
-         stringsAsFactors = FALSE, na.strings = c(" ", "")))
+  res <- suppressMessages(read.csv(text = httr::content(res, "text",
+         encoding = "UTF-8"), stringsAsFactors = FALSE,
+         na.strings = c(" ", "")))
   res <- res[rowSums(is.na(res)) != ncol(res),]
   
   if(!any(!is.na(res)) | !any(res$Matrix != "DI")){
@@ -234,16 +235,18 @@ parse_hydro_response <- function(res, raw = FALSE){
     
     i <- 1
     while(any(!is.na(suppressMessages(read.csv(text = httr::content(res,
-          "text"), skip = i, stringsAsFactors = FALSE,
+          "text", encoding = "UTF-8"), skip = i, stringsAsFactors = FALSE,
           header = FALSE))[i, 10:16]))){
       i <- i + 1
     }
     
-    metadata <- suppressMessages(read.csv(text = httr::content(res, "text"),
-                  skip = 1, stringsAsFactors = FALSE))[1:(i - 1),]
+    metadata <- suppressMessages(read.csv(text = httr::content(res, "text",
+                encoding = "UTF-8"), skip = 1,
+                stringsAsFactors = FALSE))[1:(i - 1),]
     
-    try({dt <- suppressMessages(read.csv(text = httr::content(res, "text"),
-                skip = i + 1, stringsAsFactors = FALSE))}, silent = TRUE)
+    try({dt <- suppressMessages(read.csv(text = httr::content(res, "text",
+               encoding = "UTF-8"), skip = i + 1, stringsAsFactors = FALSE))},
+               silent = TRUE)
     if(class(dt) != "data.frame"){
       stop("No data found")
     }
@@ -370,7 +373,7 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
   res <- httr::GET(servfull, query = qy)
   res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1',
-          suppressMessages(httr::content(res, "text")))
+          suppressMessages(httr::content(res, "text", encoding = "UTF-8")))
   
   if(length(XML::readHTMLTable(res)) < 3){
     stop("No dbkeys found")  
@@ -419,7 +422,9 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
   }
   res[,1] <- as.character(res[,1])
   
-  res <- res[,-(names(res) %in% c("Get Data"))]
+  if(any(names(res) == "Get Data")){
+    res <- res[,-(names(res) %in% c("Get Data"))]
+  }
   
   if(detail.level %in% c("full", "summary")){
     message(paste("Search results for", " '", stationid, " ", category, "'",
