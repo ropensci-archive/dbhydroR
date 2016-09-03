@@ -419,7 +419,7 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
   }
   res[,1] <- as.character(res[,1])
   
-  res[,-(names(res) %in% c("Get Data"))]
+  res <- res[,-(names(res) %in% c("Get Data"))]
   
   if(detail.level %in% c("full", "summary")){
     message(paste("Search results for", " '", stationid, " ", category, "'",
