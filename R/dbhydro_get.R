@@ -380,7 +380,8 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
   }
   
   if(detail.level == "full"){
-    res <- XML::readHTMLTable(res, stringsAsFactors = FALSE)[[3]]
+    res <- XML::readHTMLTable(res, stringsAsFactors = FALSE,
+            encoding  = "UTF-8")[[3]]
     names(res) <- gsub("\\n", "", names(res))
     
     format_coords <- function(dt){
@@ -405,7 +406,8 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
     res[,c("Latitude", "Longitude")] <- format_coords(res)
     
   }else{
-    res <- XML::readHTMLTable(res)[[3]][,c("Dbkey", "Group", "Data Type",
+    res <- XML::readHTMLTable(res, stringsAsFactors = FALSE,
+           encoding = "UTF-8")[[3]][,c("Dbkey", "Group", "Data Type",
            "Freq", "Recorder", "Start Date", "End Date")]
   }
   
