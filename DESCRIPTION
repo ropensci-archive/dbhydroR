@@ -4,7 +4,7 @@ Description: Client for programmatic access to the South Florida Water
   Management District's 'DBHYDRO' database at 
   <http://sfwmd.gov/dbhydro>, with functions
   for accessing hydrologic and water quality data. 
-Version: 0.1-6
+Version: 0.2-0
 Authors@R: c(
     person("Joseph", "Stachelek", role = c("aut","cre"), email = "stachel2@msu.edu")
   )
