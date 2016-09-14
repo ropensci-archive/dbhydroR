@@ -5,8 +5,9 @@ Description: Client for programmatic access to the South Florida Water
   <http://sfwmd.gov/dbhydro>, with functions
   for accessing hydrologic and water quality data. 
 Version: 0.1-6
-Author: Joseph Stachelek <stachel2@msu.edu>
-Maintainer: Joseph Stachelek <stachel2@msu.edu>
+Authors@R: c(
+    person("Joseph", "Stachelek", role = c("aut","cre"), email = "stachel2@msu.edu")
+  )
 URL: http://www.github.com/SFWMD/dbhydro
 BugReports: http://www.github.com/SFWMD/dbhydro/issues
 Depends:
