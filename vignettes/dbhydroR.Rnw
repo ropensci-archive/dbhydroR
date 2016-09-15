@@ -45,7 +45,7 @@ This document introduces the \texttt{dbhydroR} package and its associated functi
 
 \section{Package installation}
 
-Computers running the Windows operating system can only install binary package archive files (Section 2.1) unless they have additional \href{https://cran.r-project.org/bin/windows/Rtools/}{compiler software} installed. Otherwise, the \texttt{dbhydroR} package can be installed by running either of the following commands from the \texttt{R} console:
+Computers running the Windows operating system can only install binary package archive files unless they have additional \href{https://cran.r-project.org/bin/windows/Rtools/}{compiler software} installed. Without this software, \texttt{dbhydroR} can be installed from CRAN by running the following command in the \texttt{R} console:
 
 <<echo = FALSE>>=
 options(width = 50, useFancyQuotes = FALSE, prompt = " ", continue = " ")
@@ -56,6 +56,8 @@ options(width = 50, useFancyQuotes = FALSE, prompt = " ", continue = " ")
 <<eval=FALSE>>=
 install.packages("dbhydroR")
 @
+
+Otherwise, the \texttt{dbhydroR} can be installed by running the following command in the \texttt{R} console:
 
 \subsection{or development version from Github}
 <<eval = FALSE>>=
