@@ -9,3 +9,5 @@
 ^inst/doc/dbhydroR\.log$
 ^inst/doc/dbhydroR-concordance\.tex$
 ^inst/doc/dbhydroR\.tex$
+^README\.Rmd$
+^README-.*\.png$
