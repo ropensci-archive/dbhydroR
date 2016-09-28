@@ -128,9 +128,8 @@ get_wq <- function(station_id = NA, date_min = NA, date_max = NA,
           v_exc_qc = qc_field)
   }
   
-  res <- httr::GET(servfull, query = qy)
-  res <- suppressMessages(read.csv(text = httr::content(res, "text",
-         encoding = "UTF-8"), stringsAsFactors = FALSE,
+  res <- dbh_GET(servfull, query = qy)
+  res <- suppressMessages(read.csv(text = res, stringsAsFactors = FALSE,
          na.strings = c(" ", "")))
   res <- res[rowSums(is.na(res)) != ncol(res),]
   
@@ -246,10 +245,10 @@ get_hydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
         v_report_type = "format6", v_target_code = v_target_code,
         v_run_mode = "onLine", v_js_flag = "Y", v_dbkey = dbkey)
   
-  res <- httr::GET(servfull, query = qy)
-  try({res <- parse_hydro_response(res, raw)}, silent = TRUE)
+  res <- dbh_GET(servfull, query = qy)
   
-  if(class(res) == "response"){
+  try({res <- parse_hydro_response(res, raw)}, silent = TRUE)
+  if(class(res) == "character"){
     stop("No data found")
   }
   
@@ -264,19 +263,16 @@ get_hydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
 parse_hydro_response <- function(res, raw = FALSE){
     
     i <- 1
-    while(any(!is.na(suppressMessages(read.csv(text = httr::content(res,
-          "text", encoding = "UTF-8"), skip = i, stringsAsFactors = FALSE,
-          header = FALSE))[i, 10:16]))){
+    while(any(!is.na(suppressMessages(read.csv(text = res, skip = i,
+    stringsAsFactors = FALSE, header = FALSE))[i, 10:16]))){
       i <- i + 1
     }
     
-    metadata <- suppressMessages(read.csv(text = httr::content(res, "text",
-                encoding = "UTF-8"), skip = 1,
+    metadata <- suppressMessages(read.csv(text = res, skip = 1,
                 stringsAsFactors = FALSE))[1:(i - 1),]
     
-    try({dt <- suppressMessages(read.csv(text = httr::content(res, "text",
-               encoding = "UTF-8"), skip = i + 1, stringsAsFactors = FALSE))},
-               silent = TRUE)
+    try({dt <- suppressMessages(read.csv(text = res, skip = i + 1,
+      stringsAsFactors = FALSE))}, silent = TRUE)
     if(class(dt) != "data.frame"){
       stop("No data found")
     }
@@ -410,9 +406,9 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
   }
   
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
-  res <- httr::GET(servfull, query = qy)
+  res <- dbh_GET(servfull, query = qy)
   res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1',
-          suppressMessages(httr::content(res, "text", encoding = "UTF-8")))
+          suppressMessages(res))
   
   if(length(XML::readHTMLTable(res)) < 3){
     stop("No dbkeys found")  
@@ -484,4 +480,10 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA,
   get_dbkey(category = category, stationid = stationid, param = param,
             freq = freq, stat = stat, recorder = recorder, agency = agency,
             strata = strata, detail.level = "summary", ...)
+}
+
+dbh_GET <- function(url, ...) {
+  res <- httr::GET(url, ...)
+  httr::stop_for_status(res)
+  httr::content(res, "text", encoding = "UTF-8") # parse to text
 }
