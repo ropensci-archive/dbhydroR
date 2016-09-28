@@ -24,23 +24,32 @@ get_dbkey(category, stationid = NA, param = NA, freq = NA, stat = NA,
 
 \item{agency}{character string specifying collector agency}
 
-\item{strata}{numeric vector of length 2 specifying a range of z-coordinates relative to local ground elevation. Only applicable for queries in the "WEATHER" and "GW" categories.}
+\item{strata}{numeric vector of length 2 specifying a range of z-coordinates
+relative to local ground elevation. Only applicable for queries in the
+"WEATHER" and "GW" categories.}
 
-\item{detail.level}{character string specifying the level of detail to return. Choices are "full", "summary", and "dbkey".}
+\item{detail.level}{character string specifying the level of detail to return.
+Choices are "full", "summary", and "dbkey".}
 
 \item{...}{Options passed as named parameters}
 }
 \description{
-Retrieve a data.frame summary including dbkeys or a vector of dbkeys corresponding to specified parameters
+Retrieve a data.frame summary including dbkeys or a vector of
+dbkeys corresponding to specified parameters
 }
 \details{
-A \code{dbkey} represents a unique station x variable time-series. A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modelling group.
+A \code{dbkey} represents a unique station x variable time-series. A
+value in the "Recorder" field of "PREF" should be used whenever possible.
+This indicates that the dataset has been checked by the SFWMD modelling
+group.
 }
 \examples{
 \dontrun{
 # Weather
-get_dbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "summary")
-get_dbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "dbkey")
+get_dbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS",
+detail.level = "summary")
+get_dbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS",
+detail.level = "dbkey")
 
 # query on multiple values
 get_dbkey(stationid = c("MBTS", "JBTS"), category = "WEATHER",

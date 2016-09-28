@@ -1,21 +1,31 @@
 #'@name clean_wq
 #'@title Clean raw water quality DBHYDRO data retrievals
-#'@description Removes extra columns associated with QA flags and QA blanks which are used to check on potential sources of contamination. If raw is set to TRUE, \code{\link{get_wq}} results are converted from long (each piece of data on its own row) to \code{wide} format (each site x variable combination in its own column).
+#'@description Removes extra columns associated with QA flags and QA blanks
+#' which are used to check on potential sources of contamination. If raw is set
+#' to TRUE, \code{\link{get_wq}} results are converted from long (each piece of
+#' data on its own row) to \code{wide} format (each site x variable combination
+#' in its own column).
 #'@aliases cleanwq
 #'@export
 #'@importFrom reshape2 dcast
 #'@param dt data.frame output of \code{\link{getwq}}
-#'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included
-#'@param mdl_handling character string specifying the handling of measurement values below the minimum detection limit (MDL). Example choices for this argument include:
+#'@param raw logical default is FALSE, set to TRUE to return data in "long"
+#' format with all comments, qa information, and database codes included
+#'@param mdl_handling character string specifying the handling of measurement
+#' values below the minimum detection limit (MDL). Example choices for this
+#' argument include:
 #'\itemize{
-#'\item \code{raw}: Returns values exactly as they are stored in the database. Current practice is to return values below the MDL as 0 minus the uncertainty estimate.
+#'\item \code{raw}: Returns values exactly as they are stored in the database.
+#' Current practice is to return values below the MDL as 0 minus the uncertainty
+#' estimate.
 #'\item \code{half}: Returns values below the MDL as half the MDL
 #'\item \code{full}: Returns values below the MDL as the MDL
 #'}
 #'
 #'@examples \dontrun{
 #'#check handling of values below MDL
-#' dt <- getwq("FLAB01", "2014-09-14", "2014-09-18", "NITRATE+NITRITE-N", raw = TRUE)
+#' dt <- getwq("FLAB01", "2014-09-14", "2014-09-18", "NITRATE+NITRITE-N",
+#'  raw = TRUE)
 #' clean_wq(dt, mdl_handling = "raw")
 #' clean_wq(dt, mdl_handling = "half")
 #'}
@@ -74,7 +84,10 @@ cleanwq <- function(dt, raw = FALSE, mdl_handling = "raw"){
 
 #'@name clean_hydro
 #'@title Clean raw hydrologic DBHYDRO data retrievals
-#'@description Converts output of \code{\link{get_hydro}} from long (each piece of data on its own row) to wide format (each site x variable combination in its own column). Metadata (station-name, variable, measurement units) is parsed so that it is wholly contained in column names. 
+#'@description Converts output of \code{\link{get_hydro}} from long (each piece
+#' of data on its own row) to wide format (each site x variable combination in
+#' its own column). Metadata (station-name, variable, measurement units) is
+#' parsed so that it is wholly contained in column names. 
 #'@aliases cleanhydro
 #'@export
 #'@importFrom reshape2 dcast

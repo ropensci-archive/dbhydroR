@@ -11,7 +11,10 @@ clean_hydro(dt)
 \item{dt}{data.frame output of \code{\link[dbhydroR]{gethydro}}}
 }
 \description{
-Converts output of \code{\link{get_hydro}} from long (each piece of data on its own row) to wide format (each site x variable combination in its own column). Metadata (station-name, variable, measurement units) is parsed so that it is wholly contained in column names.
+Converts output of \code{\link{get_hydro}} from long (each piece
+of data on its own row) to wide format (each site x variable combination in
+its own column). Metadata (station-name, variable, measurement units) is
+parsed so that it is wholly contained in column names.
 }
 \examples{
 \dontrun{

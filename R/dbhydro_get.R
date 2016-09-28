@@ -1,20 +1,30 @@
 #'@name get_wq
 #'@title Retrieve water quality data from the DBHYDRO Environmental Database
-#'@description Retrieve water quality data from the DBHYDRO Environmental Database
-#'@param station_id character string of station id(s). See the SFWMD station search utility at \url{http://my.sfwmd.gov/dbhydroplsql/water_quality_data.show_group_station_characters} for specific options
+#'@description Retrieve water quality data from the
+#' DBHYDRO Environmental Database
+#'@param station_id character string of station id(s). See the SFWMD station
+#' search utility at \url{http://my.sfwmd.gov/dbhydroplsql/water_quality_data.show_group_station_characters}
+#' for specific options
 #'@param date_min character date must be in POSIXct YYYY-MM-DD format
 #'@param date_max character date must be in POSIXct YYYY-MM-DD format
-#'@param test_name character string of test name(s). See the ArcGIS Online Station Map at \url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html} for specific options
-#'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included 
+#'@param test_name character string of test name(s). See the ArcGIS Online
+#' Station Map at \url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}
+#' for specific options
+#'@param raw logical default is FALSE, set to TRUE to return data in "long"
+#' format with all comments, qa information, and database codes included 
 #'@param qc_strip logical set TRUE to avoid returning QAQC flagged data entries
 #'@param qc_field logical set TRUE to avoid returning field QC results
 #'@param test_number numeric test name alternative (not implemented)
 #'@param v_target_code string print to file? (not implemented)
 #'@param sample_id numeric (not implemented)
 #'@param project_code numeric (not implemented)
-#'@param mdl_handling character string specifying the handling of measurement values below the minimum detection limit (MDL). Example choices for this argument include:
+#'@param mdl_handling character string specifying the handling of measurement
+#' values below the minimum detection limit (MDL). Example choices for this
+#' argument include:
 #'\itemize{
-#'\item \code{raw}: Returns values exactly as they are stored in the database. Current practice is to return values below the MDL as 0 minus the uncertainty estimate.
+#'\item \code{raw}: Returns values exactly as they are stored in the database.
+#' Current practice is to return values below the MDL as 0 minus the
+#' uncertainty estimate.
 #'\item \code{half}: Returns values below the MDL as half the MDL
 #'\item \code{full}: Returns values below the MDL as the MDL
 #'}
@@ -22,7 +32,15 @@
 #'@export
 #'@importFrom httr GET content
 #'@importFrom utils read.csv
-#'@details By default, \code{get_wq} returns a cleaned output. First, the cleaning function \code{\link{clean_wq}} converts the raw output from native DBHYDRO long format (each piece of data on its own row) to wide format (each site x variable combination in its own column). Next, the extra columns associated with QA flags, LIMS, and District receiving are removed. Finally, row entries associated with QA field blanks, which are used to check on potential sources of contamination, are removed. Setting the raw flag to TRUE will force getwq to retain information on QA field blanks as well as the other QA fields.
+#'@details By default, \code{get_wq} returns a cleaned output. First, the
+#' cleaning function \code{\link{clean_wq}} converts the raw output from native
+#' DBHYDRO long format (each piece of data on its own row) to wide format (each
+#' site x variable combination in its own column). Next, the extra columns
+#' associated with QA flags, LIMS, and District receiving are removed. Finally,
+#' row entries associated with QA field blanks, which are used to check on
+#' potential sources of contamination, are removed. Setting the raw flag to TRUE
+#' will force getwq to retain information on QA field blanks as well as the
+#' other QA fields.
 #'@examples
 #'
 #'#one variable and one station
@@ -140,10 +158,12 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'@name get_hydro
 #'@title Retrieve hydrologic data from the DBHYDRO Environmental Database
 #'@description Retrieve hydrologic data from the DBHYDRO Environmental Database
-#'@param dbkey character string specifying a unique data series. See \code{\link[dbhydroR]{get_dbkey}}
+#'@param dbkey character string specifying a unique data series.
+#' See \code{\link[dbhydroR]{get_dbkey}}
 #'@param date_min character date must be in YYYY-MM-DD format
 #'@param date_max character date must be in YYYY-MM-DD format
-#'@param raw logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included.
+#'@param raw logical default is FALSE, set to TRUE to return data in "long"
+#' format with all comments, qa information, and database codes included.
 #'@param ... Options passed on to \code{\link[dbhydroR]{get_dbkey}}
 #'@aliases gethydro
 #'@export
@@ -152,16 +172,26 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'
 #'\itemize{
 #'
-#'\item The first, is to identify one or more \code{dbkeys} before-hand that correspond to unique data series and are passed to the \code{dbkey} argument. \code{dbkeys} can be found by:
+#'\item The first, is to identify one or more \code{dbkeys} before-hand that
+#' correspond to unique data series and are passed to the \code{dbkey}
+#' argument. \code{dbkeys} can be found by:
 #'\itemize{ \item iterative calls to \code{\link{get_dbkey}} (see example)
-#'\item using the ArcGIS Online Station Map (\url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}) 
-#'\item using the DBHYDRO Browser (\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
+#'\item using the ArcGIS Online Station Map
+#' (\url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}) 
+#'\item using the DBHYDRO Browser
+#' (\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
 #'} 
 #'
-#'\item The second way to run \code{get_hydro} is to specify additional arguments to \code{...} which are passed to \code{\link{get_dbkey}} on-the-fly. 
+#'\item The second way to run \code{get_hydro} is to specify additional
+#' arguments to \code{...} which are passed to \code{\link{get_dbkey}}
+#' on-the-fly. 
 #'
 #'}
-#'By default, \code{get_hydro} returns a cleaned output where metadata (station-name, variable, measurement units) is wholly contained in the column name. This is accomplished internally by the \code{\link{clean_hydro}} function. If additional metadata such as lattitude and longitude are desired set the \code{raw} argument to \code{TRUE}.
+#'By default, \code{get_hydro} returns a cleaned output where metadata
+#' (station-name, variable, measurement units) is wholly contained in the column
+#' name. This is accomplished internally by the \code{\link{clean_hydro}}
+#' function. If additional metadata such as lattitude and longitude are desired
+#' set the \code{raw} argument to \code{TRUE}.
 #'@examples
 #'\dontrun{
 #'#One variable/station time series
@@ -288,7 +318,8 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
 
 #'@name get_dbkey
 #'@title Query dbkey information
-#'@description Retrieve a data.frame summary including dbkeys or a vector of dbkeys corresponding to specified parameters
+#'@description Retrieve a data.frame summary including dbkeys or a vector of
+#' dbkeys corresponding to specified parameters
 #'@export
 #'@param category character string, choice of "WEATHER", "SW", "GW", or "WQ"
 #'@param stationid character string specifying station name
@@ -297,10 +328,16 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
 #'@param stat character string specifying statistic type
 #'@param recorder character string specifying recorder information
 #'@param agency character string specifying collector agency
-#'@param strata numeric vector of length 2 specifying a range of z-coordinates relative to local ground elevation. Only applicable for queries in the "WEATHER" and "GW" categories.
-#'@param detail.level character string specifying the level of detail to return. Choices are "full", "summary", and "dbkey".
+#'@param strata numeric vector of length 2 specifying a range of z-coordinates
+#' relative to local ground elevation. Only applicable for queries in the
+#' "WEATHER" and "GW" categories.
+#'@param detail.level character string specifying the level of detail to return.
+#' Choices are "full", "summary", and "dbkey".
 #'@param ... Options passed as named parameters
-#'@details A \code{dbkey} represents a unique station x variable time-series. A value in the "Recorder" field of "PREF" should be used whenever possible. This indicates that the dataset has been checked by the SFWMD modelling group.
+#'@details A \code{dbkey} represents a unique station x variable time-series. A
+#' value in the "Recorder" field of "PREF" should be used whenever possible.
+#' This indicates that the dataset has been checked by the SFWMD modelling
+#' group.
 #'@aliases getdbkey
 #'@importFrom XML readHTMLTable
 #'@importFrom stats setNames
@@ -308,8 +345,10 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
 #'@references \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_meta_data}
 #'@examples \dontrun{
 #'# Weather
-#'get_dbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "summary")
-#'get_dbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS", detail.level = "dbkey")
+#'get_dbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS",
+#' detail.level = "summary")
+#'get_dbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS",
+#' detail.level = "dbkey")
 #'
 #'# query on multiple values
 #'get_dbkey(stationid = c("MBTS", "JBTS"), category = "WEATHER",

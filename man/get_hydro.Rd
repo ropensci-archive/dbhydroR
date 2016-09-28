@@ -8,13 +8,15 @@
 get_hydro(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE, ...)
 }
 \arguments{
-\item{dbkey}{character string specifying a unique data series. See \code{\link[dbhydroR]{get_dbkey}}}
+\item{dbkey}{character string specifying a unique data series.
+See \code{\link[dbhydroR]{get_dbkey}}}
 
 \item{date_min}{character date must be in YYYY-MM-DD format}
 
 \item{date_max}{character date must be in YYYY-MM-DD format}
 
-\item{raw}{logical default is FALSE, set to TRUE to return data in "long" format with all comments, qa information, and database codes included.}
+\item{raw}{logical default is FALSE, set to TRUE to return data in "long"
+format with all comments, qa information, and database codes included.}
 
 \item{...}{Options passed on to \code{\link[dbhydroR]{get_dbkey}}}
 }
@@ -26,16 +28,26 @@ Retrieve hydrologic data from the DBHYDRO Environmental Database
 
 \itemize{
 
-\item The first, is to identify one or more \code{dbkeys} before-hand that correspond to unique data series and are passed to the \code{dbkey} argument. \code{dbkeys} can be found by:
+\item The first, is to identify one or more \code{dbkeys} before-hand that
+correspond to unique data series and are passed to the \code{dbkey}
+argument. \code{dbkeys} can be found by:
 \itemize{ \item iterative calls to \code{\link{get_dbkey}} (see example)
-\item using the ArcGIS Online Station Map (\url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}) 
-\item using the DBHYDRO Browser (\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
+\item using the ArcGIS Online Station Map
+(\url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}) 
+\item using the DBHYDRO Browser
+(\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
 } 
 
-\item The second way to run \code{get_hydro} is to specify additional arguments to \code{...} which are passed to \code{\link{get_dbkey}} on-the-fly. 
+\item The second way to run \code{get_hydro} is to specify additional
+arguments to \code{...} which are passed to \code{\link{get_dbkey}}
+on-the-fly. 
 
 }
-By default, \code{get_hydro} returns a cleaned output where metadata (station-name, variable, measurement units) is wholly contained in the column name. This is accomplished internally by the \code{\link{clean_hydro}} function. If additional metadata such as lattitude and longitude are desired set the \code{raw} argument to \code{TRUE}.
+By default, \code{get_hydro} returns a cleaned output where metadata
+(station-name, variable, measurement units) is wholly contained in the column
+name. This is accomplished internally by the \code{\link{clean_hydro}}
+function. If additional metadata such as lattitude and longitude are desired
+set the \code{raw} argument to \code{TRUE}.
 }
 \examples{
 \dontrun{
