@@ -8,8 +8,8 @@ Version: 0.2-0
 Authors@R: c(
     person("Joseph", "Stachelek", role = c("aut","cre"), email = "stachel2@msu.edu")
   )
-URL: http://www.github.com/SFWMD/dbhydro
-BugReports: http://www.github.com/SFWMD/dbhydro/issues
+URL: http://www.github.com/ropenscilabs/dbhydroR
+BugReports: http://www.github.com/ropenscilabs/dbhydroR/issues
 Depends:
     R (>= 3.0.2)
 Imports:

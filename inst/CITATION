@@ -3,4 +3,4 @@ rref <- bibentry(
    title = "dbhydroR: Everglades Hydrologic and Water Quality Data from R",
    author = person("Joseph Stachelek"),
    year = 2016,
-   url = "https://github.com/SFWMD/dbhydro")
+   url = "https://github.com/ropenscilabs/dbhydroR")

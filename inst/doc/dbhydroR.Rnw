@@ -61,7 +61,7 @@ Otherwise, the \texttt{dbhydroR} can be installed by running the following comma
 
 \subsection{or development version from Github}
 <<eval = FALSE>>=
-devtools::install_github("SFWMD/dbhydroR")
+devtools::install_github("ropenscilabs/dbhydroR")
 @
 
 \vspace{8pt}

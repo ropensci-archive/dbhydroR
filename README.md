@@ -20,7 +20,7 @@ Installation
 
 `install.packages("devtools") # Requires RTools if using Windows`
 
-`devtools::install_github("SFWMD/dbhydro")`
+`devtools::install_github("ropenscilabs/dbhydroR")`
 
 Usage
 -----
@@ -94,10 +94,10 @@ References
 Meta
 ----
 
--   Please [report any issues or bugs](https://github.com/SFWMD/dbhydroR/issues).
+-   Please [report any issues or bugs](https://github.com/ropenscilabs/dbhydroR/issues).
 
 -   Get citation information for `dbhydroR` in R by running `citation(package = 'dbhydroR')`
 
--   Please note that this project is released with a [Contributor Code of Conduct](https://github.com/SFWMD/dbhydroR/blob/master/CONDUCT.md). By participating in this project you agree to abide by its terms
+-   Please note that this project is released with a [Contributor Code of Conduct](https://github.com/ropenscilabs/dbhydroR/blob/master/CONDUCT.md). By participating in this project you agree to abide by its terms
 
 [![ropensci\_footer](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)

@@ -16,7 +16,7 @@ options(width = 50, useFancyQuotes = FALSE, prompt = " ", continue = " ")
 ###################################################
 ### code chunk number 3: dbhydroR.Rnw:63-64 (eval = FALSE)
 ###################################################
-## devtools::install_github("SFWMD/dbhydroR")
+## devtools::install_github("ropenscilabs/dbhydroR")
 
 
 ###################################################
