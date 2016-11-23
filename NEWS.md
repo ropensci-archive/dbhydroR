@@ -1,3 +1,13 @@
+dbhydroR 0.2-1 (2016-11-23)
+===================
+
+### MINOR IMPROVEMENTS
+
+* Improved installation instructions in vignette.
+* Added package level documentation.
+* Added rOpenSci branding.
+* Use https. #6
+
 dbhydroR 0.2
 ===================
 
