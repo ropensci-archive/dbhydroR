@@ -89,7 +89,7 @@ References
 
 `vignette("dbhydroR", package = "dbhydroR")`
 
-[DBHYDRO User's Guide](http://www.sfwmd.gov/portal/page/portal/xrepository/sfwmd_repository_pdf/dbhydrobrowseruserdocumentation.pdf)
+[DBHYDRO User's Guide](https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf)
 
 Meta
 ----
