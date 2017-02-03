@@ -211,7 +211,7 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 
 get_hydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
               ...){
-  
+
   period <- "uspec"
   v_target_code <- "file_csv"
   
@@ -246,7 +246,6 @@ get_hydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
         v_run_mode = "onLine", v_js_flag = "Y", v_dbkey = dbkey)
   
   res <- dbh_GET(servfull, query = qy)
-  
   try({res <- parse_hydro_response(res, raw)}, silent = TRUE)
   if(class(res) == "character"){
     stop("No data found")
@@ -261,7 +260,7 @@ get_hydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
 
 # connect metadata header to results
 parse_hydro_response <- function(res, raw = FALSE){
-    
+
     i <- 1
     while(any(!is.na(suppressMessages(read.csv(text = res, skip = i,
     stringsAsFactors = FALSE, header = FALSE))[i, 10:16]))){
@@ -272,7 +271,8 @@ parse_hydro_response <- function(res, raw = FALSE){
                 stringsAsFactors = FALSE))[1:(i - 1),]
     
     try({dt <- suppressMessages(read.csv(text = res, skip = i + 1,
-      stringsAsFactors = FALSE))}, silent = TRUE)
+      stringsAsFactors = FALSE, colClasses = c("DBKEY" = "character")))}
+      , silent = TRUE)
     if(class(dt) != "data.frame"){
       stop("No data found")
     }
