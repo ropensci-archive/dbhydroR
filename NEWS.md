@@ -1,3 +1,9 @@
+dbhydroR 0.2-1 (2017-02-03)
+===================
+
+### BUG FIXES
+`get_hydro()` now works if a `dbkey` contains leading zeros
+
 dbhydroR 0.2-1 (2016-11-23)
 ===================
 
