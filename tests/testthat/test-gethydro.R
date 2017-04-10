@@ -31,14 +31,14 @@ test_that("non-character dates are handled", {
 test_that("get_hydro retrieves dbkeys on-the-fly", {
   skip_on_cran()
   
-  expect_is(ncol(get_hydro(stationid = "C-54", category = "GW",
+  expect_equal(ncol(get_hydro(stationid = "C-54", category = "GW",
             freq = "DA", date_min = "1990-01-01", date_max = "1990-02-02", 
             longest = TRUE)), 2) 
             
             
-  expect_is(ncol(get_hydro(stationid = c("C-54", "M-1083", "G-561"), 
+  expect_equal(ncol(get_hydro(stationid = c("C-54", "G-561"), 
                            category = "GW", freq = "DA", 
                            date_min = "1990-01-01", date_max = "1990-02-02", 
-                           longest = TRUE)), 4)
+                           longest = TRUE)), 3)
   
 })
