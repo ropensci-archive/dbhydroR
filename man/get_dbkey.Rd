@@ -5,9 +5,9 @@
 \alias{getdbkey}
 \title{Query dbkey information}
 \usage{
-get_dbkey(category, stationid = NA, param = NA, freq = NA, stat = NA,
-  recorder = NA, agency = NA, strata = NA, detail.level = "summary",
-  ...)
+get_dbkey(category, stationid = NA, param = NA, freq = NA,
+  longest = FALSE, stat = NA, recorder = NA, agency = NA, strata = NA,
+  detail.level = "summary", ...)
 }
 \arguments{
 \item{category}{character string, choice of "WEATHER", "SW", "GW", or "WQ"}
@@ -17,6 +17,8 @@ get_dbkey(category, stationid = NA, param = NA, freq = NA, stat = NA,
 \item{param}{character string specifying desired parameter name}
 
 \item{freq}{character string specifying collection frequency (daily = "DA")}
+
+\item{longest}{logical limit results to the longest period-of-record?}
 
 \item{stat}{character string specifying statistic type}
 

@@ -320,6 +320,7 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
 #'@param category character string, choice of "WEATHER", "SW", "GW", or "WQ"
 #'@param stationid character string specifying station name
 #'@param param character string specifying desired parameter name
+#'@param longest logical limit results to the longest period-of-record?
 #'@param freq character string specifying collection frequency (daily = "DA")
 #'@param stat character string specifying statistic type
 #'@param recorder character string specifying recorder information
@@ -365,9 +366,9 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
 #'get_dbkey(stationid = "C111%", category = "WQ")
 #'}
 
-get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
-            stat = NA, recorder = NA, agency = NA, strata = NA,
-            detail.level = "summary", ...){
+get_dbkey <- function(category, stationid = NA, param = NA, freq = NA, 
+                      longest = FALSE, stat = NA, recorder = NA, agency = NA, 
+                      strata = NA, detail.level = "summary", ...){
 
   if(!(detail.level %in% c("full", "summary", "dbkey"))){
     stop("Must specify either 'full', 'summary',
@@ -389,6 +390,7 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
                v_recorder = recorder, v_agency = agency,
                v_strata_from = strata_from, v_strata_to = strata_to)
   greater_length_args <- lapply(user_args, function(x) length(x))
+  browser()
   if(length(which(greater_length_args > 1)) >  0){
     collapse_args <- user_args[which(greater_length_args > 1)]
     collapse_args <- paste0(do.call("c", collapse_args), "/", collapse = "")
@@ -409,7 +411,7 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
   res <- dbh_GET(servfull, query = qy)
   res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1',
           suppressMessages(res))
-  
+  browser()
   if(length(XML::readHTMLTable(res)) < 3){
     stop("No dbkeys found")  
   }
@@ -450,6 +452,14 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
     not_na_col <- !(apply(res, 2, function(x) all(is.na(x))))
     if(any(not_na_col == FALSE)){
       res <- res[,not_na_col]  
+    }
+    if(longest){
+      browser()
+      period_of_record <- apply(res, 1, function(x) x[c("Start Date", "End Date")])
+      period_of_record <- as.POSIXct(strptime(period_of_record, "%d-%b-%Y"))
+      res <- res[which.max(abs(
+        period_of_record[(1:length(period_of_record) %% 2) == 1] - 
+        period_of_record[(1:length(period_of_record) %% 2) == 0])),]
     }
   }else{
     not_na_element <- which(is.na(res))
