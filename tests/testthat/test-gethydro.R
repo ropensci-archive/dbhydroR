@@ -38,7 +38,7 @@ test_that("get_hydro retrieves dbkeys on-the-fly", {
             
   expect_is(ncol(get_hydro(stationid = c("C-54", "M-1083", "G-561"), 
                            category = "GW", freq = "DA", 
-                           date_min = "1990-01-01", date_max = "2017-04-10", 
+                           date_min = "1990-01-01", date_max = "1990-02-02", 
                            longest = TRUE)), 4)
   
 })
