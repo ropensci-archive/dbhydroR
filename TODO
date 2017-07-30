@@ -1,7 +1,0 @@
-add ability to query all tests for wq stations
-
-add ability to query all wq stations under a particular project
-
-add ability to do reverse dbkey lookups
-
-handle timeouts gracefully on very large queries
