@@ -43,4 +43,3 @@ clean_wq(dt, mdl_handling = "half")
 dt <- read.csv(system.file("extdata", "testwq.csv", package = "dbhydroR"))
 clean_wq(dt)
 }
-

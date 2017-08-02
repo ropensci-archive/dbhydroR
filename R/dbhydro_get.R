@@ -189,7 +189,7 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'By default, \code{get_hydro} returns a cleaned output where metadata
 #' (station-name, variable, measurement units) is wholly contained in the column
 #' name. This is accomplished internally by the \code{\link{clean_hydro}}
-#' function. If additional metadata such as lattitude and longitude are desired
+#' function. If additional metadata such as latitude and longitude are desired
 #' set the \code{raw} argument to \code{TRUE}.
 #'@examples
 #'\dontrun{

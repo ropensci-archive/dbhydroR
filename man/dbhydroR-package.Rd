@@ -2,11 +2,11 @@
 % Please edit documentation in R/dbhydoR-package.R
 \docType{package}
 \name{dbhydroR-package}
-\alias{dbhydroR}
 \alias{dbhydroR-package}
+\alias{dbhydroR}
 \title{dbhydroR}
 \description{
-dbhydroR is an R interace to the South Florida Water Management District's DBHYDRO database which holds over 35 million hydrologic and water quality records from the Florida Everglades and surrounding areas.
+dbhydroR is an R interface to the South Florida Water Management District's DBHYDRO database which holds over 35 million hydrologic and water quality records from the Florida Everglades and surrounding areas.
 }
 \section{Hydrologic Data}{
 
@@ -26,5 +26,5 @@ The \code{\link[dbhydroR]{get_wq}} function provides the capability to return:
   \item water quality data
 }
 }
-\keyword{package}
 
+\keyword{package}
