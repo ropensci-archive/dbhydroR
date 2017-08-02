@@ -11,3 +11,4 @@
 ^inst/doc/dbhydroR\.tex$
 ^README\.Rmd$
 ^README-.*\.png$
+^cran-comments\.md$
