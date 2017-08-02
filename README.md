@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-![](inst/images/profile.png)
+![](https://github.com/ropenscilabs/dbhydroR/raw/master/inst/images/profile.png)
 
 Programmatic access to the South Florida Water Management District's [DBHYDRO database](https://www.sfwmd.gov/science-data/dbhydro)
 ===================================================================================================================================

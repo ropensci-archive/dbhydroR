@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-![](inst/images/profile.png)
+![](https://github.com/ropenscilabs/dbhydroR/raw/master/inst/images/profile.png)
 
 # Programmatic access to the South Florida Water Management District's [DBHYDRO database](https://www.sfwmd.gov/science-data/dbhydro)
 
