@@ -1,3 +1,15 @@
+dbhydroR 0.2-3 (2017-08-02)
+===================
+
+### BUG FIXES
+
+* `get_hydro()` now resolves multiple matching of on-the-fly dbkeys to the one with the longest period of record.
+
+### MINOR IMPROVEMENTS
+
+* Fixed broken links
+* Add rOpenSci badge
+
 dbhydroR 0.2-2 (2017-02-03)
 ===================
 
