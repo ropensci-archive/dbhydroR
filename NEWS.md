@@ -1,3 +1,11 @@
+dbhydroR 0.2-4 (2017-10-30)
+===================
+
+### BUG FIXES
+
+* The ArcGIS online station map no longer resolves. Links have been updated.
+* Sweave sty files are excluded in CRAN build.
+
 dbhydroR 0.2-3 (2017-08-02)
 ===================
 
@@ -14,6 +22,7 @@ dbhydroR 0.2-2 (2017-02-03)
 ===================
 
 ### BUG FIXES
+
 `get_hydro()` now works if a `dbkey` contains leading zeros
 
 dbhydroR 0.2-1 (2016-11-23)
