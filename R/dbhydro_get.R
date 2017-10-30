@@ -11,7 +11,7 @@
 #' Station Map at \url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}
 #' for specific options
 #'@param raw logical default is FALSE, set to TRUE to return data in "long"
-#' format with all comments, qa information, and database codes included 
+#' format with all comments, qa information, and database codes included
 #'@param qc_strip logical set TRUE to avoid returning QAQC flagged data entries
 #'@param qc_field logical set TRUE to avoid returning field QC results
 #'@param test_number numeric test name alternative (not implemented)
@@ -45,7 +45,7 @@
 #'
 #'#one variable and one station
 #'get_wq(station_id = "FLAB08",
-#'date_min = "2011-03-01", date_max = "2012-05-01", 
+#'date_min = "2011-03-01", date_max = "2012-05-01",
 #'test_name = "CHLOROPHYLLA-SALINE")
 #'
 #'\dontrun{
@@ -70,18 +70,18 @@ get_wq <- function(station_id = NA, date_min = NA, date_max = NA,
          test_name = NA, mdl_handling = "raw", raw = FALSE, qc_strip = "N",
          qc_field = "N", test_number = NA, v_target_code = "file_csv",
          sample_id = NA, project_code = NA){
-  
+
   if(!(nchar(date_min) == 10 & nchar(date_max) == 10)){
     stop("Enter dates as quote-wrapped character strings in YYYY-MM-DD format")
   }
-  
+
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/water_quality_data.report_full"
-  
+
   #try(ping<-RCurl::getURL(
   # "http://www.sfwmd.gov/portal/page/portal/sfwmdmain/home%20page"),
   # silent=TRUE)
   #if(!exists("ping")){stop("no internet connection")}
-  
+
   station_like <- station_id[grepl("%", station_id)]
   if(length(station_like) > 0){
     station_id <- station_id[!grepl("%", station_id)]
@@ -90,10 +90,10 @@ get_wq <- function(station_id = NA, date_min = NA, date_max = NA,
   }else{
     station_like <- NA
   }
-  
+
   station_list <- paste("(",paste("'", station_id, "'", sep = "",
                   collapse = ","), ")", sep = "")
-  
+
   if(!is.na(date_min)){
     date_min <- strftime(date_min, format = "%d-%b-%Y")
     date_min <- paste("> ", "'", date_min, "'", sep = "")
@@ -102,18 +102,18 @@ get_wq <- function(station_id = NA, date_min = NA, date_max = NA,
     date_max <- strftime(date_max, format = "%d-%b-%Y")
     date_max <- paste("< ", "'", date_max, "'", sep = "")
   }
-  
+
   test_list <- paste("(", paste("'", test_name, "'", sep = "",
                collapse = ","), ")", sep = "")
-  
+
   if(qc_strip == TRUE){
     qc_strip <- "Y"
   }
-  
+
   if(qc_field == TRUE){
     qc_field <- "Y"
   }
-  
+
   if(length(station_like) > 0 & any(!is.na(station_like))){
     qy <- list(v_where_clause = paste("where", "date_collected", date_min,
           "and", "date_collected", date_max, "and", "station_id", "like",
@@ -127,12 +127,12 @@ get_wq <- function(station_id = NA, date_min = NA, date_max = NA,
           v_target_code = v_target_code, v_exc_flagged = qc_strip,
           v_exc_qc = qc_field)
   }
-  
+
   res <- dbh_GET(servfull, query = qy)
   res <- suppressMessages(read.csv(text = res, stringsAsFactors = FALSE,
          na.strings = c(" ", "")))
   res <- res[rowSums(is.na(res)) != ncol(res),]
-  
+
   if(!any(!is.na(res)) | !any(res$Matrix != "DI")){
     message("No data found")
   }else{
@@ -167,7 +167,7 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'@aliases gethydro
 #'@export
 #'@importFrom httr GET content
-#'@details  \code{get_hydro} can be run in one of two ways. 
+#'@details  \code{get_hydro} can be run in one of two ways.
 #'
 #'\itemize{
 #'
@@ -175,15 +175,15 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #' correspond to unique data series and are passed to the \code{dbkey}
 #' argument. \code{dbkeys} can be found by:
 #'\itemize{ \item iterative calls to \code{\link{get_dbkey}} (see example)
-#'\item using the ArcGIS Online Station Map
-#' (\url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}) 
+#'\item using the Environmental Monitoring Location Maps
+#' (\url{https://www.sfwmd.gov/documents-by-tag/emmaps})
 #'\item using the DBHYDRO Browser
 #' (\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
-#'} 
+#'}
 #'
 #'\item The second way to run \code{get_hydro} is to specify additional
 #' arguments to \code{...} which are passed to \code{\link{get_dbkey}}
-#' on-the-fly. 
+#' on-the-fly.
 #'
 #'}
 #'By default, \code{get_hydro} returns a cleaned output where metadata
@@ -204,8 +204,8 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'get_hydro(dbkey = "IY639", date_min = "2015-11-01", date_max = "2015-11-04")
 #'
 #'#Looking up unknown dbkeys on the fly
-#'get_hydro(stationid = "JBTS", category = "WEATHER", 
-#'param = "WNDS", freq = "DA", date_min = "2013-01-01", 
+#'get_hydro(stationid = "JBTS", category = "WEATHER",
+#'param = "WNDS", freq = "DA", date_min = "2013-01-01",
 #'date_max = "2013-02-02")
 #'}
 
@@ -214,7 +214,7 @@ get_hydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
 
   period <- "uspec"
   v_target_code <- "file_csv"
-  
+
   if(!(nchar(date_min) == 10 & nchar(date_max) == 10)){
     stop("Enter dates as quote-wrapped character strings in YYYY-MM-DD format")
   }
@@ -222,39 +222,39 @@ get_hydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
   # if((is.na(stationid) | is.na(category)) & all(is.na(dbkey))){
   #   stop("Must specify either a dbkey or stationid/category/param.")
   # }
-  
+
   if(all(is.na(dbkey))){
     dbkey <- get_dbkey(detail.level = "dbkey", ...)
   }
-  
+
   if(length(dbkey) > 1){
     dbkey <- paste(dbkey, "/", collapse = "", sep = "")
     dbkey <- substring(dbkey, 1, (nchar(dbkey) - 1))
   }
-  
+
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/web_io.report_process"
-  
+
   if(!is.na(date_min)){
     date_min <- strftime(date_min, format = "%Y%m%d")
   }
   if(!is.na(date_max)){
     date_max <- strftime(date_max, format = "%Y%m%d")
   }
-  
+
   qy <- list(v_period = period, v_start_date = date_min, v_end_date = date_max,
         v_report_type = "format6", v_target_code = v_target_code,
         v_run_mode = "onLine", v_js_flag = "Y", v_dbkey = dbkey)
-  
+
   res <- dbh_GET(servfull, query = qy)
   try({res <- parse_hydro_response(res, raw)}, silent = TRUE)
   if(class(res) == "character"){
     stop("No data found")
   }
-  
+
   if(raw == FALSE){
     res <- clean_hydro(res)
   }
-  
+
   res
 }
 
@@ -264,29 +264,29 @@ parse_hydro_response <- function(res, raw = FALSE){
     raw <- suppressMessages(read.csv(text = res, skip = 1,
                                      stringsAsFactors = FALSE))
     i <- min(which(apply(raw[,10:16], 1, function(x) all(is.na(x)))))
-  
+
     metadata <- suppressMessages(read.csv(text = res, skip = 1,
                 stringsAsFactors = FALSE))[1:(i - 1),]
-    
+
     try({dt <- suppressMessages(read.csv(text = res, skip = i + 1,
       stringsAsFactors = FALSE, colClasses = c("DBKEY" = "character")))}
       , silent = TRUE)
     if(class(dt) != "data.frame"){
       stop("No data found")
     }
-    
+
     if(!any(names(dt) == "DBKEY")){
       message("Column headings missing. Guessing...")
-      
+
       names(dt) <- c("Station", "DBKEY", "Daily.Date", "Data.Value",
                      "Qualifer", "Revision.Date")
-      
+
       if(all(is.na(as.POSIXct(strptime(dt$Daily.Date, format = "%d-%b-%Y"))))){
         message("Returning instantaneous data...")
-        
+
         names(dt) <- c("Inst.Date", "DCVP", "DBKEY", "Data.Value",
                        "Code", "Quality.Flag")
-        
+
         dt <- merge(metadata, dt)
         dt$date <- as.POSIXct(strptime(dt$Inst.Date, format = "%d-%b-%Y %H:%M"),
                     tz = "America/New_York")
@@ -296,9 +296,9 @@ parse_hydro_response <- function(res, raw = FALSE){
       dt$date <- as.POSIXct(strptime(dt$Daily.Date, format = "%d-%b-%Y"),
                   tz = "America/New_York")
     }
-    
+
     names(dt) <- tolower(names(dt))
-    
+
     dt
     }
 #}
@@ -365,8 +365,8 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
 #'get_dbkey(stationid = "C111%", category = "WQ")
 #'}
 
-get_dbkey <- function(category, stationid = NA, param = NA, freq = NA, 
-                      longest = FALSE, stat = NA, recorder = NA, agency = NA, 
+get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
+                      longest = FALSE, stat = NA, recorder = NA, agency = NA,
                       strata = NA, detail.level = "summary", ...){
 
   if(!(detail.level %in% c("full", "summary", "dbkey"))){
@@ -381,22 +381,22 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
     strata_from <- NA
     strata_to <- NA
   }
-  
-  # expand parameters with length > 1 to be seperated by "/" 
+
+  # expand parameters with length > 1 to be seperated by "/"
   # with no trailing "/" ####
   user_args <- list(v_category = category, v_station = stationid,
                v_data_type = param, v_frequency = freq, v_statistic_type = stat,
                v_recorder = recorder, v_agency = agency,
                v_strata_from = strata_from, v_strata_to = strata_to)
   greater_length_args <- lapply(user_args, function(x) length(x))
-  
+
   if(length(which(greater_length_args > 1)) >  0){
     collapse_args <- user_args[which(greater_length_args > 1)]
     collapse_args <- paste0(do.call("c", collapse_args), "/", collapse = "")
     collapse_args <- substring(collapse_args, 1, (nchar(collapse_args) - 1))
     user_args[which(greater_length_args > 1)] <- collapse_args
   }
-  
+
   dbhydro_args <- setNames(as.list(c("Y", "STATION", "Y", "100000")),
                     c("v_js_flag", "v_order_by", "v_dbkey_list_flag",
                     "display_quantity"))
@@ -405,21 +405,21 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
   if(any(is.na(qy))){
     qy <- qy[-which(is.na(qy))]
   }
-  
+
   servfull <- "http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
   res <- dbh_GET(servfull, query = qy)
   res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1',
           suppressMessages(res))
-  
+
   if(length(XML::readHTMLTable(res)) < 3){
-    stop("No dbkeys found")  
+    stop("No dbkeys found")
   }
-  
+
   if(detail.level == "full"){
     res <- XML::readHTMLTable(res, stringsAsFactors = FALSE,
             encoding  = "UTF-8")[[3]]
     names(res) <- gsub("\\n", "", names(res))
-    
+
     format_coords <- function(dt){
       coords <- dt[,c("Latitude", "Longitude")]
       coords <- apply(coords, 2, function(x) gsub("\\.", "", x))
@@ -438,53 +438,53 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
       }
       coords
     }
-    
+
     res[,c("Latitude", "Longitude")] <- format_coords(res)
-    
+
   }else{
     res <- XML::readHTMLTable(res, stringsAsFactors = FALSE,
            encoding = "UTF-8")[[3]][,c("Dbkey", "Group", "Data Type",
            "Freq", "Recorder", "Start Date", "End Date")]
   }
-  
+
   if(nrow(res) > 1){
     not_na_col <- !(apply(res, 2, function(x) all(is.na(x))))
     if(any(not_na_col == FALSE)){
-      res <- res[,not_na_col]  
+      res <- res[,not_na_col]
     }
     if(longest){
       get_longest_por <- function(df){
-        period_of_record <- apply(df, 1, 
+        period_of_record <- apply(df, 1,
                                   function(x) x[c("Start Date", "End Date")])
         period_of_record <- as.POSIXct(strptime(period_of_record, "%d-%b-%Y"))
         df[which.max(abs(
-          period_of_record[(1:length(period_of_record) %% 2) == 1] - 
+          period_of_record[(1:length(period_of_record) %% 2) == 1] -
             period_of_record[(1:length(period_of_record) %% 2) == 0])),]
       }
-      
-      res <- do.call("rbind", lapply(unique(res$Group), 
+
+      res <- do.call("rbind", lapply(unique(res$Group),
                     function(x) get_longest_por(res[res$Group == x,])))
-      
+
     }
   }else{
     not_na_element <- which(is.na(res))
     if(length(not_na_element) > 0){
-      res <- res[-not_na_element]  
+      res <- res[-not_na_element]
     }
   }
-  
+
   res[,1] <- as.character(res[,1])
-  
+
   if(any(names(res) == "Get Data")){
     res <- res[,-(names(res) %in% c("Get Data"))]
   }
-  
+
   if(detail.level %in% c("full", "summary")){
     message(paste("Search results for", " '", stationid, " ", category, "'",
       sep = ""))
     res
   }else{
-    res[,1] 
+    res[,1]
   }
 }
 

@@ -24,7 +24,7 @@ format with all comments, qa information, and database codes included.}
 Retrieve hydrologic data from the DBHYDRO Environmental Database
 }
 \details{
-\code{get_hydro} can be run in one of two ways. 
+\code{get_hydro} can be run in one of two ways.
 
 \itemize{
 
@@ -32,15 +32,15 @@ Retrieve hydrologic data from the DBHYDRO Environmental Database
 correspond to unique data series and are passed to the \code{dbkey}
 argument. \code{dbkeys} can be found by:
 \itemize{ \item iterative calls to \code{\link{get_dbkey}} (see example)
-\item using the ArcGIS Online Station Map
-(\url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}) 
+\item using the Environmental Monitoring Location Maps
+(\url{https://www.sfwmd.gov/documents-by-tag/emmaps})
 \item using the DBHYDRO Browser
 (\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
-} 
+}
 
 \item The second way to run \code{get_hydro} is to specify additional
 arguments to \code{...} which are passed to \code{\link{get_dbkey}}
-on-the-fly. 
+on-the-fly.
 
 }
 By default, \code{get_hydro} returns a cleaned output where metadata
@@ -62,8 +62,8 @@ date_min = "2013-01-01", date_max = "2013-02-02")
 get_hydro(dbkey = "IY639", date_min = "2015-11-01", date_max = "2015-11-04")
 
 #Looking up unknown dbkeys on the fly
-get_hydro(stationid = "JBTS", category = "WEATHER", 
-param = "WNDS", freq = "DA", date_min = "2013-01-01", 
+get_hydro(stationid = "JBTS", category = "WEATHER",
+param = "WNDS", freq = "DA", date_min = "2013-01-01",
 date_max = "2013-02-02")
 }
 }

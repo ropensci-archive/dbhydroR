@@ -68,7 +68,7 @@ other QA fields.
 
 #one variable and one station
 get_wq(station_id = "FLAB08",
-date_min = "2011-03-01", date_max = "2012-05-01", 
+date_min = "2011-03-01", date_max = "2012-05-01",
 test_name = "CHLOROPHYLLA-SALINE")
 
 \dontrun{
