@@ -1,3 +1,7 @@
+### MINOR IMPROVEMENTS
+
+* Converted vignette to rmarkdown
+
 dbhydroR 0.2-4 (2017-10-30)
 ===================
 
