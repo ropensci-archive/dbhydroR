@@ -33,7 +33,7 @@ Otherwise, the `dbhydroR` can be installed by running the following command in t
 ### or development version from Github
 
 ```{r eval = FALSE}
-devtools::install_github("ropenscilabs/dbhydroR")
+devtools::install_github("ropensci/dbhydroR")
 ```
 
 \vspace{8pt}
