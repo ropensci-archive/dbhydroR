@@ -5,7 +5,7 @@ options(width = 50, useFancyQuotes = FALSE, prompt = " ", continue = " ")
 #  install.packages("dbhydroR")
 
 ## ----eval = FALSE-------------------------------
-#  devtools::install_github("ropenscilabs/dbhydroR")
+#  devtools::install_github("ropensci/dbhydroR")
 
 ## ----message=FALSE------------------------------
 library(dbhydroR)

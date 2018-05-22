@@ -195,6 +195,6 @@ There are many test names available in DBHYDRO. A subset of these are detailed i
 | TURBIDITY |
 
 ### Further reading
-See section on URL-based data access in the [DBHYDRO Browser User's Guide](http://www.sfwmd.gov/portal/page/portal/xrepository/sfwmd_repository_pdf/dbhydrobrowseruserdocumentation.pdf)
+See section on URL-based data access in the [DBHYDRO Browser User's Guide](https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf)
 
 ## References
