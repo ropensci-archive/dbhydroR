@@ -1,11 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-![](https://github.com/ropenscilabs/dbhydroR/raw/master/inst/images/profile.png)
+![](https://github.com/ropensci/dbhydroR/raw/master/inst/images/profile.png)
 
 Programmatic access to the South Florida Water Management District's [DBHYDRO database](https://www.sfwmd.gov/science-data/dbhydro)
 ===================================================================================================================================
 
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Travis-CI Build Status](https://travis-ci.org/ropenscilabs/dbhydroR.svg?branch=master)](https://travis-ci.org/ropenscilabs/dbhydroR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/dbhydroR)](https://cran.r-project.org/package=dbhydroR) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/dbhydroR)](https://cran.r-project.org/package=dbhydroR) [![](https://badges.ropensci.org/61_status.svg)](https://github.com/ropensci/onboarding/issues/61) [![DOI](https://zenodo.org/badge/64503356.svg)](https://zenodo.org/badge/latestdoi/64503356)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Travis-CI Build Status](https://travis-ci.org/ropenscilabs/dbhydroR.svg?branch=master)](https://travis-ci.org/ropensci/dbhydroR) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/dbhydroR)](https://cran.r-project.org/package=dbhydroR) [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/dbhydroR)](https://cran.r-project.org/package=dbhydroR) [![](https://badges.ropensci.org/61_status.svg)](https://github.com/ropensci/onboarding/issues/61) [![DOI](https://zenodo.org/badge/64503356.svg)](https://zenodo.org/badge/latestdoi/64503356)
 
 `dbhydroR` provides scripted access to the South Florida Water Management District's DBHYDRO database which holds over 35 million hydrologic and water quality records from the Florida Everglades and surrounding areas.
 
@@ -20,7 +20,7 @@ Installation
 
 `install.packages("devtools") # Requires RTools if using Windows`
 
-`devtools::install_github("ropenscilabs/dbhydroR")`
+`devtools::install_github("ropensci/dbhydroR")`
 
 Usage
 -----
@@ -94,10 +94,10 @@ References
 Meta
 ----
 
--   Please [report any issues or bugs](https://github.com/ropenscilabs/dbhydroR/issues).
+-   Please [report any issues or bugs](https://github.com/ropensci/dbhydroR/issues).
 
 -   Get citation information for `dbhydroR` in R by running `citation(package = 'dbhydroR')`
 
--   Please note that this project is released with a [Contributor Code of Conduct](https://github.com/ropenscilabs/dbhydroR/blob/master/CONDUCT.md). By participating in this project you agree to abide by its terms
+-   Please note that this project is released with a [Contributor Code of Conduct](https://github.com/ropensci/dbhydroR/blob/master/CONDUCT.md). By participating in this project you agree to abide by its terms
 
 [![ropensci\_footer](https://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
