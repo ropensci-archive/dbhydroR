@@ -1,5 +1,9 @@
 # dbhydroR 0.2-5 (2018-05-21)
 
+## Bug fixes
+
+* `get_dbkey` was incorrectly processing data headers
+
 ## Minor changes
 
 * Rebranded from ropenscilabs to ropensci
