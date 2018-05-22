@@ -417,7 +417,7 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
 
   if(detail.level == "full"){
     res <- XML::readHTMLTable(res, stringsAsFactors = FALSE,
-            encoding  = "UTF-8")[[3]]
+            encoding  = "UTF-8", skip.rows = 1:2, header = TRUE)[[3]]
     names(res) <- gsub("\\n", "", names(res))
 
     format_coords <- function(dt){
@@ -443,8 +443,13 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
 
   }else{
     res <- XML::readHTMLTable(res, stringsAsFactors = FALSE,
-           encoding = "UTF-8")[[3]][,c("Dbkey", "Group", "Data Type",
+           encoding = "UTF-8", skip.rows = 1:2, header = TRUE)[[3]]
+    res <- res[,c("Dbkey", "Group", "Data Type",
            "Freq", "Recorder", "Start Date", "End Date")]
+  }
+
+  if(is.null(res)){
+    stop("No dbkeys found")
   }
 
   if(nrow(res) > 1){
