@@ -37,31 +37,31 @@ clean_wq <- function(dt, raw = FALSE, mdl_handling = "raw"){
   if(!(mdl_handling %in% c("raw", "half", "full"))){
     stop("mdl_handling must be one of 'raw', 'half', or 'full'")
   }
-  
+
   dt <- dt[dt$Matrix != "DI",]
-  
+
   dt$date <- as.POSIXct(strptime(dt$Collection_Date, format = "%d-%b-%Y"),
-              tz = "America/New_York") 
-  
+              tz = "America/New_York")
+
   correct_mdl <- function(dt, mdl_handling){
     if(any(dt$Value < 0 & !is.na(dt$Value)) & mdl_handling != "raw"){
       if(mdl_handling == "half"){
-        dt[dt$Value < 0 & !is.na(dt$Value), "Value"] <- 
+        dt[dt$Value < 0 & !is.na(dt$Value), "Value"] <-
           dt[dt$Value < 0 & !is.na(dt$Value), "MDL"] / 2
       }else{
-        dt[dt$Value < 0 & !is.na(dt$Value), "Value"] <- 
+        dt[dt$Value < 0 & !is.na(dt$Value), "Value"] <-
           dt[dt$Value < 0 & !is.na(dt$Value), "MDL"]
       }
     }
     dt
   }
-  
+
   dt <- correct_mdl(dt, mdl_handling)
-  
+
   if(raw  == TRUE){
     dt
   }else{
-    dt <- dt[,c(1:23, which(names(dt) == "date"))]  
+    dt <- dt[,c(1:23, which(names(dt) == "date"))]
     dwide <- reshape2::dcast(dt, date ~ Station.ID + Test.Name + Units,
            value.var = "Value", add.missing = TRUE, fun.aggregate = mean)
     #if(any(names(dwide)=="_")){dwide<-dwide[,-which(names(dwide)=="_")]}
@@ -71,7 +71,7 @@ clean_wq <- function(dt, raw = FALSE, mdl_handling = "raw"){
     if(nrow(dwide[is.na(dwide[,1]),]) > 0){
       dwide <- dwide[-which(is.na(dwide[,1])),]
     }
-  
+
     dwide
   }
 }
@@ -87,7 +87,7 @@ cleanwq <- function(dt, raw = FALSE, mdl_handling = "raw"){
 #'@description Converts output of \code{\link{get_hydro}} from long (each piece
 #' of data on its own row) to wide format (each site x variable combination in
 #' its own column). Metadata (station-name, variable, measurement units) is
-#' parsed so that it is wholly contained in column names. 
+#' parsed so that it is wholly contained in column names.
 #'@aliases cleanhydro
 #'@export
 #'@importFrom reshape2 dcast
