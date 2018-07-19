@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dbhydroR</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.5</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.6</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@
       <h1>dbhydroR: An R package to access the DBHYDRO Environmental Database</h1>
                         <h4 class="author">Joseph Stachelek</h4>
             
-            <h4 class="date">2018-05-22</h4>
+            <h4 class="date">2018-07-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/dbhydroR/blob/master/vignettes/dbhydroR.Rmd"><code>vignettes/dbhydroR.Rmd</code></a></small>
       <div class="hidden name"><code>dbhydroR.Rmd</code></div>
@@ -111,7 +111,7 @@
 <div id="water-quality-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#water-quality-data" class="anchor"></a>Water quality data</h3>
-<p>Water quality data can be retrieved using the <code>get_wq</code> function which takes four required arguments. The user must specify a station ID, a test name, and a date range. Station IDs can be located on the <a href="http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html">ArcGIS Online Station Map</a> or the <a href="http://my.sfwmd.gov/KMLEXT/CUSTOMKMLS/DBHydro/DBHydroKML/DBHYDRO_KML.kmz">Google Earth kmz file</a>. An abbreviated list of available test names can be found in the <a href="#appendix">appendix</a> to this document while a full listing can be found at the <a href="http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_data_type_info">DBHYDRO metadata page</a>. Dates must be specified in YYYY-MM-DD format (e.g. 2015-02-26). The following set of examples retrieve measurements between March 2011 and May 2012. They can be run from the R console by issuing the command:</p>
+<p>Water quality data can be retrieved using the <code>get_wq</code> function which takes four required arguments. The user must specify a station ID, a test name, and a date range. Station IDs can be located on the <a href="https://www.sfwmd.gov/documents-by-tag/emmaps">SFWMD Station Maps</a> or the <a href="http://my.sfwmd.gov/KMLEXT/CUSTOMKMLS/DBHydro/DBHydroKML/DBHYDRO_KML.kmz">Google Earth kmz file</a>. An abbreviated list of available test names can be found in the <a href="#appendix">appendix</a> to this document while a full listing can be found at the <a href="http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_data_type_info">DBHYDRO metadata page</a>. Dates must be specified in YYYY-MM-DD format (e.g. 2015-02-26). The following set of examples retrieve measurements between March 2011 and May 2012. They can be run from the R console by issuing the command:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">example</span>(get_wq)</code></pre></div>
 
 <p>By default, <code>get_wq</code> returns a <em>cleaned output</em>. First, the cleaning function  converts the raw output from native DBHYDRO <em>long</em> format (each piece of data on its own row) to <em>wide</em> format (each site x variable combination in its own column) using the reshape2 package <span class="citation">(Wickham 2007)</span>. Next, the extra columns associated with QA flags, LIMS, and District receiving are removed. Finally, row entries associated with QA field <em>blanks</em>, which are used to check on potential sources of contamination, are removed. Setting the <code>raw</code> flag to <code>TRUE</code> will force  to retain information on QA field blanks as well as the other QA fields. An example query that retains this information and the original <em>long</em> formatting is shown below.</p>
@@ -124,7 +124,7 @@
 <div id="hydrologic-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#hydrologic-data" class="anchor"></a>Hydrologic data</h3>
-<p>Hydrologic time series data can be retrieved using the <code>get_hydro</code> function. The first task to accomplish prior to running <code>get_hydro</code> is to identify one or more dbkeys which correspond to unique site x variable time-series. This can be done before-hand using the <code>get_dbkey</code> function, the <a href="http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html">ArGIS Online Station Map</a> or the <a href="http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu">DBHYDRO Browser</a>. One useful strategy for finding desired dbkeys is to run the <code>get_dbkey</code> function interactively using progressively narrower search terms. For example, suppose we are interested in daily average wind data at Joe Bay but we have no alphanumeric <code>dbkey</code>. Initially we could run <code>get_dbkey</code> with the <code>detail.level</code> set to “summary”.</p>
+<p>Hydrologic time series data can be retrieved using the <code>get_hydro</code> function. The first task to accomplish prior to running <code>get_hydro</code> is to identify one or more dbkeys which correspond to unique site x variable time-series. This can be done before-hand using the <code>get_dbkey</code> function, the <a href="https://www.sfwmd.gov/documents-by-tag/emmaps">SFWMD Station Maps</a> or the <a href="http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu">DBHYDRO Browser</a>. One useful strategy for finding desired dbkeys is to run the <code>get_dbkey</code> function interactively using progressively narrower search terms. For example, suppose we are interested in daily average wind data at Joe Bay but we have no alphanumeric <code>dbkey</code>. Initially we could run <code>get_dbkey</code> with the <code>detail.level</code> set to “summary”.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_dbkey.html">get_dbkey</a></span>(<span class="dt">stationid =</span> <span class="st">"JBTS"</span>, <span class="dt">category =</span> <span class="st">"WEATHER"</span>, <span class="dt">param =</span> <span class="st">"WNDS"</span>,
          <span class="dt">detail.level =</span> <span class="st">"summary"</span>)</code></pre></div>
 <p>Our search returns two results but only one of them has a daily average (DA) measurement frequency. We can verify the remaining attributes of our likely dbkey by setting the <code>freq</code> parameter to “DA” and the <code>detail.level</code> parameter to “full”.</p>
@@ -230,7 +230,7 @@
 <div id="further-reading" class="section level3">
 <h3 class="hasAnchor">
 <a href="#further-reading" class="anchor"></a>Further reading</h3>
-<p>See section on URL-based data access in the <a href="http://www.sfwmd.gov/portal/page/portal/xrepository/sfwmd_repository_pdf/dbhydrobrowseruserdocumentation.pdf">DBHYDRO Browser User’s Guide</a></p>
+<p>See section on URL-based data access in the <a href="https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf">DBHYDRO Browser User’s Guide</a></p>
 </div>
 </div>
 <div id="references" class="section level2 unnumbered">
