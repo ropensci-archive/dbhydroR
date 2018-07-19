@@ -1,3 +1,9 @@
+# dbhydroR 0.2-6 (2018-07-19)
+
+## Bug fixes
+
+* Fixed critical bug in `get_hydro` causing data parsing failure in all cases
+
 # dbhydroR 0.2-5 (2018-05-21)
 
 ## Bug fixes
