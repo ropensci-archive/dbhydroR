@@ -19,7 +19,7 @@ for specific options}
 
 \item{date_max}{character date must be in POSIXct YYYY-MM-DD format}
 
-\item{test_name}{character string of test name(s). See the ArcGIS Online
+\item{test_name}{character string of test name(s). See the SFWMD
 Station Maps at \url{https://www.sfwmd.gov/documents-by-tag/emmaps}
 for specific options}
 
