@@ -8,7 +8,7 @@
 #'@param date_min character date must be in POSIXct YYYY-MM-DD format
 #'@param date_max character date must be in POSIXct YYYY-MM-DD format
 #'@param test_name character string of test name(s). See the ArcGIS Online
-#' Station Map at \url{http://my.sfwmd.gov/WAB/EnvironmentalMonitoring/index.html}
+#' Station Maps at \url{https://www.sfwmd.gov/documents-by-tag/emmaps}
 #' for specific options
 #'@param raw logical default is FALSE, set to TRUE to return data in "long"
 #' format with all comments, qa information, and database codes included
