@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dbhydroR</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.6</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.7</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@
       <h1>dbhydroR: An R package to access the DBHYDRO Environmental Database</h1>
                         <h4 class="author">Joseph Stachelek</h4>
             
-            <h4 class="date">2018-07-19</h4>
+            <h4 class="date">2019-02-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/dbhydroR/blob/master/vignettes/dbhydroR.Rmd"><code>vignettes/dbhydroR.Rmd</code></a></small>
       <div class="hidden name"><code>dbhydroR.Rmd</code></div>
@@ -94,15 +94,16 @@
 <div id="stable-version-from-cran" class="section level3">
 <h3 class="hasAnchor">
 <a href="#stable-version-from-cran" class="anchor"></a>Stable version from CRAN</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"dbhydroR"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"dbhydroR"</span>)</a></code></pre></div>
 <p>Otherwise, the <code>dbhydroR</code> can be installed by running the following command in the <code>R</code> console:</p>
 </div>
 <div id="or-development-version-from-github" class="section level3">
 <h3 class="hasAnchor">
 <a href="#or-development-version-from-github" class="anchor"></a>or development version from Github</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropensci/dbhydroR"</span>)</code></pre></div>
-<p> Once installed, the package can be loaded using the following command:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dbhydroR)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"ropensci/dbhydroR"</span>)</a></code></pre></div>
+
+<p>Once installed, the package can be loaded using the following command:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(dbhydroR)</a></code></pre></div>
 </div>
 </div>
 <div id="composing-database-queries" class="section level2">
@@ -112,50 +113,68 @@
 <h3 class="hasAnchor">
 <a href="#water-quality-data" class="anchor"></a>Water quality data</h3>
 <p>Water quality data can be retrieved using the <code>get_wq</code> function which takes four required arguments. The user must specify a station ID, a test name, and a date range. Station IDs can be located on the <a href="https://www.sfwmd.gov/documents-by-tag/emmaps">SFWMD Station Maps</a> or the <a href="http://my.sfwmd.gov/KMLEXT/CUSTOMKMLS/DBHydro/DBHydroKML/DBHYDRO_KML.kmz">Google Earth kmz file</a>. An abbreviated list of available test names can be found in the <a href="#appendix">appendix</a> to this document while a full listing can be found at the <a href="http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_data_type_info">DBHYDRO metadata page</a>. Dates must be specified in YYYY-MM-DD format (e.g. 2015-02-26). The following set of examples retrieve measurements between March 2011 and May 2012. They can be run from the R console by issuing the command:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">example</span>(get_wq)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">example</span>(get_wq)</a></code></pre></div>
+\begin{itemize}
 
+<p>One variable at one station</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/get_wq.html">get_wq</a></span>(<span class="dt">station_id =</span> <span class="st">"FLAB08"</span>, <span class="dt">date_min =</span> <span class="st">"2011-03-01"</span>, </a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">      <span class="dt">date_max =</span> <span class="st">"2012-05-01"</span>, <span class="dt">test_name =</span> <span class="st">"CHLOROPHYLLA-SALINE"</span>)</a></code></pre></div>
+
+<p>One variable at multiple stations</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="../reference/get_wq.html">get_wq</a></span>(<span class="dt">station_id =</span> <span class="kw">c</span>(<span class="st">"FLAB08"</span>,<span class="st">"FLAB09"</span>), <span class="dt">date_min =</span> <span class="st">"2011-03-01"</span>,</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">      <span class="dt">date_max =</span> <span class="st">"2012-05-01"</span>, <span class="dt">test_name =</span> <span class="st">"CHLOROPHYLLA-SALINE"</span>)</a></code></pre></div>
+
+<p>One variable at a wildcard station</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="../reference/get_wq.html">get_wq</a></span>(<span class="dt">station_id =</span> <span class="kw">c</span>(<span class="st">"FLAB0%"</span>), <span class="dt">date_min =</span> <span class="st">"2011-03-01"</span>, </a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">      <span class="dt">date_max =</span> <span class="st">"2012-05-01"</span>, <span class="dt">test_name =</span> <span class="st">"CHLOROPHYLLA-SALINE"</span>)</a></code></pre></div>
+
+<p>Multiple variables at multiple stations</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="../reference/get_wq.html">get_wq</a></span>(<span class="dt">station_id =</span> <span class="kw">c</span>(<span class="st">"FLAB08"</span>,<span class="st">"FLAB09"</span>), <span class="dt">date_min =</span> <span class="st">"2011-03-01"</span>,</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">      <span class="dt">date_max =</span> <span class="st">"2012-05-01"</span>, <span class="dt">test_name =</span> <span class="kw">c</span>(<span class="st">"CHLOROPHYLLA-SALINE"</span>,</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">      <span class="st">"SALINITY"</span>))</a></code></pre></div>
+<p>\end{itemize}</p>
 <p>By default, <code>get_wq</code> returns a <em>cleaned output</em>. First, the cleaning function  converts the raw output from native DBHYDRO <em>long</em> format (each piece of data on its own row) to <em>wide</em> format (each site x variable combination in its own column) using the reshape2 package <span class="citation">(Wickham 2007)</span>. Next, the extra columns associated with QA flags, LIMS, and District receiving are removed. Finally, row entries associated with QA field <em>blanks</em>, which are used to check on potential sources of contamination, are removed. Setting the <code>raw</code> flag to <code>TRUE</code> will force  to retain information on QA field blanks as well as the other QA fields. An example query that retains this information and the original <em>long</em> formatting is shown below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">raw_wq &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_wq.html">get_wq</a></span>(<span class="dt">station_id =</span> <span class="st">"FLAB08"</span>, <span class="dt">date_min =</span> <span class="st">"2011-03-01"</span>, 
-      <span class="dt">date_max =</span> <span class="st">"2011-05-01"</span>, <span class="dt">test_name =</span> <span class="st">"CHLOROPHYLLA-SALINE"</span>,
-      <span class="dt">raw =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">raw_wq &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_wq.html">get_wq</a></span>(<span class="dt">station_id =</span> <span class="st">"FLAB08"</span>, <span class="dt">date_min =</span> <span class="st">"2011-03-01"</span>, </a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">      <span class="dt">date_max =</span> <span class="st">"2011-05-01"</span>, <span class="dt">test_name =</span> <span class="st">"CHLOROPHYLLA-SALINE"</span>,</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">      <span class="dt">raw =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>This raw data can then be cleaned using the  function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/clean_wq.html">clean_wq</a></span>(raw_wq)</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="../reference/clean_wq.html">clean_wq</a></span>(raw_wq)</a></code></pre></div>
 </div>
 <div id="hydrologic-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#hydrologic-data" class="anchor"></a>Hydrologic data</h3>
 <p>Hydrologic time series data can be retrieved using the <code>get_hydro</code> function. The first task to accomplish prior to running <code>get_hydro</code> is to identify one or more dbkeys which correspond to unique site x variable time-series. This can be done before-hand using the <code>get_dbkey</code> function, the <a href="https://www.sfwmd.gov/documents-by-tag/emmaps">SFWMD Station Maps</a> or the <a href="http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu">DBHYDRO Browser</a>. One useful strategy for finding desired dbkeys is to run the <code>get_dbkey</code> function interactively using progressively narrower search terms. For example, suppose we are interested in daily average wind data at Joe Bay but we have no alphanumeric <code>dbkey</code>. Initially we could run <code>get_dbkey</code> with the <code>detail.level</code> set to “summary”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_dbkey.html">get_dbkey</a></span>(<span class="dt">stationid =</span> <span class="st">"JBTS"</span>, <span class="dt">category =</span> <span class="st">"WEATHER"</span>, <span class="dt">param =</span> <span class="st">"WNDS"</span>,
-         <span class="dt">detail.level =</span> <span class="st">"summary"</span>)</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="../reference/get_dbkey.html">get_dbkey</a></span>(<span class="dt">stationid =</span> <span class="st">"JBTS"</span>, <span class="dt">category =</span> <span class="st">"WEATHER"</span>, <span class="dt">param =</span> <span class="st">"WNDS"</span>,</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">         <span class="dt">detail.level =</span> <span class="st">"summary"</span>)</a></code></pre></div>
 <p>Our search returns two results but only one of them has a daily average (DA) measurement frequency. We can verify the remaining attributes of our likely dbkey by setting the <code>freq</code> parameter to “DA” and the <code>detail.level</code> parameter to “full”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_dbkey.html">get_dbkey</a></span>(<span class="dt">stationid =</span> <span class="st">"JBTS"</span>, <span class="dt">category =</span> <span class="st">"WEATHER"</span>, <span class="dt">param =</span> <span class="st">"WNDS"</span>,
-         <span class="dt">freq =</span> <span class="st">"DA"</span>, <span class="dt">detail.level =</span> <span class="st">"full"</span>)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="../reference/get_dbkey.html">get_dbkey</a></span>(<span class="dt">stationid =</span> <span class="st">"JBTS"</span>, <span class="dt">category =</span> <span class="st">"WEATHER"</span>, <span class="dt">param =</span> <span class="st">"WNDS"</span>,</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">         <span class="dt">freq =</span> <span class="st">"DA"</span>, <span class="dt">detail.level =</span> <span class="st">"full"</span>)</a></code></pre></div>
 <p>This exact dbkey can only be returned reliably by specifying all of the <code>get_dbkey</code> parameters applicable to the “WEATHER” category.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_dbkey.html">get_dbkey</a></span>(<span class="dt">stationid =</span> <span class="st">"JBTS"</span>, <span class="dt">category =</span> <span class="st">"WEATHER"</span>, <span class="dt">param =</span> <span class="st">"WNDS"</span>,
-         <span class="dt">freq =</span> <span class="st">"DA"</span>, <span class="dt">stat =</span> <span class="st">"MEAN"</span>, <span class="dt">recorder =</span> <span class="st">"CR10"</span>, <span class="dt">agency =</span> <span class="st">"WMD"</span>,
-         <span class="dt">detail.level =</span> <span class="st">"dbkey"</span>)</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="../reference/get_dbkey.html">get_dbkey</a></span>(<span class="dt">stationid =</span> <span class="st">"JBTS"</span>, <span class="dt">category =</span> <span class="st">"WEATHER"</span>, <span class="dt">param =</span> <span class="st">"WNDS"</span>,</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">         <span class="dt">freq =</span> <span class="st">"DA"</span>, <span class="dt">stat =</span> <span class="st">"MEAN"</span>, <span class="dt">recorder =</span> <span class="st">"CR10"</span>, <span class="dt">agency =</span> <span class="st">"WMD"</span>,</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">         <span class="dt">detail.level =</span> <span class="st">"dbkey"</span>)</a></code></pre></div>
 <p>Now that we have our dbkey in hand, we can use is as input to <code>get_hydro</code>. In addition to a dbkey, we must specify a date range. Dates must be entered in YYYY-MM-DD format (e.g. 2015-02-26).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_hydro.html">get_hydro</a></span>(<span class="dt">dbkey =</span> <span class="st">"15081"</span>,
-         <span class="dt">date_min =</span> <span class="st">"2013-01-01"</span>, <span class="dt">date_max =</span> <span class="st">"2013-02-02"</span>)</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="../reference/get_hydro.html">get_hydro</a></span>(<span class="dt">dbkey =</span> <span class="st">"15081"</span>,</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">         <span class="dt">date_min =</span> <span class="st">"2013-01-01"</span>, <span class="dt">date_max =</span> <span class="st">"2013-02-02"</span>)</a></code></pre></div>
 <p>Alternatively, we can specify a set of arguments in our call to <code>get_hydro</code> that will be passed to <code>get_dbkey</code> on-the-fly. Use caution when using this strategy as complex stationid/category/parameter combinations can easily cause errors or return unexpected results. It is good practice to pre-screen your parameter values using <code>get_dbkey</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_hydro.html">get_hydro</a></span>(<span class="dt">date_min =</span> <span class="st">"2013-01-01"</span>, <span class="dt">date_max =</span> <span class="st">"2013-02-02"</span>,
-         <span class="dt">stationid =</span> <span class="st">"JBTS"</span>, <span class="dt">category =</span> <span class="st">"WEATHER"</span>, <span class="dt">param =</span> <span class="st">"WNDS"</span>,
-         <span class="dt">freq =</span> <span class="st">"DA"</span>, <span class="dt">stat =</span> <span class="st">"MEAN"</span>, <span class="dt">recorder =</span> <span class="st">"CR10"</span>, <span class="dt">agency =</span> <span class="st">"WMD"</span>)</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="../reference/get_hydro.html">get_hydro</a></span>(<span class="dt">date_min =</span> <span class="st">"2013-01-01"</span>, <span class="dt">date_max =</span> <span class="st">"2013-02-02"</span>,</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">         <span class="dt">stationid =</span> <span class="st">"JBTS"</span>, <span class="dt">category =</span> <span class="st">"WEATHER"</span>, <span class="dt">param =</span> <span class="st">"WNDS"</span>,</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">         <span class="dt">freq =</span> <span class="st">"DA"</span>, <span class="dt">stat =</span> <span class="st">"MEAN"</span>, <span class="dt">recorder =</span> <span class="st">"CR10"</span>, <span class="dt">agency =</span> <span class="st">"WMD"</span>)</a></code></pre></div>
 <p>The contents of multiple data streams can be returned by specifying multiple dbkeys or entering on-the-fly <code>get_dbkey</code> queries that return multiple dbkeys.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_hydro.html">get_hydro</a></span>(<span class="dt">dbkey =</span> <span class="kw">c</span>(<span class="st">"15081"</span>, <span class="st">"15069"</span>), <span class="dt">date_min =</span> <span class="st">"2013-01-01"</span>,
-         <span class="dt">date_max =</span> <span class="st">"2013-02-02"</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_hydro.html">get_hydro</a></span>(<span class="dt">date_min =</span> <span class="st">"2013-01-01"</span>, <span class="dt">date_max =</span> <span class="st">"2013-02-02"</span>,
-         <span class="dt">category =</span> <span class="st">"WEATHER"</span>, <span class="dt">stationid =</span> <span class="kw">c</span>(<span class="st">"JBTS"</span>, <span class="st">"MBTS"</span>),
-         <span class="dt">param =</span> <span class="st">"WNDS"</span>, <span class="dt">freq =</span> <span class="st">"DA"</span>, <span class="dt">stat =</span> <span class="st">"MEAN"</span>)</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw"><a href="../reference/get_hydro.html">get_hydro</a></span>(<span class="dt">dbkey =</span> <span class="kw">c</span>(<span class="st">"15081"</span>, <span class="st">"15069"</span>), <span class="dt">date_min =</span> <span class="st">"2013-01-01"</span>,</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">         <span class="dt">date_max =</span> <span class="st">"2013-02-02"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw"><a href="../reference/get_hydro.html">get_hydro</a></span>(<span class="dt">date_min =</span> <span class="st">"2013-01-01"</span>, <span class="dt">date_max =</span> <span class="st">"2013-02-02"</span>,</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">         <span class="dt">category =</span> <span class="st">"WEATHER"</span>, <span class="dt">stationid =</span> <span class="kw">c</span>(<span class="st">"JBTS"</span>, <span class="st">"MBTS"</span>),</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">         <span class="dt">param =</span> <span class="st">"WNDS"</span>, <span class="dt">freq =</span> <span class="st">"DA"</span>, <span class="dt">stat =</span> <span class="st">"MEAN"</span>)</a></code></pre></div>
 <p>More <code>get_hydro</code> examples including queries of other <code>category</code> values (“SW”, “GW”, and “WQ”) can be viewed by issuing the following commands from the <code>R</code> console:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">example</span>(get_dbkey)
-<span class="kw">example</span>(get_hydro)</code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">example</span>(get_dbkey)</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">example</span>(get_hydro)</a></code></pre></div>
 <p>By default, <code>get_hydro</code> returns a <em>cleaned output</em>. First, the cleaning function <code>clean_hydro</code> converts the raw output from native DBHYDRO <em>long</em> format (each piece of data on its own row) to <em>wide</em> format (each site x variable combination in its own column) using the reshape2 package <span class="citation">(Wickham 2007)</span>. Next, some extra columns are removed that are associated with measurement location (longitude/latitude), frequency, and QA flags are removed. Setting the <code>raw</code> flag to <code>TRUE</code> will force <code>get_hydro</code> to retain the original formatting and metadata fields. An example query that retains this information and the original <em>long</em> formatting is shown below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">raw_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_hydro.html">get_hydro</a></span>(<span class="dt">date_min =</span> <span class="st">"2013-01-01"</span>, <span class="dt">date_max =</span> <span class="st">"2013-02-02"</span>,
-         <span class="dt">stationid =</span> <span class="st">"JBTS"</span>, <span class="dt">category =</span> <span class="st">"WEATHER"</span>, <span class="dt">param =</span> <span class="st">"WNDS"</span>,
-         <span class="dt">freq =</span> <span class="st">"DA"</span>, <span class="dt">stat =</span> <span class="st">"MEAN"</span>, <span class="dt">recorder =</span> <span class="st">"CR10"</span>, <span class="dt">agency =</span> <span class="st">"WMD"</span>, <span class="dt">raw =</span> <span class="ot">TRUE</span>)
-         
-<span class="kw"><a href="../reference/clean_hydro.html">clean_hydro</a></span>(raw_data)</code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">raw_data &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_hydro.html">get_hydro</a></span>(<span class="dt">date_min =</span> <span class="st">"2013-01-01"</span>, <span class="dt">date_max =</span> <span class="st">"2013-02-02"</span>,</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">         <span class="dt">stationid =</span> <span class="st">"JBTS"</span>, <span class="dt">category =</span> <span class="st">"WEATHER"</span>, <span class="dt">param =</span> <span class="st">"WNDS"</span>,</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">         <span class="dt">freq =</span> <span class="st">"DA"</span>, <span class="dt">stat =</span> <span class="st">"MEAN"</span>, <span class="dt">recorder =</span> <span class="st">"CR10"</span>, <span class="dt">agency =</span> <span class="st">"WMD"</span>, <span class="dt">raw =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">         </a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="kw"><a href="../reference/clean_hydro.html">clean_hydro</a></span>(raw_data)</a></code></pre></div>
 </div>
 </div>
 <div id="appendix" class="section level2">
@@ -238,7 +257,7 @@
 <a href="#references" class="anchor"></a>References</h2>
 <div id="refs" class="references">
 <div id="ref-reshape2">
-<p>Wickham, Hadley. 2007. “Reshaping Data with the reshape Package.” <em>Journal of Statistical Software</em> 21 (12): 1–20. <a href="http://www.jstatsoft.org/v21/i12/" class="uri">http://www.jstatsoft.org/v21/i12/</a>.</p>
+<p>Wickham, Hadley. 2007. “Reshaping Data with the reshape Package.” <em>Journal of Statistical Software</em> 21 (12): 1–20. <a href="http://www.jstatsoft.org/v21/i12/">http://www.jstatsoft.org/v21/i12/</a>.</p>
 </div>
 </div>
 </div>

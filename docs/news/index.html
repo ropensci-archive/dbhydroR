@@ -55,7 +55,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dbhydroR</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.6</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.7</span>
       </span>
     </div>
 
@@ -101,13 +101,25 @@
       <small>Source: <a href='https://github.com/ropensci/dbhydroR/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="dbhydror-0-2-6-2018-07-19" class="section level1">
+    <div id="dbhydror-0-2-7-2019-02-15" class="section level1">
 <h1 class="page-header">
-<a href="#dbhydror-0-2-6-2018-07-19" class="anchor"></a>dbhydroR 0.2-6 (2018-07-19)<small> 2018-07-19 </small>
+<a href="#dbhydror-0-2-7-2019-02-15" class="anchor"></a>dbhydroR 0.2-7 (2019-02-15)<small> Unreleased </small>
 </h1>
 <div id="bug-fixes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<ul>
+<li>Fixed critical bug in <code>get_hydro</code> causing data parsing failure in all cases (<a href='https://github.com/ropensci/dbhydroR/issues/16'>#16</a>)</li>
+</ul>
+</div>
+</div>
+    <div id="dbhydror-0-2-6-2018-07-19" class="section level1">
+<h1 class="page-header">
+<a href="#dbhydror-0-2-6-2018-07-19" class="anchor"></a>dbhydroR 0.2-6 (2018-07-19)<small> 2018-07-19 </small>
+</h1>
+<div id="bug-fixes-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Fixed critical bug in <code>get_hydro</code> causing data parsing failure in all cases</li>
 </ul>
@@ -117,9 +129,9 @@
 <h1 class="page-header">
 <a href="#dbhydror-0-2-5-2018-05-21" class="anchor"></a>dbhydroR 0.2-5 (2018-05-21)<small> 2018-05-22 </small>
 </h1>
-<div id="bug-fixes-1" class="section level2">
+<div id="bug-fixes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>
 <code>get_dbkey</code> was incorrectly processing data headers</li>
@@ -138,9 +150,9 @@
 <h1 class="page-header">
 <a href="#dbhydror-0-2-4-2017-10-30" class="anchor"></a>dbhydroR 0.2-4 (2017-10-30)<small> 2017-10-30 </small>
 </h1>
-<div id="bug-fixes-2" class="section level2">
+<div id="bug-fixes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>The ArcGIS online station map no longer resolves. Links have been updated.</li>
 <li>Sweave sty files are excluded in CRAN build.</li>
@@ -151,9 +163,9 @@
 <h1 class="page-header">
 <a href="#dbhydror-0-2-3-2017-08-02" class="anchor"></a>dbhydroR 0.2-3 (2017-08-02)<small> 2017-08-02 </small>
 </h1>
-<div id="bug-fixes-3" class="section level2">
+<div id="bug-fixes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-4" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>
 <code><a href="../reference/get_hydro.html">get_hydro()</a></code> now resolves multiple matching of on-the-fly dbkeys to the one with the longest period of record.</li>
@@ -172,9 +184,9 @@
 <h1 class="page-header">
 <a href="#dbhydror-0-2-2-2017-02-03" class="anchor"></a>dbhydroR 0.2-2 (2017-02-03)<small> 2017-02-03 </small>
 </h1>
-<div id="bug-fixes-4" class="section level2">
+<div id="bug-fixes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-4" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-5" class="anchor"></a>Bug fixes</h2>
 <p><code><a href="../reference/get_hydro.html">get_hydro()</a></code> now works if a <code>dbkey</code> contains leading zeros</p>
 </div>
 </div>
@@ -204,9 +216,9 @@
 <li>The package API has been changed to underscored function names. <code><a href="../reference/get_wq.html">getwq()</a></code>, <code><a href="../reference/get_hydro.html">gethydro()</a></code>, and <code><a href="../reference/get_dbkey.html">getdbkey()</a></code> are now deprecated in favor of <code><a href="../reference/get_wq.html">get_wq()</a></code>, <code><a href="../reference/get_hydro.html">get_hydro()</a></code>, <code><a href="../reference/get_dbkey.html">get_dbkey()</a></code>.</li>
 </ul>
 </div>
-<div id="bug-fixes-5" class="section level2">
+<div id="bug-fixes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-5" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-6" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>
 <code><a href="../reference/get_dbkey.html">getdbkey()</a></code> is no longer limited to &lt; 100 results</li>
@@ -272,9 +284,9 @@
 <h1 class="page-header">
 <a href="#dbhydror-0-1-4" class="anchor"></a>dbhydroR 0.1-4<small> Unreleased </small>
 </h1>
-<div id="bug-fixes-6" class="section level2">
+<div id="bug-fixes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-6" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-7" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Improvements to <code><a href="../reference/get_hydro.html">gethydro()</a></code> to guess missing column names of instantaneous data</li>
 </ul>
@@ -286,6 +298,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#dbhydror-0-2-7-2019-02-15">0.2-7</a></li>
         <li><a href="#dbhydror-0-2-6-2018-07-19">0.2-6</a></li>
         <li><a href="#dbhydror-0-2-5-2018-05-21">0.2-5</a></li>
         <li><a href="#dbhydror-0-2-4-2017-10-30">0.2-4</a></li>
