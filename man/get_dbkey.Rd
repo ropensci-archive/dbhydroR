@@ -6,8 +6,8 @@
 \title{Query dbkey information}
 \usage{
 get_dbkey(category, stationid = NA, param = NA, freq = NA,
-  longest = FALSE, stat = NA, recorder = NA, agency = NA, strata = NA,
-  detail.level = "summary", ...)
+  longest = FALSE, stat = NA, recorder = NA, agency = NA,
+  strata = NA, detail.level = "summary", ...)
 }
 \arguments{
 \item{category}{character string, choice of "WEATHER", "SW", "GW", or "WQ"}

@@ -5,7 +5,8 @@
 \alias{gethydro}
 \title{Retrieve hydrologic data from the DBHYDRO Environmental Database}
 \usage{
-get_hydro(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE, ...)
+get_hydro(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
+  ...)
 }
 \arguments{
 \item{dbkey}{character string specifying a unique data series.

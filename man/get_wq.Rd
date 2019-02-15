@@ -5,10 +5,10 @@
 \alias{getwq}
 \title{Retrieve water quality data from the DBHYDRO Environmental Database}
 \usage{
-get_wq(station_id = NA, date_min = NA, date_max = NA, test_name = NA,
-  mdl_handling = "raw", raw = FALSE, qc_strip = "N", qc_field = "N",
-  test_number = NA, v_target_code = "file_csv", sample_id = NA,
-  project_code = NA)
+get_wq(station_id = NA, date_min = NA, date_max = NA,
+  test_name = NA, mdl_handling = "raw", raw = FALSE,
+  qc_strip = "N", qc_field = "N", test_number = NA,
+  v_target_code = "file_csv", sample_id = NA, project_code = NA)
 }
 \arguments{
 \item{station_id}{character string of station id(s). See the SFWMD station
