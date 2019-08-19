@@ -3,7 +3,7 @@
 #'@description Retrieve water quality data from the
 #' DBHYDRO Environmental Database
 #'@param station_id character string of station id(s). See the SFWMD station
-#' search utility at \url{http://my.sfwmd.gov/dbhydroplsql/water_quality_data.show_group_station_characters}
+#' search utility at \url{https://my.sfwmd.gov/dbhydroplsql/water_quality_data.show_group_station_characters}
 #' for specific options
 #'@param date_min character date must be in POSIXct YYYY-MM-DD format
 #'@param date_max character date must be in POSIXct YYYY-MM-DD format
@@ -30,7 +30,7 @@
 #'}
 #'@aliases getwq
 #'@export
-#'@importFrom httr GET content
+#'@importFrom httr GET content timeout
 #'@importFrom utils read.csv
 #'@details By default, \code{get_wq} returns a cleaned output. First, the
 #' cleaning function \code{\link{clean_wq}} converts the raw output from native
@@ -75,7 +75,7 @@ get_wq <- function(station_id = NA, date_min = NA, date_max = NA,
     stop("Enter dates as quote-wrapped character strings in YYYY-MM-DD format")
   }
 
-  servfull <- "http://my.sfwmd.gov/dbhydroplsql/water_quality_data.report_full"
+  servfull <- "https://my.sfwmd.gov/dbhydroplsql/water_quality_data.report_full"
 
   #try(ping<-RCurl::getURL(
   # "http://www.sfwmd.gov/portal/page/portal/sfwmdmain/home%20page"),
@@ -178,7 +178,7 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'\item using the Environmental Monitoring Location Maps
 #' (\url{https://www.sfwmd.gov/documents-by-tag/emmaps})
 #'\item using the DBHYDRO Browser
-#' (\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
+#' (\url{https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
 #'}
 #'
 #'\item The second way to run \code{get_hydro} is to specify additional
@@ -232,7 +232,7 @@ get_hydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
     dbkey <- substring(dbkey, 1, (nchar(dbkey) - 1))
   }
 
-  servfull <- "http://my.sfwmd.gov/dbhydroplsql/web_io.report_process"
+  servfull <- "https://my.sfwmd.gov/dbhydroplsql/web_io.report_process"
 
   if(!is.na(date_min)){
     date_min <- strftime(date_min, format = "%Y%m%d")
@@ -340,8 +340,8 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
 #'@aliases getdbkey
 #'@importFrom XML readHTMLTable
 #'@importFrom stats setNames
-#'@references \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
-#'@references \url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_meta_data}
+#'@references \url{https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
+#'@references \url{https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_meta_data}
 #'@examples \dontrun{
 #'# Weather
 #'get_dbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS",
@@ -409,7 +409,7 @@ get_dbkey <- function(category, stationid = NA, param = NA, freq = NA,
     qy <- qy[-which(is.na(qy))]
   }
 
-  servfull <- "http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
+  servfull <- "https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched"
   res <- dbh_GET(servfull, query = qy)
   res <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1',
           suppressMessages(res))
@@ -507,7 +507,7 @@ getdbkey <- function(category, stationid = NA, param = NA, freq = NA,
 }
 
 dbh_GET <- function(url, ...) {
-  res <- httr::GET(url, ...)
+  res <- httr::GET(url, httr::timeout(20), ...)
   httr::stop_for_status(res)
   httr::content(res, "text", encoding = "UTF-8") # parse to text
 }
