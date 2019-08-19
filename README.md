@@ -45,7 +45,7 @@ Station IDs and date ranges can be viewed in the [Environmental
 Monitoring Location
 Maps](https://www.sfwmd.gov/documents-by-tag/emmaps). Test names can be
 viewed in the [Data Types Metadata
-Table](http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_data_type_info).
+Table](https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_data_type_info).
 
 #### One variable at one station
 
