@@ -15,3 +15,5 @@
 ^vignettes/fancyhdr.sty
 ^vignettes/framed.sty
 ^docs
+^doc$
+^Meta$

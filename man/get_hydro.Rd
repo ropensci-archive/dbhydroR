@@ -36,7 +36,7 @@ argument. \code{dbkeys} can be found by:
 \item using the Environmental Monitoring Location Maps
 (\url{https://www.sfwmd.gov/documents-by-tag/emmaps})
 \item using the DBHYDRO Browser
-(\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
+(\url{https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
 }
 
 \item The second way to run \code{get_hydro} is to specify additional

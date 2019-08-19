@@ -73,7 +73,7 @@ get_dbkey(stationid = "C111\%", category = "WQ")
 }
 }
 \references{
-\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
+\url{https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
 
-\url{http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_meta_data}
+\url{https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_meta_data}
 }
