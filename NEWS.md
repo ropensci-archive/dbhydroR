@@ -1,3 +1,10 @@
+# dbhydroR 0.2-8 
+
+## Minor changes
+
+* Switch all URLs from http to https
+* Turn off automated testing of `get_wq` example code
+
 # dbhydroR 0.2-7 (2019-02-15)
 
 ## Bug fixes
