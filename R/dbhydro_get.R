@@ -43,7 +43,7 @@
 #' other QA fields.
 #'@examples
 #'
-#'\donttest{
+#'\dontrun{
 #'#one variable and one station
 #'get_wq(station_id = "FLAB08",
 #'date_min = "2011-03-01", date_max = "2012-05-01",
