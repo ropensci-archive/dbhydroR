@@ -50,29 +50,29 @@ Table](https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_data_type_info).
 #### One variable at one station
 
     get_wq(station_id = "FLAB08", date_min = "2011-03-01", 
-          date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
+          date_max = "2012-05-01", test_name = "CHLOROPHYLL-A, SALINE")
 
 #### One variable at multiple stations
 
     get_wq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
-          date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
+          date_max = "2012-05-01", test_name = "CHLOROPHYLL-A, SALINE")
 
 #### One variable at a wildcard station
 
     get_wq(station_id = c("FLAB0%"), date_min = "2011-03-01", 
-          date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
+          date_max = "2012-05-01", test_name = "CHLOROPHYLL-A, SALINE")
 
 #### Multiple variables at multiple stations
 
     get_wq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
-          date_max = "2012-05-01", test_name = c("CHLOROPHYLLA-SALINE",
+          date_max = "2012-05-01", test_name = c("CHLOROPHYLL-A, SALINE",
           "SALINITY"))
 
 #### Operate on raw data
 
     raw_data <- get_wq(station_id = "FLAB08", date_min = "2011-03-01", 
-          date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE", raw = TRUE)
-    
+          date_max = "2012-05-01", test_name = "CHLOROPHYLL-A, SALINE", raw = TRUE)
+
     clean_wq(raw_data)
 
 ### Hydrologic data
@@ -109,16 +109,15 @@ Guide](https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdoc
 
 ## Meta
 
-  - Please [report any issues or
+-   Please [report any issues or
     bugs](https://github.com/ropensci/dbhydroR/issues).
 
-  - Get citation information for `dbhydroR` in R by running
+-   Get citation information for `dbhydroR` in R by running
     `citation(package = 'dbhydroR')`
 
-  - Please note that this project is released with a [Contributor Code
+-   Please note that this project is released with a [Contributor Code
     of
     Conduct](https://github.com/ropensci/dbhydroR/blob/master/CONDUCT.md).
-    By participating in this project you agree to abide by its
-terms
+    By participating in this project you agree to abide by its terms
 
 [![ropensci\_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

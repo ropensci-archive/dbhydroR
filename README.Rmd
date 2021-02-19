@@ -50,32 +50,32 @@ Station IDs and date ranges can be viewed in the [Environmental Monitoring Locat
 #### One variable at one station
 ```
 get_wq(station_id = "FLAB08", date_min = "2011-03-01", 
-      date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
+      date_max = "2012-05-01", test_name = "CHLOROPHYLL-A, SALINE")
 ```
 
 #### One variable at multiple stations 
 ```
 get_wq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
-      date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
+      date_max = "2012-05-01", test_name = "CHLOROPHYLL-A, SALINE")
 ```
 
 #### One variable at a wildcard station
 ```
 get_wq(station_id = c("FLAB0%"), date_min = "2011-03-01", 
-      date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE")
+      date_max = "2012-05-01", test_name = "CHLOROPHYLL-A, SALINE")
 ```
 
 #### Multiple variables at multiple stations
 ```
 get_wq(station_id = c("FLAB08","FLAB09"), date_min = "2011-03-01",
-      date_max = "2012-05-01", test_name = c("CHLOROPHYLLA-SALINE",
+      date_max = "2012-05-01", test_name = c("CHLOROPHYLL-A, SALINE",
       "SALINITY"))
 ```
 
 #### Operate on raw data
 ```
 raw_data <- get_wq(station_id = "FLAB08", date_min = "2011-03-01", 
-      date_max = "2012-05-01", test_name = "CHLOROPHYLLA-SALINE", raw = TRUE)
+      date_max = "2012-05-01", test_name = "CHLOROPHYLL-A, SALINE", raw = TRUE)
 
 clean_wq(raw_data)
 ```
