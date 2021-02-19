@@ -11,8 +11,6 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![Travis-CI Build
 Status](https://travis-ci.org/ropensci/dbhydroR.svg?branch=master)](https://travis-ci.org/ropensci/dbhydroR)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/dbhydroR)](https://cran.r-project.org/package=dbhydroR)
-[![CRAN RStudio mirror
-downloads](https://cranlogs.r-pkg.org/badges/dbhydroR)](https://cran.r-project.org/package=dbhydroR)
 [![](https://badges.ropensci.org/61_status.svg)](https://github.com/ropensci/onboarding/issues/61)
 [![DOI](https://zenodo.org/badge/64503356.svg)](https://zenodo.org/badge/latestdoi/64503356)
 
