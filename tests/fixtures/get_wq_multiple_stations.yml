@@ -1,0 +1,161 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://my.sfwmd.gov/dbhydroplsql/water_quality_data.report_full?v_where_clause=where%20date_collected%20%3E%20%2701-Mar-2011%27%20and%20date_collected%20%3C%20%2701-May-2012%27%20and%20station_id%20in%20%28%27FLAB08%27%2C%27FLAB09%27%29%20and%20test_name%20in%20%28%27CHLOROPHYLL-A%2C%20SALINE%27%29&v_target_code=file_csv&v_exc_flagged=N&v_exc_qc=N
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      xet-cookie: ''
+      age: '6'
+      date: Sat, 20 Feb 2021 14:59:54 GMT
+      content-length: '11303'
+      connection: Keep-Alive
+      via: 'NS-CACHE-10.0:  15'
+      etag: '"KXIEBNGBLNKWLOXS"'
+      content-disposition: attachment;filename= REPORT.csv
+      x-db-content-length: '11303'
+      content-type: appl/text
+      server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
+        (N;ecid=72430009654946470,0:1)
+      content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
+        sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
+        *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; style-src ''self'' ''unsafe-inline''
+        ''unsafe-eval'' *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; frame-ancestors  *.sfwmd.gov;
+        img-src ''self'' data: *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com;'
+    body:
+      encoding: UTF-8
+      file: no
+      string: "\"Project Code\",\"Station ID\",\"Sample ID\",\"First Trigger Date\",\"Collection_Date\",\"Sample
+        Type New\",\"Collection Method\",\"Depth\",\"Depth Unit\",\"Matrix\",\"Test
+        Number\",\"Test Name\",\"Storet Code\",\"Method\",\"Measure Date\",\"Value\",\"Sigfig
+        Value\",\"Uncertainty\",\"MDL\",\"PQL\",\"RDL\",\"Units\",\"Remark Code\",\"Flag\",\"Receive
+        Date\",\"LIMS Number\",\"Collection Agency\",\"Source\",\"Owner\",\"Validation
+        Level\",\"Validator\",\"Sampling Purpose\",\"Data Investigation\",\"T Depth\",\"Upper
+        Depth\",\"Lower Depth\",\"DCS(METERS)\",\"Filtration Date\",\"Sample Type\",\"QC
+        Type\",\"Discharge\",\"Up/Down Stream\",\"Weather Code\",\"Program Type\",\"NDEC\",\"Sample
+        Comments\",\"Result Comments\"\r\n\"FLAB\",\"FLAB08\",\"P51524-4\",\"\",\"21-MAR-2011
+        13:33\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"05-APR-2011
+        14:21\",\".196\",\"0.196\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"22-MAR-2011
+        10:24\",\"27307004\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"1\",\"0\",\"2\",\"MON\",\"\",\"Sample
+        is pale green with low suspended solids present. Low flow with sustained winds
+        from the north northeast at 18 to 20 mph. SECCHI ON BOTTOM.\",\"\"\r\n\"FLAB\",\"FLAB08\",\"P51524-7\",\"\",\"21-MAR-2011
+        13:45\",\"FCEB\",\"G\",\"0.00\",\"\",\"DI\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"05-APR-2011
+        14:23\",\"-.004\",\"-0.004\",\"\",\".004\",\"0.0160\",\"0.0040\",\"ug/L\",\"U\",\"\",\"22-MAR-2011
+        10:24\",\"27307007\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"9\",\"EB\",\"0\",\"0\",\"2\",\"MON\",\"\",\"DI,
+        NISKIN, BUCKET, SYRINGE, FILTER SAMPLE BOTTLE. FCEB COLLECTED AT STATION FLAB08\",\"\"\r\n\"FLAB\",\"FLAB08\",\"P52293-4\",\"\",\"11-APR-2011
+        13:17\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"22-APR-2011
+        12:05\",\".276\",\"0.276\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"12-APR-2011
+        09:50\",\"28404004\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"1\",\"0\",\"2\",\"MON\",\"\",\"Sample
+        clear, low incoming flow, wind 5-10mph ESE.   SECCHI ON BOTTOM.\",\"\"\r\n\"FLAB\",\"FLAB08\",\"P52293-7\",\"\",\"11-APR-2011
+        13:22\",\"FCEB\",\"G\",\"0.00\",\"\",\"DI\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"22-APR-2011
+        13:08\",\"-.004\",\"-0.004\",\"\",\".004\",\"0.0160\",\"0.0040\",\"ug/L\",\"U\",\"\",\"12-APR-2011
+        09:50\",\"28404007\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"9\",\"EB\",\"1\",\"0\",\"2\",\"MON\",\"\",\"FCEB.
+        DI, NISKEN, BUCKET, SYRINGE, FILTER, SAMPLE BOTTLE. FCEB TAKEN @ STATION FLAB08.\",\"\"\r\n\"FLAB\",\"FLAB08\",\"P52294-4\",\"\",\"09-MAY-2011
+        13:44\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"26-MAY-2011
+        13:03\",\".328\",\"0.328\",\"\",\".005\",\"0.0200\",\"0.0050\",\"ug/L\",\"\",\"\",\"10-MAY-2011
+        10:06\",\"28405004\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"1\",\"0\",\"1\",\"MON\",\"\",\"Sample
+        clear.  Calm water, minimal chop.  Wind 7-10mph.   SECCHI ON BOTTOM.\",\"\"\r\n\"FLAB\",\"FLAB08\",\"P52295-4\",\"\",\"07-JUN-2011
+        13:23\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"23-JUN-2011
+        11:42\",\".329\",\"0.329\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"08-JUN-2011
+        11:00\",\"28406004\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"1\",\"0\",\"2\",\"MON\",\"\",\"Sample
+        is clear. Wind s 5-10mph. SECCHI ON BOTTOM\",\"\"\r\n\"FLAB\",\"FLAB08\",\"P52296-4\",\"\",\"05-JUL-2011
+        12:49\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"19-JUL-2011
+        15:06\",\".402\",\"0.402\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"06-JUL-2011
+        10:34\",\"28407004\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"1\",\"0\",\"2\",\"MON\",\"\",\"Sample
+        is pale green with low suspended solids present. Low flow with chop up to
+        2 feet and variable winds from the east at 10 - 12mph.\",\"\"\r\n\"FLAB\",\"FLAB08\",\"P53434-8\",\"\",\"08-AUG-2011
+        13:18\",\"FCEB\",\"G\",\"0.00\",\"\",\"DI\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"11-AUG-2011
+        15:47\",\"-.004\",\"-0.004\",\"\",\".004\",\"0.0140\",\"0.0040\",\"ug/L\",\"U\",\"\",\"09-AUG-2011
+        10:05\",\"29865008\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"9\",\"EB\",\"0\",\"0\",\"4\",\"MON\",\"\",\"FCEB.
+        DI, NISKIN, BUCKET, SYRINGE, FILTER, SAMPLE BOTTLE. FCEB TAKEN AT STATION
+        FLAB08.\",\"\"\r\n\"FLAB\",\"FLAB08\",\"P53434-4\",\"\",\"08-AUG-2011 13:23\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A,
+        SALINE\",\"70953\",\"SM10200H3\",\"11-AUG-2011 14:55\",\".907\",\"0.907\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"09-AUG-2011
+        10:05\",\"29865004\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"1\",\"0\",\"4\",\"MON\",\"\",\"Sample
+        is pale green with low suspended solids present. Low to moderate flow with
+        gusty 8 to 12 mph winds from the south and light chop up to 8 inches.\",\"\"\r\n\"FLAB\",\"FLAB08\",\"P53435-4\",\"\",\"06-SEP-2011
+        14:39\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"08-SEP-2011
+        16:44\",\".887\",\"0.887\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"07-SEP-2011
+        10:10\",\"29866004\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"1\",\"MON\",\"\",\"Sample
+        is light  brown with low suspended solids present. Moderate current with chop
+        up to 1 foot and variable gusty wind from the south east at 8 to 13 mph.\",\"\"\r\n\"FLAB\",\"FLAB08\",\"P53436-4\",\"\",\"06-OCT-2011
+        10:09\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"31-OCT-2011
+        15:01\",\".573\",\"0.573\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"06-OCT-2011
+        16:06\",\"29867004\",\"WMD\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"3\",\"MON\",\"\",\"Wind
+        ENE 15-20, very choppy, ebb tide\",\"\"\r\n\"FLAB\",\"FLAB08\",\"P54064-4\",\"\",\"08-DEC-2011
+        10:41\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"22-DEC-2011
+        10:21\",\".369\",\"0.369\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"08-DEC-2011
+        16:14\",\"30603004\",\"WMD\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"3\",\"MON\",\"\",\"Wind
+        NNE 12-15, mod chop,  SECCHI ON BOTTOM.\",\"\"\r\n\"FLAB\",\"FLAB08\",\"P55308-6\",\"\",\"02-FEB-2012
+        11:00\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"24-FEB-2012
+        13:38\",\".26\",\"0.260\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"02-FEB-2012
+        16:47\",\"32256006\",\"WMD\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"4\",\"MON\",\"\",\"Wind
+        E 9-12, mod chop, slack tide,  SECCHI ON BOTTOM.\",\"\"\r\n\"FLAB\",\"FLAB08\",\"P55315-6\",\"\",\"05-APR-2012
+        10:46\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"24-APR-2012
+        15:10\",\".509\",\"0.509\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"05-APR-2012
+        16:34\",\"32263006\",\"WMD\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"4\",\"MON\",\"\",\"Wind
+        SSW 10-15, mod chop, flood tide\",\"\"\r\n\"FLAB\",\"FLAB09\",\"P51524-5\",\"\",\"21-MAR-2011
+        14:09\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"05-APR-2011
+        14:22\",\".382\",\"0.382\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"22-MAR-2011
+        10:24\",\"27307005\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"1\",\"0\",\"2\",\"MON\",\"\",\"Sample
+        is pale green with low suspended solids present. Low flow with sustained winds
+        from the north northeast at 18 to 20 mph.\",\"\"\r\n\"FLAB\",\"FLAB09\",\"P52293-5\",\"\",\"11-APR-2011
+        13:49\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"22-APR-2011
+        12:07\",\".289\",\"0.289\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"12-APR-2011
+        09:50\",\"28404005\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"1\",\"0\",\"2\",\"MON\",\"\",\"Sample
+        is clear,low incoming flow, wind 5-10mph ESE\",\"\"\r\n\"FLAB\",\"FLAB09\",\"P52294-5\",\"\",\"09-MAY-2011
+        14:14\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"26-MAY-2011
+        13:02\",\".318\",\"0.318\",\"\",\".005\",\"0.0200\",\"0.0050\",\"ug/L\",\"\",\"\",\"10-MAY-2011
+        10:06\",\"28405005\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"1\",\"0\",\"1\",\"MON\",\"\",\"Sample
+        pale green.  1-2 foot seas.  Wind 8-12mph.  Low flow.\",\"\"\r\n\"FLAB\",\"FLAB09\",\"P52295-5\",\"\",\"07-JUN-2011
+        13:47\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"23-JUN-2011
+        11:44\",\".407\",\"0.407\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"08-JUN-2011
+        11:00\",\"28406005\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"1\",\"0\",\"2\",\"MON\",\"\",\"Sample
+        is clear. Wind s @ 5-10mph\",\"\"\r\n\"FLAB\",\"FLAB09\",\"P52296-5\",\"\",\"05-JUL-2011
+        13:49\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"19-JUL-2011
+        15:07\",\".424\",\"0.424\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"06-JUL-2011
+        10:34\",\"28407005\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"1\",\"0\",\"2\",\"MON\",\"\",\"Sample
+        clear with no visible suspended solids present. Low to moderate flow with
+        chop up to 2 feet and variable winds from the east at 12 to 15 mph.\",\"\"\r\n\"FLAB\",\"FLAB09\",\"P53434-5\",\"\",\"08-AUG-2011
+        15:09\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"11-AUG-2011
+        15:42\",\".76\",\"0.760\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"09-AUG-2011
+        10:05\",\"29865005\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"1\",\"0\",\"4\",\"MON\",\"\",\"Sample
+        is clear with no visible solids present. Low to moderate flow with gusty 10
+        to 15 mph winds from the south and chop up to 2.5 feet.\",\"\"\r\n\"FLAB\",\"FLAB09\",\"P53435-8\",\"\",\"06-SEP-2011
+        15:59\",\"FCEB\",\"G\",\"0.00\",\"\",\"DI\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"08-SEP-2011
+        16:46\",\".022\",\"0.022\",\"\",\".004\",\"0.0140\",\"0.0040\",\"ug/L\",\"J\",\"yes\",\"07-SEP-2011
+        10:10\",\"29866008\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"9\",\"EB\",\"0\",\"0\",\"1\",\"MON\",\"\",\"FCEB.
+        DI, NISKIN, BUCKET, SYRINGE, FILTER, SAMPLE BOTTLE. FCEB COLLECTED AT STATION
+        FLAB09.\",\"Blank result X10 less than lowest sample result; not reworked.
+        \ GDP. Analyte detected in field blank and/or associated sample\"\r\n\"FLAB\",\"FLAB09\",\"P53435-5\",\"\",\"06-SEP-2011
+        16:02\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"08-SEP-2011
+        16:45\",\".713\",\"0.713\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"07-SEP-2011
+        10:10\",\"29866005\",\"FWEC\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"1\",\"MON\",\"\",\"Sample
+        is pale green with low suspended solids present. Low current with chop up
+        to 2 feet and variable gusty wind from the south east at 8 to 13 mph.\",\"\"\r\n\"FLAB\",\"FLAB09\",\"P53436-5\",\"\",\"06-OCT-2011
+        09:49\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"31-OCT-2011
+        15:02\",\".593\",\"0.593\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"06-OCT-2011
+        16:06\",\"29867005\",\"WMD\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"4\",\"MON\",\"\",\"Wind
+        NE 12-15, choppy, slack tide\",\"\"\r\n\"FLAB\",\"FLAB09\",\"P54064-5\",\"\",\"08-DEC-2011
+        10:11\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"22-DEC-2011
+        10:22\",\".698\",\"0.698\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"08-DEC-2011
+        16:14\",\"30603005\",\"WMD\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"4\",\"MON\",\"\",\"Wind
+        NNW 15-20, seas 2 ft,slack tide\",\"\"\r\n\"FLAB\",\"FLAB09\",\"P55308-5\",\"\",\"02-FEB-2012
+        10:30\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"24-FEB-2012
+        13:37\",\".507\",\"0.507\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"02-FEB-2012
+        16:47\",\"32256005\",\"WMD\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"4\",\"MON\",\"\",\"Wind
+        E 8-10, lt chop, slack tide\",\"\"\r\n\"FLAB\",\"FLAB09\",\"P55315-5\",\"\",\"05-APR-2012
+        10:24\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"178\",\"CHLOROPHYLL-A, SALINE\",\"70953\",\"SM10200H3\",\"24-APR-2012
+        14:53\",\".542\",\"0.542\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"05-APR-2012
+        16:34\",\"32263005\",\"WMD\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"4\",\"MON\",\"\",\"Wind
+        S 10-15, mod chop, slack tide\",\"\"\r\n \r\n"
+  recorded_at: 2021-02-20 14:59:59 GMT
+  recorded_with: vcr/0.6.0, webmockr/0.7.4

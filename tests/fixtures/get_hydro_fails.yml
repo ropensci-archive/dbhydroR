@@ -1,0 +1,41 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://my.sfwmd.gov/dbhydroplsql/web_io.report_process?v_period=uspec&v_start_date=19800101&v_end_date=19800202&v_report_type=format6&v_target_code=file_csv&v_run_mode=onLine&v_js_flag=Y&v_dbkey=15081
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      xet-cookie: ''
+      age: '253'
+      date: Sat, 20 Feb 2021 15:02:46 GMT
+      connection: Keep-Alive
+      via: 'NS-CACHE-10.0:  15'
+      etag: '"KXIEBNGBLNOPMZWS"'
+      content-disposition: attachment;filename= REPORT.csv
+      x-db-content-length: '295'
+      content-type: appl/text
+      server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
+        (N;ecid=317057783688111,0:1)
+      content-length: '295'
+      content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
+        sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
+        *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; style-src ''self'' ''unsafe-inline''
+        ''unsafe-eval'' *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; frame-ancestors  *.sfwmd.gov;
+        img-src ''self'' data: *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com;'
+    body:
+      encoding: UTF-8
+      file: no
+      string: "\"Time Series Data\"\r\n\"DBKEY\",\"STATION\",\"TYPE\",\"UNITS\",\"FQ\",\"STAT\",\"STRATA\",\"OPNUM\",\"RCDR\",\"AGENCY\",\"START\",\"END\",\"CNTY\",\"LAT\",\"LONG\",\"SEC\",\"TWP\",\"RNG\",\"ALTERNATE
+        ID\"\r\n\"15081\",\"JBTS\",\"WNDS\",\"MPH\",\"DA\",\"MEAN\",\"0\",\"\",\"CR10\",\"WMD\",\"1991\",\"2016\",\"DAD\",\"251328\",\"803224\",\"8\",\"60\",\"38\",\"JBTS+WS\",\"\"\r\n
+        \r\n"
+  recorded_at: 2021-02-20 15:06:58 GMT
+  recorded_with: vcr/0.6.0, webmockr/0.7.4

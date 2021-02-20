@@ -1,0 +1,83 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_dbkeys_matched?v_category=GW&v_station=S152%25&v_js_flag=Y&v_order_by=STATION&v_dbkey_list_flag=Y&display_quantity=100000
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Sat, 20 Feb 2021 14:32:46 GMT
+      x-db-content-length: '3958'
+      content-type: text/html; charset=WINDOWS-1252
+      server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
+        (N;ecid=72383752855485761,0:1)
+      content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
+        sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
+        *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; style-src ''self'' ''unsafe-inline''
+        ''unsafe-eval'' *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; frame-ancestors  *.sfwmd.gov;
+        img-src ''self'' data: *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com;'
+      set-cookie: citrix_ns_id=OJbZ6JfKRUQUxP/AG9n6Qb7FPzs0000; Domain=.sfwmd.gov;
+        Path=/; HttpOnly
+      x-cache-control-orig: ''
+      cache-control: max-age=0, must-revalidate, private
+      x-expires-orig: None
+      transfer-encoding: chunked
+      etag: '"KXIEBNGBLNZRQOXS"'
+    body:
+      encoding: UTF-8
+      file: no
+      string: "<html>\n<head>\n<link href=\"https://my.sfwmd.gov/sfwmd/common/images/DBHydroStyleSheet.css\"
+        rel=\"stylesheet\" type=\"text/css\">\n<link href=\"http://fonts.googleapis.com/css?family=Oswald:700\"
+        rel=\"stylesheet\" type=\"text/css\">\n<META NAME=\"ROBOTS\" CONTENT=\"NOINDEX,
+        NOFOLLOW\">\n<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n<title>DBHYDRO
+        Browser</title>\n<style>\ntr.striped_table:nth-child(even) {background-color:
+        #e5e3e3;}\n</style>\n</head>\n<body bgcolor=\"#DBEAE9\" leftmargin=0 topmargin=0>\n<font
+        face=\"Verdana,Lucida,Helvetica\" size=\"2\">\n<table width=\"90%\" border=\"0\"
+        align=\"center\">\n<tr> <td colspan=\"2\" height=\"5\" ></td></tr>\n<tr> <td
+        width=\"98%\" align=\"right\" ><img src=\"https://my.sfwmd.gov/sfwmd/common/images/logoweb_blue_2.gif\"
+        width=\"188\" height=\"24\" align=\"right\"> </td>\n     <td>&nbsp;</td>\n</tr>\n</table>\n<table
+        width=\"1000\" border=\"0\" align=\"center\">\n<tr> <td width=\"527\" align=\"right\"
+        ><span class=\"xbig\"> DBHYDRO </span>&nbsp;&nbsp;<img src=\"https://my.sfwmd.gov/sfwmd/common/images/separator.png\"
+        width=\"15\" height=\"36\">&nbsp;&nbsp;&nbsp; </td>\n<td width=\"463\" valign=\"middle\"><span
+        class=\"xbigExpanded\">  time series </span></td>\n</tr>\n<tr> <td height=\"20\"
+        colspan=\"2\" align=\"center\"></td></tr>\n</table>\n<table bgcolor=\"#7CB7BA\"
+        width=\"1000\" style=\"border-style: outset; border-width: 2px; border-color:#DBEAE9\"
+        align=\"center\">        \n    <tr>                                                                           \n
+        \     <td bgcolor=\"#7CB7BA\">\n            <table width=\"1300\" align=\"center\"
+        border=\"0\" cellpadding=\"10\" cellspacing=\"10\">\t\t\t\t\t\t\t\t\t       \n
+        \             <tr>\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t       \n                <td>\t\t
+        \      \n                  <fieldset style=\"background-color:  #FFFFFF; border-style:
+        outset;\"><br>\n<SCRIPT LANGUAGE=\"JavaScript\" src=\"/js/getDbkeys.js\">\n</script>\n<SCRIPT
+        LANGUAGE=\"JavaScript\" src=\"/js/checkboxOnOff.js\">\n</script>\n<!-- SiteCatalyst
+        code version: H.9.\nCopyright 1997-2007 Omniture, Inc. More info available
+        at\nhttp://www.omniture.com -->\n<script language=\"JavaScript\" src=\"//my.sfwmd.gov/sfwmd/common/js/s_code.js\"></script>\n<script
+        language=\"JavaScript\"><!--\n/* You may give each page an identifying name,
+        server, and channel on\nthe next lines. */\ns.pageName= \"DBHYDRO\"\ns.server=\"\"\ns.channel=\"\"\ns.pageType=\"\"\nvar
+        dtstr=document.title\ndtstr=dtstr.replace(/http:\\/\\/my.sfwmd.gov - /i, \"\")\ns.prop1=\"DBHYDRO\"+\"-\"+dtstr\ns.prop2=\"\"\ns.prop3=\"\"\ns.prop4=\"\"\ns.prop5=\"\"\ns.prop6=\"\"\ns.events=\"\"\ns.evar1=\"\"\n/*
+        Hierarchy Variables */\ns.hier1=\"DBHYDRO|show_dbkeys_matched\"\n/*************
+        DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/\nvar s_code=s.t();if(s_code)document.write(s_code)//--></script>\n<!--/DO
+        NOT REMOVE/-->\n<!-- End SiteCatalyst code version: H.9. -->\n<center>\n<h2>The
+        specified selection criteria caused no records to be displayed.</h2>\n</fieldset></td></tr></table>\n</td></tr></table><br>\n<center>\n<table
+        style=\"border-collapse: collapse; \"><tr><td style=\"white-space:nowrap;
+        text-align:center\">\n<font face=\"Verdana,Lucida,Helvetica\" size=\"2\"><a
+        href=\"http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_page\">DBHYDRO
+        Menu</a>&nbsp;&nbsp;|&nbsp;&nbsp;\n<a href=\"https://www.sfwmd.gov/dbhydro\">DBHYDRO
+        Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;\n<a href=\"http://www.sfwmd.gov\">SFWMD
+        Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;\n<a href=\"https://www.sfwmd.gov/sites/default/files/documents/dbhydrobrowseruserdocumentation.pdf\"
+        title=\"Download .pdf file\">User's Guide</a>&nbsp;&nbsp;|&nbsp;&nbsp;\n<a
+        href=\"web_utility.update_log\">What's New</a>&nbsp;&nbsp;|&nbsp;&nbsp;\n<a
+        href=\"web_utility.faq\" title=\"Frequently Asked Questions\">FAQ</a>&nbsp;|&nbsp;\n<a
+        href=\"mailto:datarequests@sfwmd.gov\" title=\"Send email to the data stewardship
+        team\">Comments?</a>\n</td></tr>\n<tr><td valign=\"top\" align=\"center\">
+        <iframe allowTransparency=\"true\" height=\"100\" width=\"100%\" frameBorder=\"0\"
+        scrolling = no align=\"right\" SRC=\"https://my.sfwmd.gov/sfwmd/common/html/footerinternal.html\"\n</table>\n</center>\n</font>\n</body>\n</html>\n"
+  recorded_at: 2021-02-20 14:32:46 GMT
+  recorded_with: vcr/0.6.0, webmockr/0.7.4

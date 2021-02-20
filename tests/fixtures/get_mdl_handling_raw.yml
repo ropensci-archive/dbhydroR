@@ -1,0 +1,94 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://my.sfwmd.gov/dbhydroplsql/water_quality_data.report_full?v_where_clause=where%20date_collected%20%3E%20%2714-Sep-2014%27%20and%20date_collected%20%3C%20%2718-Sep-2014%27%20and%20station_id%20in%20%28%27FLAB01%27%29%20and%20test_name%20in%20%28%27NITRATE%2BNITRITE-N%27%29&v_target_code=file_csv&v_exc_flagged=N&v_exc_qc=N
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      date: Sat, 20 Feb 2021 14:59:58 GMT
+      content-disposition: attachment;filename= REPORT.csv
+      x-db-content-length: '959'
+      content-type: appl/text
+      server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
+        (N;ecid=72430039719721044,0:1)
+      content-length: '959'
+      content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
+        sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
+        *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; style-src ''self'' ''unsafe-inline''
+        ''unsafe-eval'' *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; frame-ancestors  *.sfwmd.gov;
+        img-src ''self'' data: *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com;'
+    body:
+      encoding: UTF-8
+      file: no
+      string: "\"Project Code\",\"Station ID\",\"Sample ID\",\"First Trigger Date\",\"Collection_Date\",\"Sample
+        Type New\",\"Collection Method\",\"Depth\",\"Depth Unit\",\"Matrix\",\"Test
+        Number\",\"Test Name\",\"Storet Code\",\"Method\",\"Measure Date\",\"Value\",\"Sigfig
+        Value\",\"Uncertainty\",\"MDL\",\"PQL\",\"RDL\",\"Units\",\"Remark Code\",\"Flag\",\"Receive
+        Date\",\"LIMS Number\",\"Collection Agency\",\"Source\",\"Owner\",\"Validation
+        Level\",\"Validator\",\"Sampling Purpose\",\"Data Investigation\",\"T Depth\",\"Upper
+        Depth\",\"Lower Depth\",\"DCS(METERS)\",\"Filtration Date\",\"Sample Type\",\"QC
+        Type\",\"Discharge\",\"Up/Down Stream\",\"Weather Code\",\"Program Type\",\"NDEC\",\"Sample
+        Comments\",\"Result Comments\"\r\n\"BBWQ\",\"FLAB01\",\"FLAB01-0914\",\"\",\"16-SEP-2014
+        10:05\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"18\",\"NITRATE+NITRITE-N\",\"631\",\"EPA
+        353.2 (NOX(N))\",\"22-SEP-2014 15:59\",\"-.01\",\"-0.01\",\"\",\".01\",\"0.0400\",\"0.0400\",\"mg/L\",\"U\",\"\",\"\",\"AC29833\",\"DERM\",\"DERM\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"0\",\"MON\",\"3\",\"See
+        Field Notes\",\"\"\r\n \r\n"
+  recorded_at: 2021-02-20 14:59:59 GMT
+  recorded_with: vcr/0.6.0, webmockr/0.7.4
+- request:
+    method: get
+    uri: https://my.sfwmd.gov/dbhydroplsql/water_quality_data.report_full?v_where_clause=where%20date_collected%20%3E%20%2714-Sep-2014%27%20and%20date_collected%20%3C%20%2718-Sep-2014%27%20and%20station_id%20in%20%28%27FLAB01%27%29%20and%20test_name%20in%20%28%27NITRATE%2BNITRITE-N%27%29&v_target_code=file_csv&v_exc_flagged=N&v_exc_qc=N
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      xet-cookie: ''
+      age: '2'
+      date: Sat, 20 Feb 2021 14:59:57 GMT
+      connection: Keep-Alive
+      via: 'NS-CACHE-10.0:  15'
+      etag: '"KXIEBNGBLNVVLOXS"'
+      content-disposition: attachment;filename= REPORT.csv
+      x-db-content-length: '959'
+      content-type: appl/text
+      server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
+        (N;ecid=72430039719721044,0:1)
+      content-length: '959'
+      content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
+        sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
+        *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; style-src ''self'' ''unsafe-inline''
+        ''unsafe-eval'' *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; frame-ancestors  *.sfwmd.gov;
+        img-src ''self'' data: *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com;'
+    body:
+      encoding: UTF-8
+      file: no
+      string: "\"Project Code\",\"Station ID\",\"Sample ID\",\"First Trigger Date\",\"Collection_Date\",\"Sample
+        Type New\",\"Collection Method\",\"Depth\",\"Depth Unit\",\"Matrix\",\"Test
+        Number\",\"Test Name\",\"Storet Code\",\"Method\",\"Measure Date\",\"Value\",\"Sigfig
+        Value\",\"Uncertainty\",\"MDL\",\"PQL\",\"RDL\",\"Units\",\"Remark Code\",\"Flag\",\"Receive
+        Date\",\"LIMS Number\",\"Collection Agency\",\"Source\",\"Owner\",\"Validation
+        Level\",\"Validator\",\"Sampling Purpose\",\"Data Investigation\",\"T Depth\",\"Upper
+        Depth\",\"Lower Depth\",\"DCS(METERS)\",\"Filtration Date\",\"Sample Type\",\"QC
+        Type\",\"Discharge\",\"Up/Down Stream\",\"Weather Code\",\"Program Type\",\"NDEC\",\"Sample
+        Comments\",\"Result Comments\"\r\n\"BBWQ\",\"FLAB01\",\"FLAB01-0914\",\"\",\"16-SEP-2014
+        10:05\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"18\",\"NITRATE+NITRITE-N\",\"631\",\"EPA
+        353.2 (NOX(N))\",\"22-SEP-2014 15:59\",\"-.01\",\"-0.01\",\"\",\".01\",\"0.0400\",\"0.0400\",\"mg/L\",\"U\",\"\",\"\",\"AC29833\",\"DERM\",\"DERM\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"0\",\"MON\",\"3\",\"See
+        Field Notes\",\"\"\r\n \r\n"
+  recorded_at: 2021-02-20 14:59:59 GMT
+  recorded_with: vcr/0.6.0, webmockr/0.7.4

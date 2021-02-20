@@ -1,0 +1,42 @@
+http_interactions:
+- request:
+    method: get
+    uri: https://my.sfwmd.gov/dbhydroplsql/web_io.report_process?v_period=uspec&v_start_date=20130101&v_end_date=20130202&v_report_type=format6&v_target_code=file_csv&v_run_mode=onLine&v_js_flag=Y&v_dbkey=15081
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: 200
+      category: Success
+      reason: OK
+      message: 'Success: (200) OK'
+    headers:
+      xet-cookie: ''
+      age: '427'
+      date: Sat, 20 Feb 2021 14:59:52 GMT
+      connection: Keep-Alive
+      via: 'NS-CACHE-10.0:  15'
+      etag: '"KXIEBNGBLNSWLOXS"'
+      content-disposition: attachment;filename= REPORT.csv
+      x-db-content-length: '2168'
+      content-type: appl/text
+      server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
+        (N;ecid=72429975295205154,0:1)
+      content-length: '2168'
+      content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
+        sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
+        *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; style-src ''self'' ''unsafe-inline''
+        ''unsafe-eval'' *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; frame-ancestors  *.sfwmd.gov;
+        img-src ''self'' data: *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com;'
+    body:
+      encoding: UTF-8
+      file: no
+      string: "\"Time Series Data\"\r\n\"DBKEY\",\"STATION\",\"TYPE\",\"UNITS\",\"FQ\",\"STAT\",\"STRATA\",\"OPNUM\",\"RCDR\",\"AGENCY\",\"START\",\"END\",\"CNTY\",\"LAT\",\"LONG\",\"SEC\",\"TWP\",\"RNG\",\"ALTERNATE
+        ID\"\r\n\"15081\",\"JBTS\",\"WNDS\",\"MPH\",\"DA\",\"MEAN\",\"0\",\"\",\"CR10\",\"WMD\",\"1991\",\"2016\",\"DAD\",\"251328\",\"803224\",\"8\",\"60\",\"38\",\"JBTS+WS\",\"\"\r\n\"Station\",\"DBKEY\",\"Daily
+        Date\",\"Data Value\",\"Qualifer\",\"Revision Date\"\r\n\"JBTS\",\"15081\",\"01-JAN-2013\",\"8.23\",\"\",\"18-JAN-2013\"\r\n\"JBTS\",\"15081\",\"02-JAN-2013\",\"4.57\",\"\",\"18-JAN-2013\"\r\n\"JBTS\",\"15081\",\"03-JAN-2013\",\"5.38\",\"\",\"18-JAN-2013\"\r\n\"JBTS\",\"15081\",\"04-JAN-2013\",\"5.31\",\"\",\"18-JAN-2013\"\r\n\"JBTS\",\"15081\",\"05-JAN-2013\",\"9.45\",\"\",\"18-JAN-2013\"\r\n\"JBTS\",\"15081\",\"06-JAN-2013\",\"9.72\",\"\",\"18-JAN-2013\"\r\n\"JBTS\",\"15081\",\"07-JAN-2013\",\"7.77\",\"\",\"18-JAN-2013\"\r\n\"JBTS\",\"15081\",\"08-JAN-2013\",\"11.59\",\"\",\"18-JAN-2013\"\r\n\"JBTS\",\"15081\",\"09-JAN-2013\",\"16.48\",\"\",\"18-JAN-2013\"\r\n\"JBTS\",\"15081\",\"10-JAN-2013\",\"16.46\",\"\",\"18-JAN-2013\"\r\n\"JBTS\",\"15081\",\"11-JAN-2013\",\"15.02\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"12-JAN-2013\",\"11.55\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"13-JAN-2013\",\"12.39\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"14-JAN-2013\",\"10.73\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"15-JAN-2013\",\"10.02\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"16-JAN-2013\",\"7.96\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"17-JAN-2013\",\"9.97\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"18-JAN-2013\",\"9.87\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"19-JAN-2013\",\"6.69\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"20-JAN-2013\",\"5.43\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"21-JAN-2013\",\"9.21\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"22-JAN-2013\",\"12.20\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"23-JAN-2013\",\"11.57\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"24-JAN-2013\",\"10.10\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"25-JAN-2013\",\"9.81\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"26-JAN-2013\",\"10.19\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"27-JAN-2013\",\"12.48\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"28-JAN-2013\",\"14.06\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"29-JAN-2013\",\"12.90\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"30-JAN-2013\",\"12.01\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"31-JAN-2013\",\"10.38\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"01-FEB-2013\",\"15.06\",\"\",\"11-FEB-2013\"\r\n\"JBTS\",\"15081\",\"02-FEB-2013\",\"10.53\",\"\",\"11-FEB-2013\"\r\n
+        \r\n"
+  recorded_at: 2021-02-20 15:06:58 GMT
+  recorded_with: vcr/0.6.0, webmockr/0.7.4
