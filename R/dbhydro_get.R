@@ -3,8 +3,7 @@
 #'@description Retrieve water quality data from the
 #' DBHYDRO Environmental Database
 #'@param station_id character string of station id(s). See the SFWMD station
-#' search utility at \url{https://my.sfwmd.gov/dbhydroplsql/water_quality_data.show_group_station_characters}
-#' for specific options
+#' search utility for specific options
 #'@param date_min character date must be in POSIXct YYYY-MM-DD format
 #'@param date_max character date must be in POSIXct YYYY-MM-DD format
 #'@param test_name character string of test name(s). See the SFWMD
@@ -177,8 +176,7 @@ getwq <- function(station_id = NA, date_min = NA, date_max = NA,
 #'\itemize{ \item iterative calls to \code{\link{get_dbkey}} (see example)
 #'\item using the Environmental Monitoring Location Maps
 #' (\url{https://www.sfwmd.gov/documents-by-tag/emmaps})
-#'\item using the DBHYDRO Browser
-#' (\url{https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
+#'\item using the DBHYDRO Browser.
 #'}
 #'
 #'\item The second way to run \code{get_hydro} is to specify additional
@@ -340,8 +338,6 @@ gethydro <- function(dbkey = NA, date_min = NA, date_max = NA, raw = FALSE,
 #'@aliases getdbkey
 #'@importFrom XML readHTMLTable
 #'@importFrom stats setNames
-#'@references \url{https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
-#'@references \url{https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_meta_data}
 #'@examples \dontrun{
 #'# Weather
 #'get_dbkey(stationid = "JBTS", category = "WEATHER", param = "WNDS",

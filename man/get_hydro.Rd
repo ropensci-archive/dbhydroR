@@ -34,8 +34,7 @@ argument. \code{dbkeys} can be found by:
 \itemize{ \item iterative calls to \code{\link{get_dbkey}} (see example)
 \item using the Environmental Monitoring Location Maps
 (\url{https://www.sfwmd.gov/documents-by-tag/emmaps})
-\item using the DBHYDRO Browser
-(\url{https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}).
+\item using the DBHYDRO Browser.
 }
 
 \item The second way to run \code{get_hydro} is to specify additional

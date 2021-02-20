@@ -22,8 +22,7 @@ get_wq(
 }
 \arguments{
 \item{station_id}{character string of station id(s). See the SFWMD station
-search utility at \url{https://my.sfwmd.gov/dbhydroplsql/water_quality_data.show_group_station_characters}
-for specific options}
+search utility for specific options}
 
 \item{date_min}{character date must be in POSIXct YYYY-MM-DD format}
 

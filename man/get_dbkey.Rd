@@ -82,8 +82,3 @@ freq = "DA", stat = "MEAN", strata = c(9, 22), recorder = "TROL",
 get_dbkey(stationid = "C111\%", category = "WQ")
 }
 }
-\references{
-\url{https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_menu}
-
-\url{https://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.show_meta_data}
-}
