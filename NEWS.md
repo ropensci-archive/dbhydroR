@@ -3,7 +3,7 @@
 ## Minor changes
 
 * Switched all URLs from http to https
-* Turned off automated testing of `get_wq` example code
+* Now caching test web requests
 
 # dbhydroR 0.2-7 (2019-02-15)
 
