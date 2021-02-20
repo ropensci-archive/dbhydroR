@@ -10,7 +10,7 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/ropensci/dbhydroR/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/dbhydroR/actions)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/dbhydroR)](https://cran.r-project.org/package=dbhydroR)
-[![](https://badges.ropensci.org/61_status.svg)](https://github.com/ropensci/onboarding/issues/61)
+[![](https://badges.ropensci.org/61_status.svg)](https://github.com/ropensci/software-review/issues/61)
 [![DOI](https://zenodo.org/badge/64503356.svg)](https://zenodo.org/badge/latestdoi/64503356)
 
 `dbhydroR` provides scripted access to the South Florida Water
