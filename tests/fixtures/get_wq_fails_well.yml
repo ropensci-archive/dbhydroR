@@ -14,17 +14,12 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      xet-cookie: ''
-      age: '172'
-      date: Sat, 20 Feb 2021 14:59:56 GMT
-      connection: Keep-Alive
-      via: 'NS-CACHE-10.0:  15'
-      etag: '"KXIEBNGBLNZVLOXS"'
+      date: Sat, 20 Feb 2021 18:54:30 GMT
       content-disposition: attachment;filename= REPORT.csv
       x-db-content-length: '632'
       content-type: appl/text
       server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
-        (N;ecid=72430013949915472,0:1)
+        (N;ecid=72486973820355884,0:1)
       content-length: '632'
       content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
         sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
@@ -43,7 +38,7 @@ http_interactions:
         Depth\",\"Lower Depth\",\"DCS(METERS)\",\"Filtration Date\",\"Sample Type\",\"QC
         Type\",\"Discharge\",\"Up/Down Stream\",\"Weather Code\",\"Program Type\",\"NDEC\",\"Sample
         Comments\",\"Result Comments\"\r\n \r\n"
-  recorded_at: 2021-02-20 15:02:47 GMT
+  recorded_at: 2021-02-20 18:54:30 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4
 - request:
     method: get
@@ -60,17 +55,12 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      xet-cookie: ''
-      age: '172'
-      date: Sat, 20 Feb 2021 14:59:57 GMT
-      connection: Keep-Alive
-      via: 'NS-CACHE-10.0:  15'
-      etag: '"KXIEBNGBLNYVLOXS"'
+      date: Sat, 20 Feb 2021 18:54:30 GMT
       content-disposition: attachment;filename= REPORT.csv
       x-db-content-length: '957'
       content-type: appl/text
       server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
-        (N;ecid=72430031129785534,0:1)
+        (N;ecid=72487776979490899,0:1)
       content-length: '957'
       content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
         sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
@@ -93,7 +83,7 @@ http_interactions:
         10:36\",\"-.005\",\"-0.005\",\"+/- 0.005\",\".005\",\"0.0100\",\"0.0050\",\"mg/L\",\"U\",\"\",\"19-DEC-2012
         11:09\",\"37782005\",\"WMD\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"9\",\"EB\",\"0\",\"0\",\"0\",\"MON\",\"2\",\"FCEB\",\"\"\r\n
         \r\n"
-  recorded_at: 2021-02-20 15:02:47 GMT
+  recorded_at: 2021-02-20 18:54:30 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4
 - request:
     method: get
@@ -110,17 +100,12 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      xet-cookie: ''
-      age: '172'
-      date: Sat, 20 Feb 2021 14:59:57 GMT
-      connection: Keep-Alive
-      via: 'NS-CACHE-10.0:  15'
-      etag: '"KXIEBNGBLNWVLOXS"'
+      date: Sat, 20 Feb 2021 18:54:30 GMT
       content-disposition: attachment;filename= REPORT.csv
       x-db-content-length: '632'
       content-type: appl/text
       server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
-        (N;ecid=72430035424753246,0:1)
+        (N;ecid=72487781274458495,0:1)
       content-length: '632'
       content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
         sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
@@ -139,5 +124,5 @@ http_interactions:
         Depth\",\"Lower Depth\",\"DCS(METERS)\",\"Filtration Date\",\"Sample Type\",\"QC
         Type\",\"Discharge\",\"Up/Down Stream\",\"Weather Code\",\"Program Type\",\"NDEC\",\"Sample
         Comments\",\"Result Comments\"\r\n \r\n"
-  recorded_at: 2021-02-20 15:02:47 GMT
+  recorded_at: 2021-02-20 18:54:30 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4

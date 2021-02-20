@@ -14,19 +14,24 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Sat, 20 Feb 2021 14:59:54 GMT
+      set-cookie: 'citrix_ns_id=BAidhDFNOyR7829zA191iWvXsHQ0000; Domain=.sfwmd.gov;
+        Path=/; HttpOnly       '
+      age: '127'
+      date: Sat, 20 Feb 2021 18:52:24 GMT
+      content-length: '11303'
+      connection: Keep-Alive
+      via: 'NS-CACHE-10.0:  15'
+      etag: '"KXIEBNGBLNYMPXWS"'
       content-disposition: attachment;filename= REPORT.csv
       x-db-content-length: '11303'
-      transfer-encoding: chunked
       content-type: appl/text
       server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
-        (N;ecid=72430009654946470,0:1)
+        (N;ecid=357121252761654,0:1)
       content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
         sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
         *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; style-src ''self'' ''unsafe-inline''
         ''unsafe-eval'' *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; frame-ancestors  *.sfwmd.gov;
         img-src ''self'' data: *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com;'
-      etag: '"KXIEBNGBLNKWLOXS"'
     body:
       encoding: UTF-8
       file: no
@@ -153,5 +158,5 @@ http_interactions:
         14:53\",\".542\",\"0.542\",\"\",\".004\",\"0.0180\",\"0.0040\",\"ug/L\",\"\",\"\",\"05-APR-2012
         16:34\",\"32263005\",\"WMD\",\"WMD\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"4\",\"MON\",\"\",\"Wind
         S 10-15, mod chop, slack tide\",\"\"\r\n \r\n"
-  recorded_at: 2021-02-20 14:59:56 GMT
+  recorded_at: 2021-02-20 18:54:29 GMT
   recorded_with: vcr/0.6.0, webmockr/0.7.4
