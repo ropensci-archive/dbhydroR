@@ -23,13 +23,13 @@ vcr::use_cassette("get_hydro_fails", {
   })
 })
 
-vcr::use_cassette("non-character_dates", {
-  test_that("non-character dates are handled", {
-    expect_error(get_hydro(dbkey = "15081", date_min = 1980-01-01,
-      date_max = "1980-02-02"),
+test_that("non-character dates are handled", {
+    expect_error(
+      get_hydro(dbkey = "15081", date_min = 1980-01-01,
+                date_max = "1980-02-02"),
       "Enter dates as quote-wrapped character strings in YYYY-MM-DD format")
-  })
 })
+
 
 test_that("get_hydro retrieves dbkeys on-the-fly", {
   vcr::use_cassette("fly_dbykeys_single", {
