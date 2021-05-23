@@ -14,21 +14,18 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Sat, 20 Feb 2021 15:06:59 GMT
+      date: Sun, 23 May 2021 19:26:06 GMT
       x-db-content-length: '21896'
       transfer-encoding: chunked
       content-type: text/html; charset=WINDOWS-1252
       server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
-        (N;ecid=72432543686085547,0:1)
+        (N;ecid=438085232965827,0:1)
       content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
         sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
         *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; style-src ''self'' ''unsafe-inline''
         ''unsafe-eval'' *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; frame-ancestors  *.sfwmd.gov;
         img-src ''self'' data: *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com;'
-      x-cache-control-orig: ''
-      cache-control: max-age=0, must-revalidate, private
-      x-expires-orig: None
-      etag: '"KXIEBNGBLNPVKOXS"'
+      etag: '"KXIEBNGBLNWNSVXN"'
     body:
       encoding: UTF-8
       file: no
@@ -178,7 +175,7 @@ http_interactions:
         class=\"striped_table\">\n<TD style=\"text-align:center; vertical-align:middle\"><input
         type=\"checkbox\" name=\"01857\" value=\"01857\" /></TD>\n<input type=\"hidden\"
         name=\"s01857\" value=\"19560101\" />\n<input type=\"hidden\" name=\"e01857\"
-        value=\"20201005\" />\n<td><a href=\"show_dbkey_info.show_keywordtab_info?v_dbkey=01857\">01857</a></td>\n<td
+        value=\"20210322\" />\n<td><a href=\"show_dbkey_info.show_keywordtab_info?v_dbkey=01857\">01857</a></td>\n<td
         nowrap><a href=\"show_dbkey_info.show_station_info?v_station=G-561\">G-561</a>
         </td>\n<td nowrap><a href=\"show_dbkey_info.show_group_name_info?v_group_name=G-561\">G-561</a></td>\n<td
         nowrap><a href=\"show_dcvp_external.show_site_info?v_site=G-561\">G-561</a>
@@ -187,25 +184,23 @@ http_interactions:
         style=\"text-align:center;\"><a href=\"show_dbkey_info.show_statistic_type_info?v_statistic_type=MAX\">MAX</a></td>\n<td
         style=\"text-align:center;\"><a href=\"show_dbkey_info.show_recorder_info?v_recorder=????\">????</a></td>\n<td
         style=\"text-align:center;\"><a href=\"show_dbkey_info.show_agency_info?v_agency=USGS\">USGS</a></td>\n<td
-        nowrap>01-JAN-1956</td>\n<td nowrap>05-OCT-2020</td>\n<td style=\"text-align:center;\">20.3</td>\n<td>&nbsp;</td>\n<td
+        nowrap>01-JAN-1956</td>\n<td nowrap>22-MAR-2021</td>\n<td style=\"text-align:center;\">20.3</td>\n<td>&nbsp;</td>\n<td
         style=\"text-align:center;\"><a href=\"show_dbkey_info.show_county_info?v_county=BRO\">BRO</a></td>\n<td>260545</td>\n<td>800820</td>\n<td>938777.366</td>\n<td>641457.42</td>\n<td
         nowrap><a href=\"show_dbkey_info.show_basin_info?v_basin=CORAL+RE\">CORAL
         RE</a></td>\n<td>&nbsp;</td>\n<td style=\"text-align:center;\">15</td>\n<td
         style=\"text-align:center;\">50</td>\n<td style=\"text-align:center;\">42</td>\n</tr>\n</table>\n<br>\n<input
-        type=\"hidden\" name=\"v_shweta\" value=\"\">\n<input type=\"hidden\" name=\"as_sfid\"
-        value=\"AAAAAAVam6DZw4MgMDLUFW5ror2EnGrsWuaSUaSoIKU3-7fI9nyL9KVhdB88fRm0hSlcuYq6d4XLXdnZD5k4wsHL0UaEmzkG-DhuuX00sdWvM-Y6hHCb3ahBSBaPYX0bn9tMsAg=\"
-        /><input type=\"hidden\" name=\"as_fid\" value=\"443f1de5090bd69d0caa2357d062a59e6e9ba970\"
-        /></form>\n<SCRIPT LANGUAGE=\"JavaScript\" >\nfunction save_param() {\n\n
-        \       document.query_io.v_parameter_string.value = \"\" ;\n\n            if
-        (getDbkeys(\"submitDbkeyList\"))\n        {\n          return true ;\n        }\n
-        \       else\n        {\n          return false ;\n        }\n\n            if
-        (getDbkeys(\"query_io\"))\n        {\n          return true ;\n        }\n
-        \       else\n        {\n          return false ;\n        }\n\n          document.submitDbkeyList.v_parameter_string.value
-        = document.query_io.v_parameter_string.value ;\n\n            }\n</SCRIPT>\n<FORM
-        NAME=\"submitDbkeyList\" onSubmit=\"JavaScript: return save_param()\" ACTION=\"/dbhydroplsql/show_dbkey_info.date_selection\">\n<input
+        type=\"hidden\" name=\"v_shweta\" value=\"\">\n</form>\n<SCRIPT LANGUAGE=\"JavaScript\"
+        >\nfunction save_param() {\n\n        document.query_io.v_parameter_string.value
+        = \"\" ;\n\n            if (getDbkeys(\"submitDbkeyList\"))\n        {\n          return
+        true ;\n        }\n        else\n        {\n          return false ;\n        }\n\n
+        \           if (getDbkeys(\"query_io\"))\n        {\n          return true
+        ;\n        }\n        else\n        {\n          return false ;\n        }\n\n
+        \         document.submitDbkeyList.v_parameter_string.value = document.query_io.v_parameter_string.value
+        ;\n\n            }\n</SCRIPT>\n<FORM NAME=\"submitDbkeyList\" onSubmit=\"JavaScript:
+        return save_param()\" ACTION=\"/dbhydroplsql/show_dbkey_info.date_selection\">\n<input
         type=\"hidden\" name=\"v_category\" value=\"GW\">\n<input type=\"hidden\"
         name=\"v_js_flag\" value=\"N\">\n<input type=\"hidden\" name=\"v_db_request_id\"
-        value=\"6579692\">\n<input type=\"hidden\" name=\"v_parameter_string\" value=\"\"
+        value=\"6627087\">\n<input type=\"hidden\" name=\"v_parameter_string\" value=\"\"
         />\n<input type=\"hidden\" name=\"v_dbkey\" value=\"\" />\n<input type=\"hidden\"
         name=\"v_frequency\" value=\"\" />\n<input type=\"hidden\" name=\"v_sdate\"
         value=\"\" />\n<input type=\"hidden\" name=\"v_edate\" value=\"\" />\n<input
@@ -213,16 +208,14 @@ http_interactions:
         VALUE=\"Get Data\">\n<INPUT TYPE=\"Reset\" class=\"SMexpandedDark\" value=\"Clear
         All\"  onClick=\"javaScript:return checkboxOnOff('dbkeyList','off')\" >\n<INPUT
         TYPE=\"Reset\" class=\"SMexpandedDark\" value=\"Select All\"  onClick=\"javaScript:return
-        checkboxOnOff('dbkeyList','on')\" >\n<input type=\"hidden\" name=\"as_sfid\"
-        value=\"AAAAAAXGIFa1Ohv1tIU0SHr2F4xQv4eRqU2Um-c8UXwYQm4N93_Wa-1U3Vi7ap_2_NlyIQinTXZ32nPamW02kvKYLf7apQj2ESu9Y1o-xGaXmLpLvgMta9J278M6esMCs3W4fjs=\"
-        /><input type=\"hidden\" name=\"as_fid\" value=\"34b5aedd53c2067aae351e78c023dfc6487db80e\"
-        /></form>\nQuery returned 6 record(s).\n<br />\n<br />\n<SCRIPT LANGUAGE=\"JavaScript\">
-        \nfunction get_os(){\n          if ( (navigator.platform.substr(0,3) == \"Win\")
-        ||\n                 (navigator.platform.substr(0,3) == \"Mac\") )\n        {\n
-        \              document.listing_io.v_os_code.value = navigator.platform.substr(0,3);\n
-        \           }\n            else\n        {\n               document.listing_io.v_os_code.value
-        = \"Unix\";\n            }\n          return true ;\n        }\nfunction save_listing(del){\n\n
-        \       if (del == 0 )\n        {\n            document.listing_io.v_target_code.value
+        checkboxOnOff('dbkeyList','on')\" >\n</form>\nQuery returned 6 record(s).\n<br
+        />\n<br />\n<SCRIPT LANGUAGE=\"JavaScript\"> \nfunction get_os(){\n          if
+        ( (navigator.platform.substr(0,3) == \"Win\") ||\n                 (navigator.platform.substr(0,3)
+        == \"Mac\") )\n        {\n               document.listing_io.v_os_code.value
+        = navigator.platform.substr(0,3);\n            }\n            else\n        {\n
+        \              document.listing_io.v_os_code.value = \"Unix\";\n            }\n
+        \         return true ;\n        }\nfunction save_listing(del){\n\n        if
+        (del == 0 )\n        {\n            document.listing_io.v_target_code.value
         = \"file_csv\" ;\n        }\n        else\n        {\n            document.listing_io.v_target_code.value
         = \"file_fw\" ;\n        }\n        document.listing_io.submit() ;\n\n         }\n</script>\n<FORM
         NAME=\"query_io\" onSubmit=\"javaScript: return getDbkeys('query_io')\" ACTION=\"/dbhydroplsql/web_io.file_save\"
@@ -230,24 +223,20 @@ http_interactions:
         />\n<input type=\"hidden\" name=\"v_category\" value=\"GW\" />\n<input type=\"hidden\"
         name=\"v_parameter_string\" value=\"\" />\n<input type=\"hidden\" name=\"v_os_code\"
         value=\"\" />\n<INPUT TYPE=\"submit\" class=\"SMexpandedDark\" VALUE=\"Save
-        Parameter File\">\n<input type=\"hidden\" name=\"as_sfid\" value=\"AAAAAAWnekvlR0sXEhR9HKyB0AWcnFU3kWLVtby2ESuSG3HGR-d8SQda562IJ9n9r8aWfnuAVrZXdkYgD2mG8dEsrTWtUu_058ITqrREE8ySws75me1TDIm2YestcsTqyvPAafQ=\"
-        /><input type=\"hidden\" name=\"as_fid\" value=\"c31dee97ceb92fd3d93766fc1cffe01891ef7178\"
-        /></form>\n<FORM NAME=\"listing_io\" onSubmit=\"javaScript:return get_os()\"
-        ACTION=\"/dbhydroplsql/web_io.file_save_time_series\" >\n<input type=\"hidden\"
-        name=\"v_target_code\" value=\"\" />\n<input type=\"hidden\" name=\"v_cursor_text\"
-        value=\"SELECT dbkey, station, site, data_type, frequency,  statistic_type,
-        recorder, struct_type, strata, agency,  county, basin, lat, longitude,  nvl(TO_CHAR(start_date,'DD-MON-YYYY'),'
-        ') s_date, nvl(TO_CHAR(end_date,'DD-MON-YYYY'),' ') e_date , station_id ,
-        gate_no,  range,  town,  section,  xcoord, ycoord, group_name FROM keyword_tab
-        a  WHERE   ( station like upper('C-54')   or station like upper('G-561') )
-        and  a.data_type in ( SELECT data_type FROM discipline_data_type_vw WHERE
-        minor_xref in ( 'GW' ) ) and  ( frequency like upper('DA')  ) and  ( published_flag
-        = 'Y')   order by STATION, data_type,strata,gate_no,statistic_type,end_date,agency
+        Parameter File\">\n</form>\n<FORM NAME=\"listing_io\" onSubmit=\"javaScript:return
+        get_os()\" ACTION=\"/dbhydroplsql/web_io.file_save_time_series\" >\n<input
+        type=\"hidden\" name=\"v_target_code\" value=\"\" />\n<input type=\"hidden\"
+        name=\"v_cursor_text\" value=\"SELECT dbkey, station, site, data_type, frequency,
+        \ statistic_type, recorder, struct_type, strata, agency,  county, basin, lat,
+        longitude,  nvl(TO_CHAR(start_date,'DD-MON-YYYY'),' ') s_date, nvl(TO_CHAR(end_date,'DD-MON-YYYY'),'
+        ') e_date , station_id , gate_no,  range,  town,  section,  xcoord, ycoord,
+        group_name FROM keyword_tab a  WHERE   ( station like upper('C-54')   or station
+        like upper('G-561') ) and  a.data_type in ( SELECT data_type FROM discipline_data_type_vw
+        WHERE minor_xref in ( 'GW' ) ) and  ( frequency like upper('DA')  ) and  (
+        published_flag = 'Y')   order by STATION, data_type,strata,gate_no,statistic_type,end_date,agency
         \" />\n<input type=\"hidden\" name=\"v_os_code\" value=\"\" />\n<input type=\"Button\"
         name=\"listing_save\" class=\"SMexpandedDark\" value=\"Save Time Series Listing\"
-        onclick=\"save_listing(0)\">\n<input type=\"hidden\" name=\"as_sfid\" value=\"AAAAAAUTxUJ_tH1j1cENfhuWEbrCPTYMBGgvJi0dtXdejbwcVzx6luBsEW309i4xUg8AFaC0HpUF-jWPaRwdnGbPtJMJUIJZB23kk7JT8S0nbhJEw8e9YQ-srs6dyd3cps0M568=\"
-        /><input type=\"hidden\" name=\"as_fid\" value=\"45d7a169730c02eec9ad72636bcfcc5315d8f7a5\"
-        /></form>\n</center>\n</fieldset></td></tr></table>\n</td></tr></table><br>\n<center>\n<table
+        onclick=\"save_listing(0)\">\n</form>\n</center>\n</fieldset></td></tr></table>\n</td></tr></table><br>\n<center>\n<table
         style=\"border-collapse: collapse; \"><tr><td style=\"white-space:nowrap;
         text-align:center\">\n<font face=\"Verdana,Lucida,Helvetica\" size=\"2\"><a
         href=\"http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_page\">DBHYDRO
@@ -261,8 +250,8 @@ http_interactions:
         team\">Comments?</a>\n</td></tr>\n<tr><td valign=\"top\" align=\"center\">
         <iframe allowTransparency=\"true\" height=\"100\" width=\"100%\" frameBorder=\"0\"
         scrolling = no align=\"right\" SRC=\"https://my.sfwmd.gov/sfwmd/common/html/footerinternal.html\"\n</table>\n</center>\n</font>\n</body>\n</html>\n"
-  recorded_at: 2021-02-20 15:06:59 GMT
-  recorded_with: vcr/0.6.0, webmockr/0.7.4
+  recorded_at: 2021-05-23 19:26:06 GMT
+  recorded_with: vcr/1.0.0, webmockr/0.8.0
 - request:
     method: get
     uri: https://my.sfwmd.gov/dbhydroplsql/web_io.report_process?v_period=uspec&v_start_date=19900101&v_end_date=19900202&v_report_type=format6&v_target_code=file_csv&v_run_mode=onLine&v_js_flag=Y&v_dbkey=01952%2F01857
@@ -279,16 +268,16 @@ http_interactions:
       message: 'Success: (200) OK'
     headers:
       xet-cookie: ''
-      age: '427'
-      date: Sat, 20 Feb 2021 14:59:54 GMT
+      age: '1'
+      date: Sun, 23 May 2021 19:26:06 GMT
       connection: Keep-Alive
       via: 'NS-CACHE-10.0:  15'
-      etag: '"KXIEBNGBLNLWLOXS"'
+      etag: '"KXIEBNGBLNVNSVXN"'
       content-disposition: attachment;filename= REPORT.csv
       x-db-content-length: '4157'
       content-type: appl/text
       server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
-        (N;ecid=72430005359978766,0:1)
+        (N;ecid=438089527933352,0:1:1)
       content-length: '4157'
       content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
         sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
@@ -299,9 +288,9 @@ http_interactions:
       encoding: UTF-8
       file: no
       string: "\"Time Series Data\"\r\n\"DBKEY\",\"STATION\",\"TYPE\",\"UNITS\",\"FQ\",\"STAT\",\"STRATA\",\"OPNUM\",\"RCDR\",\"AGENCY\",\"START\",\"END\",\"CNTY\",\"LAT\",\"LONG\",\"SEC\",\"TWP\",\"RNG\",\"ALTERNATE
-        ID\"\r\n\"01857\",\"G-561\",\"WELL\",\"ft NGVD29\",\"DA\",\"MAX\",\"20.3\",\"\",\"????\",\"USGS\",\"1956\",\"2020\",\"BRO\",\"260545\",\"800820\",\"15\",\"50\",\"42\",\"260545080082001\",\"N/A\"\r\n\"01952\",\"C-54\",\"WELL\",\"ft
+        ID\"\r\n\"01857\",\"G-561\",\"WELL\",\"ft NGVD29\",\"DA\",\"MAX\",\"20.3\",\"\",\"????\",\"USGS\",\"1956\",\"2021\",\"BRO\",\"260545\",\"800820\",\"15\",\"50\",\"42\",\"260545080082001\",\"N/A\"\r\n\"01952\",\"C-54\",\"WELL\",\"ft
         NGVD29\",\"DA\",\"MAX\",\"8.5\",\"\",\"????\",\"USGS\",\"1951\",\"2018\",\"COL\",\"261021\",\"805300\",\"36\",\"49\",\"34\",\"261000080520001\",\"N/A\"\r\n\"Station\",\"DBKEY\",\"Daily
         Date\",\"Data Value\",\"Qualifer\",\"Revision Date\"\r\n\"G-561\",\"01857\",\"01-JAN-1990\",\"1.21\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"02-JAN-1990\",\"1.17\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"03-JAN-1990\",\"1.13\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"04-JAN-1990\",\"1.11\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"05-JAN-1990\",\"1.11\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"06-JAN-1990\",\"1.09\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"07-JAN-1990\",\"1.09\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"08-JAN-1990\",\"1.08\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"09-JAN-1990\",\"1.08\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"10-JAN-1990\",\"1.05\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"11-JAN-1990\",\"1.04\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"12-JAN-1990\",\"1.03\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"13-JAN-1990\",\"1.02\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"14-JAN-1990\",\"1.03\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"15-JAN-1990\",\"1.18\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"16-JAN-1990\",\"1.19\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"17-JAN-1990\",\"1.07\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"18-JAN-1990\",\"1.06\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"19-JAN-1990\",\"1.03\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"20-JAN-1990\",\".99\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"21-JAN-1990\",\".97\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"22-JAN-1990\",\".93\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"23-JAN-1990\",\".90\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"24-JAN-1990\",\".88\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"25-JAN-1990\",\".90\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"26-JAN-1990\",\".91\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"27-JAN-1990\",\".92\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"28-JAN-1990\",\"1.14\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"29-JAN-1990\",\"1.18\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"30-JAN-1990\",\"1.18\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"31-JAN-1990\",\"1.16\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"01-FEB-1990\",\"1.12\",\"\",\"04-DEC-2002\"\r\n\"G-561\",\"01857\",\"02-FEB-1990\",\"1.09\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"01-JAN-1990\",\"10.60\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"02-JAN-1990\",\"10.57\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"03-JAN-1990\",\"10.56\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"04-JAN-1990\",\"10.58\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"05-JAN-1990\",\"10.63\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"06-JAN-1990\",\"10.61\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"07-JAN-1990\",\"10.58\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"08-JAN-1990\",\"10.55\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"09-JAN-1990\",\"10.53\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"10-JAN-1990\",\"10.50\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"11-JAN-1990\",\"10.47\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"12-JAN-1990\",\"10.43\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"13-JAN-1990\",\"10.39\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"14-JAN-1990\",\"10.36\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"15-JAN-1990\",\"10.34\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"16-JAN-1990\",\"10.32\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"17-JAN-1990\",\"10.30\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"18-JAN-1990\",\"10.28\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"19-JAN-1990\",\"10.26\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"20-JAN-1990\",\"10.24\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"21-JAN-1990\",\"10.21\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"22-JAN-1990\",\"10.20\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"23-JAN-1990\",\"10.23\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"24-JAN-1990\",\"10.35\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"25-JAN-1990\",\"10.37\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"26-JAN-1990\",\"10.35\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"27-JAN-1990\",\"10.29\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"28-JAN-1990\",\"10.25\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"29-JAN-1990\",\"10.23\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"30-JAN-1990\",\"10.21\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"31-JAN-1990\",\"10.21\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"01-FEB-1990\",\"10.20\",\"\",\"04-DEC-2002\"\r\n\"C-54\",\"01952\",\"02-FEB-1990\",\"10.18\",\"\",\"04-DEC-2002\"\r\n
         \r\n"
-  recorded_at: 2021-02-20 15:06:59 GMT
-  recorded_with: vcr/0.6.0, webmockr/0.7.4
+  recorded_at: 2021-05-23 19:26:06 GMT
+  recorded_with: vcr/1.0.0, webmockr/0.8.0

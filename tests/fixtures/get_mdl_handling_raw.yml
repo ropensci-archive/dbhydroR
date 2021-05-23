@@ -14,12 +14,17 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Sat, 20 Feb 2021 14:59:58 GMT
+      xet-cookie: ''
+      age: '1'
+      date: Sun, 23 May 2021 19:26:07 GMT
+      connection: Keep-Alive
+      via: 'NS-CACHE-10.0:  15'
+      etag: '"KXIEBNGBLNPNSVXN"'
       content-disposition: attachment;filename= REPORT.csv
       x-db-content-length: '959'
       content-type: appl/text
       server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
-        (N;ecid=72430039719721044,0:1)
+        (N;ecid=438111002770830,0:1)
       content-length: '959'
       content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
         sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
@@ -41,8 +46,8 @@ http_interactions:
         10:05\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"18\",\"NITRATE+NITRITE-N\",\"631\",\"EPA
         353.2 (NOX(N))\",\"22-SEP-2014 15:59\",\"-.01\",\"-0.01\",\"\",\".01\",\"0.0400\",\"0.0400\",\"mg/L\",\"U\",\"\",\"\",\"AC29833\",\"DERM\",\"DERM\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"0\",\"MON\",\"3\",\"See
         Field Notes\",\"\"\r\n \r\n"
-  recorded_at: 2021-02-20 14:59:59 GMT
-  recorded_with: vcr/0.6.0, webmockr/0.7.4
+  recorded_at: 2021-05-23 19:26:07 GMT
+  recorded_with: vcr/1.0.0, webmockr/0.8.0
 - request:
     method: get
     uri: https://my.sfwmd.gov/dbhydroplsql/water_quality_data.report_full?v_where_clause=where%20date_collected%20%3E%20%2714-Sep-2014%27%20and%20date_collected%20%3C%20%2718-Sep-2014%27%20and%20station_id%20in%20%28%27FLAB01%27%29%20and%20test_name%20in%20%28%27NITRATE%2BNITRITE-N%27%29&v_target_code=file_csv&v_exc_flagged=N&v_exc_qc=N
@@ -59,16 +64,16 @@ http_interactions:
       message: 'Success: (200) OK'
     headers:
       xet-cookie: ''
-      age: '2'
-      date: Sat, 20 Feb 2021 14:59:57 GMT
+      age: '1'
+      date: Sun, 23 May 2021 19:26:07 GMT
       connection: Keep-Alive
       via: 'NS-CACHE-10.0:  15'
-      etag: '"KXIEBNGBLNVVLOXS"'
+      etag: '"KXIEBNGBLNPNSVXN"'
       content-disposition: attachment;filename= REPORT.csv
       x-db-content-length: '959'
       content-type: appl/text
       server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
-        (N;ecid=72430039719721044,0:1)
+        (N;ecid=438111002770830,0:1)
       content-length: '959'
       content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
         sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
@@ -90,5 +95,5 @@ http_interactions:
         10:05\",\"SAMP\",\"G\",\"0.50\",\"m\",\"SA\",\"18\",\"NITRATE+NITRITE-N\",\"631\",\"EPA
         353.2 (NOX(N))\",\"22-SEP-2014 15:59\",\"-.01\",\"-0.01\",\"\",\".01\",\"0.0400\",\"0.0400\",\"mg/L\",\"U\",\"\",\"\",\"AC29833\",\"DERM\",\"DERM\",\"WMD\",\"2\",\"WMD\",\"BA\",\"NO\",\"\",\"\",\"\",\"\",\"\",\"3\",\"\",\"0\",\"0\",\"0\",\"MON\",\"3\",\"See
         Field Notes\",\"\"\r\n \r\n"
-  recorded_at: 2021-02-20 14:59:59 GMT
-  recorded_with: vcr/0.6.0, webmockr/0.7.4
+  recorded_at: 2021-05-23 19:26:07 GMT
+  recorded_with: vcr/1.0.0, webmockr/0.8.0

@@ -14,23 +14,22 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Sat, 20 Feb 2021 14:32:46 GMT
+      xet-cookie: ''
+      age: '1'
+      date: Sun, 23 May 2021 19:26:04 GMT
+      connection: Keep-Alive
+      via: 'NS-CACHE-10.0:  15'
+      etag: '"KXIEBNGBLNPOSVXN"'
       x-db-content-length: '3958'
       content-type: text/html; charset=WINDOWS-1252
       server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
-        (N;ecid=72383752855485761,0:1)
+        (N;ecid=438050873225629,0:1)
+      content-length: '3958'
       content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
         sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
         *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; style-src ''self'' ''unsafe-inline''
         ''unsafe-eval'' *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; frame-ancestors  *.sfwmd.gov;
         img-src ''self'' data: *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com;'
-      set-cookie: citrix_ns_id=OJbZ6JfKRUQUxP/AG9n6Qb7FPzs0000; Domain=.sfwmd.gov;
-        Path=/; HttpOnly
-      x-cache-control-orig: ''
-      cache-control: max-age=0, must-revalidate, private
-      x-expires-orig: None
-      transfer-encoding: chunked
-      etag: '"KXIEBNGBLNZRQOXS"'
     body:
       encoding: UTF-8
       file: no
@@ -79,5 +78,5 @@ http_interactions:
         team\">Comments?</a>\n</td></tr>\n<tr><td valign=\"top\" align=\"center\">
         <iframe allowTransparency=\"true\" height=\"100\" width=\"100%\" frameBorder=\"0\"
         scrolling = no align=\"right\" SRC=\"https://my.sfwmd.gov/sfwmd/common/html/footerinternal.html\"\n</table>\n</center>\n</font>\n</body>\n</html>\n"
-  recorded_at: 2021-02-20 14:32:46 GMT
-  recorded_with: vcr/0.6.0, webmockr/0.7.4
+  recorded_at: 2021-05-23 19:26:04 GMT
+  recorded_with: vcr/1.0.0, webmockr/0.8.0

@@ -14,23 +14,18 @@ http_interactions:
       reason: OK
       message: 'Success: (200) OK'
     headers:
-      date: Sat, 20 Feb 2021 14:59:51 GMT
+      date: Sun, 23 May 2021 19:26:04 GMT
       x-db-content-length: '15717'
       transfer-encoding: chunked
       content-type: text/html; charset=WINDOWS-1252
       server: Oracle-Application-Server-11g/11.1.1.6.0 Oracle-HTTP-Server Oracle-Web-Cache-11g/11.1.1.6.0
-        (N;ecid=72429953820362776,0:1)
+        (N;ecid=438055168192963,0:1:1)
       content-security-policy: 'default-src ''self'' *.sfwmd.gov *.arcgisonline.com
         sfwmd.maps.arcgis.com; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''
         *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; style-src ''self'' ''unsafe-inline''
         ''unsafe-eval'' *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com; frame-ancestors  *.sfwmd.gov;
         img-src ''self'' data: *.sfwmd.gov *.arcgisonline.com sfwmd.maps.arcgis.com;'
-      set-cookie: citrix_ns_id=I6SBgM7dz+Ay5/u/f34ehU1/RVk0000; Domain=.sfwmd.gov;
-        Path=/; HttpOnly
-      x-cache-control-orig: ''
-      cache-control: max-age=0, must-revalidate, private
-      x-expires-orig: None
-      etag: '"KXIEBNGBLNUWLOXS"'
+      etag: '"KXIEBNGBLNOOSVXN"'
     body:
       encoding: UTF-8
       file: no
@@ -109,19 +104,18 @@ http_interactions:
         nowrap><a href=\"show_dbkey_info.show_basin_info?v_basin=C111_SO\">C111_SO</a></td>\n<td>&nbsp;</td>\n<td
         style=\"text-align:center;\">8</td>\n<td style=\"text-align:center;\">58</td>\n<td
         style=\"text-align:center;\">38</td>\n</tr>\n</table>\n<br>\n<input type=\"hidden\"
-        name=\"v_shweta\" value=\"\">\n<input type=\"hidden\" name=\"as_sfid\" value=\"AAAAAAWBwb7cxe84gIhMeB6GPrJXCY29raBLlO0xT31MIt3bf2LE-JDNvaJfsvv7QJ2qSjxHU0lFPwanJT_3uJFd7p7ZZKjXxrBZrzS6Fo0Uva1bE2M9ziMYP2wQa49wq-i986k=\"
-        /><input type=\"hidden\" name=\"as_fid\" value=\"d5629d0fce0cba9de828b839e54ea7ad274a364a\"
-        /></form>\n<SCRIPT LANGUAGE=\"JavaScript\" >\nfunction save_param() {\n\n
-        \       document.query_io.v_parameter_string.value = \"\" ;\n\n            if
-        (getDbkeys(\"submitDbkeyList\"))\n        {\n          return true ;\n        }\n
-        \       else\n        {\n          return false ;\n        }\n\n            if
-        (getDbkeys(\"query_io\"))\n        {\n          return true ;\n        }\n
-        \       else\n        {\n          return false ;\n        }\n\n          document.submitDbkeyList.v_parameter_string.value
-        = document.query_io.v_parameter_string.value ;\n\n            }\n</SCRIPT>\n<FORM
-        NAME=\"submitDbkeyList\" onSubmit=\"JavaScript: return save_param()\" ACTION=\"/dbhydroplsql/show_dbkey_info.date_selection\">\n<input
+        name=\"v_shweta\" value=\"\">\n</form>\n<SCRIPT LANGUAGE=\"JavaScript\" >\nfunction
+        save_param() {\n\n        document.query_io.v_parameter_string.value = \"\"
+        ;\n\n            if (getDbkeys(\"submitDbkeyList\"))\n        {\n          return
+        true ;\n        }\n        else\n        {\n          return false ;\n        }\n\n
+        \           if (getDbkeys(\"query_io\"))\n        {\n          return true
+        ;\n        }\n        else\n        {\n          return false ;\n        }\n\n
+        \         document.submitDbkeyList.v_parameter_string.value = document.query_io.v_parameter_string.value
+        ;\n\n            }\n</SCRIPT>\n<FORM NAME=\"submitDbkeyList\" onSubmit=\"JavaScript:
+        return save_param()\" ACTION=\"/dbhydroplsql/show_dbkey_info.date_selection\">\n<input
         type=\"hidden\" name=\"v_category\" value=\"GW\">\n<input type=\"hidden\"
         name=\"v_js_flag\" value=\"N\">\n<input type=\"hidden\" name=\"v_db_request_id\"
-        value=\"6579684\">\n<input type=\"hidden\" name=\"v_parameter_string\" value=\"\"
+        value=\"6627084\">\n<input type=\"hidden\" name=\"v_parameter_string\" value=\"\"
         />\n<input type=\"hidden\" name=\"v_dbkey\" value=\"\" />\n<input type=\"hidden\"
         name=\"v_frequency\" value=\"\" />\n<input type=\"hidden\" name=\"v_sdate\"
         value=\"\" />\n<input type=\"hidden\" name=\"v_edate\" value=\"\" />\n<input
@@ -129,16 +123,14 @@ http_interactions:
         VALUE=\"Get Data\">\n<INPUT TYPE=\"Reset\" class=\"SMexpandedDark\" value=\"Clear
         All\"  onClick=\"javaScript:return checkboxOnOff('dbkeyList','off')\" >\n<INPUT
         TYPE=\"Reset\" class=\"SMexpandedDark\" value=\"Select All\"  onClick=\"javaScript:return
-        checkboxOnOff('dbkeyList','on')\" >\n<input type=\"hidden\" name=\"as_sfid\"
-        value=\"AAAAAAXPxLDS9H5_gMSi7lG_QaNQPeUu3CiUO9CUp_mcYX7My3PnkcJ8V2U_s7Jrx76gq8Sh4d0u9LHbj3gm1FE4D6lxZcfn1g_O8U-4GqNr5C_JU1P0EXxEOfcVu-fXq6MNlWQ=\"
-        /><input type=\"hidden\" name=\"as_fid\" value=\"8da9708ec4598a07ef3cb2bef0b96108512f2082\"
-        /></form>\nQuery returned 1 record(s).\n<br />\n<br />\n<SCRIPT LANGUAGE=\"JavaScript\">
-        \nfunction get_os(){\n          if ( (navigator.platform.substr(0,3) == \"Win\")
-        ||\n                 (navigator.platform.substr(0,3) == \"Mac\") )\n        {\n
-        \              document.listing_io.v_os_code.value = navigator.platform.substr(0,3);\n
-        \           }\n            else\n        {\n               document.listing_io.v_os_code.value
-        = \"Unix\";\n            }\n          return true ;\n        }\nfunction save_listing(del){\n\n
-        \       if (del == 0 )\n        {\n            document.listing_io.v_target_code.value
+        checkboxOnOff('dbkeyList','on')\" >\n</form>\nQuery returned 1 record(s).\n<br
+        />\n<br />\n<SCRIPT LANGUAGE=\"JavaScript\"> \nfunction get_os(){\n          if
+        ( (navigator.platform.substr(0,3) == \"Win\") ||\n                 (navigator.platform.substr(0,3)
+        == \"Mac\") )\n        {\n               document.listing_io.v_os_code.value
+        = navigator.platform.substr(0,3);\n            }\n            else\n        {\n
+        \              document.listing_io.v_os_code.value = \"Unix\";\n            }\n
+        \         return true ;\n        }\nfunction save_listing(del){\n\n        if
+        (del == 0 )\n        {\n            document.listing_io.v_target_code.value
         = \"file_csv\" ;\n        }\n        else\n        {\n            document.listing_io.v_target_code.value
         = \"file_fw\" ;\n        }\n        document.listing_io.submit() ;\n\n         }\n</script>\n<FORM
         NAME=\"query_io\" onSubmit=\"javaScript: return getDbkeys('query_io')\" ACTION=\"/dbhydroplsql/web_io.file_save\"
@@ -146,25 +138,21 @@ http_interactions:
         />\n<input type=\"hidden\" name=\"v_category\" value=\"GW\" />\n<input type=\"hidden\"
         name=\"v_parameter_string\" value=\"\" />\n<input type=\"hidden\" name=\"v_os_code\"
         value=\"\" />\n<INPUT TYPE=\"submit\" class=\"SMexpandedDark\" VALUE=\"Save
-        Parameter File\">\n<input type=\"hidden\" name=\"as_sfid\" value=\"AAAAAAVuXXBTPrAHDeECNo7X3JyjSsGl978EFghka1WnH6Vgt_cjHAAWFE67Hy75OBd4JpO_uR_c6QwvYnmhycSRLKOJ04OwHah1a2L0ynj18VbbEIeC7hmtAqzNObrgijda1NI=\"
-        /><input type=\"hidden\" name=\"as_fid\" value=\"b04c8bef584b12323bd82688f1d5d7ffd3429600\"
-        /></form>\n<FORM NAME=\"listing_io\" onSubmit=\"javaScript:return get_os()\"
-        ACTION=\"/dbhydroplsql/web_io.file_save_time_series\" >\n<input type=\"hidden\"
-        name=\"v_target_code\" value=\"\" />\n<input type=\"hidden\" name=\"v_cursor_text\"
-        value=\"SELECT dbkey, station, site, data_type, frequency,  statistic_type,
-        recorder, struct_type, strata, agency,  county, basin, lat, longitude,  nvl(TO_CHAR(start_date,'DD-MON-YYYY'),'
-        ') s_date, nvl(TO_CHAR(end_date,'DD-MON-YYYY'),' ') e_date , station_id ,
-        gate_no,  range,  town,  section,  xcoord, ycoord, group_name FROM keyword_tab
-        a  WHERE   ( station like upper('C111AE') ) and  ( a.data_type like upper('WELL')
-        \ ) and  ( frequency like upper('DA')  ) and  ( statistic_type like upper('MEAN')
-        \ ) and   ( strata between upper('9') and upper('22') ) and  ( recorder like
-        upper('TROL')  ) and  ( agency like upper('WMD')  ) and  ( published_flag
-        = 'Y')   order by STATION, data_type,strata,gate_no,statistic_type,end_date,agency
+        Parameter File\">\n</form>\n<FORM NAME=\"listing_io\" onSubmit=\"javaScript:return
+        get_os()\" ACTION=\"/dbhydroplsql/web_io.file_save_time_series\" >\n<input
+        type=\"hidden\" name=\"v_target_code\" value=\"\" />\n<input type=\"hidden\"
+        name=\"v_cursor_text\" value=\"SELECT dbkey, station, site, data_type, frequency,
+        \ statistic_type, recorder, struct_type, strata, agency,  county, basin, lat,
+        longitude,  nvl(TO_CHAR(start_date,'DD-MON-YYYY'),' ') s_date, nvl(TO_CHAR(end_date,'DD-MON-YYYY'),'
+        ') e_date , station_id , gate_no,  range,  town,  section,  xcoord, ycoord,
+        group_name FROM keyword_tab a  WHERE   ( station like upper('C111AE') ) and
+        \ ( a.data_type like upper('WELL')  ) and  ( frequency like upper('DA')  )
+        and  ( statistic_type like upper('MEAN')  ) and   ( strata between upper('9')
+        and upper('22') ) and  ( recorder like upper('TROL')  ) and  ( agency like
+        upper('WMD')  ) and  ( published_flag = 'Y')   order by STATION, data_type,strata,gate_no,statistic_type,end_date,agency
         \" />\n<input type=\"hidden\" name=\"v_os_code\" value=\"\" />\n<input type=\"Button\"
         name=\"listing_save\" class=\"SMexpandedDark\" value=\"Save Time Series Listing\"
-        onclick=\"save_listing(0)\">\n<input type=\"hidden\" name=\"as_sfid\" value=\"AAAAAAXAlAuEBYpQzDwfJg7UYH7kq8VmsKzL0BcPx7pUJZNAOwhwPefUG2cHfOxRBilYhL_DjNQ8Xa4UGZLlOI7lI4A6Tp3HIVLnVLgUAeRmkE9DXCmJGeJKjKgF1_V_iTTfaFw=\"
-        /><input type=\"hidden\" name=\"as_fid\" value=\"c8b5506a172902e8565f4a43c0b1f0c06f307f12\"
-        /></form>\n</center>\n</fieldset></td></tr></table>\n</td></tr></table><br>\n<center>\n<table
+        onclick=\"save_listing(0)\">\n</form>\n</center>\n</fieldset></td></tr></table>\n</td></tr></table><br>\n<center>\n<table
         style=\"border-collapse: collapse; \"><tr><td style=\"white-space:nowrap;
         text-align:center\">\n<font face=\"Verdana,Lucida,Helvetica\" size=\"2\"><a
         href=\"http://my.sfwmd.gov/dbhydroplsql/show_dbkey_info.main_page\">DBHYDRO
@@ -178,5 +166,5 @@ http_interactions:
         team\">Comments?</a>\n</td></tr>\n<tr><td valign=\"top\" align=\"center\">
         <iframe allowTransparency=\"true\" height=\"100\" width=\"100%\" frameBorder=\"0\"
         scrolling = no align=\"right\" SRC=\"https://my.sfwmd.gov/sfwmd/common/html/footerinternal.html\"\n</table>\n</center>\n</font>\n</body>\n</html>\n"
-  recorded_at: 2021-02-20 14:59:51 GMT
-  recorded_with: vcr/0.6.0, webmockr/0.7.4
+  recorded_at: 2021-05-23 19:26:04 GMT
+  recorded_with: vcr/1.0.0, webmockr/0.8.0
