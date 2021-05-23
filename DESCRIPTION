@@ -18,7 +18,6 @@ Imports:
     reshape2,
     XML
 License: GPL
-LazyData: true
 Suggests:
     testthat,
     knitr,
