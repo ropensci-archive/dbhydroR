@@ -1,3 +1,9 @@
+# dbhydroR 0.2-9
+
+## Minor changes
+
+* Maintenance release to fix testing on CRAN
+
 # dbhydroR 0.2-8 
 
 ## Minor changes
