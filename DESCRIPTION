@@ -19,11 +19,13 @@ Imports:
     XML
 License: GPL
 Suggests:
-    testthat,
     knitr,
     rmarkdown,
-    vcr,
-    markdown
+    vcr (>= 0.6.0),
+    markdown,
+    testthat (>= 3.0.0),
+    crul
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Encoding: UTF-8
+Config/testthat/edition: 3
