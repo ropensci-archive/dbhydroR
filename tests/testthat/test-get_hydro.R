@@ -1,17 +1,16 @@
-context("get_hydro")
 
 test_that("get_hydro works", {
   vcr::use_cassette("get_hydro_works_single", {
     x <- get_hydro(dbkey = "15081", date_min = "2013-01-01",
                    date_max = "2013-02-02")
   })
-  expect_is(x, "data.frame")
+  expect_s3_class(x, "data.frame")
 
   vcr::use_cassette("get_hydro_works_multiple", {
     x <- get_hydro(dbkey = c("15081", "15069"), date_min = "2013-01-01",
                    date_max = "2013-02-02")
   })
-  expect_is(x, "data.frame")
+  expect_s3_class(x, "data.frame")
 })
 
 vcr::use_cassette("get_hydro_fails", {

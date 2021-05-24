@@ -1,4 +1,3 @@
-context("get_dbkey")
 
 vcr::use_cassette("get_dbkey_fails_well", {
   test_that("get_dbkey fails well", {
@@ -14,7 +13,7 @@ test_that("get_dbkey works", {
                                param = "WELL", freq = "DA", stat = "MEAN", strata = c(9, 22),
                                recorder = "TROL", agency = "WMD", detail.level = "full"))
   })
-  expect_is(invisible(res), "data.frame")
+  expect_s3_class(invisible(res), "data.frame")
   expect_equal(nrow(res), 1)
 
   vcr::use_cassette("get_dbkey_works_weather", {

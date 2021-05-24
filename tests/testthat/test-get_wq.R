@@ -1,4 +1,3 @@
-context("get_wq")
 
 test_that("get_wq works", {
   vcr::use_cassette("get_wq_works", {
@@ -6,7 +5,7 @@ test_that("get_wq works", {
          date_min = "2011-03-01", date_max = "2012-05-01",
          test_name = "CHLOROPHYLL-A, SALINE")
   })
-  expect_is(x, "data.frame")
+  expect_s3_class(x, "data.frame")
 })
 
 vcr::use_cassette("get_wq_fails_well", {
