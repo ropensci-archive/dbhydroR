@@ -1,6 +1,6 @@
 ---
 title: "dbhydroR: An R package to access the DBHYDRO Environmental Database"
-author: "Joseph Stachelek"
+author: "Jemma Stachelek"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 bibliography: bib.bib
